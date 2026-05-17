@@ -319,6 +319,18 @@ section, article {
     text-decoration: underline;
     color: var(--text-bright);
 }
+.toc-box ul ul {
+    padding-left: 1.5rem;         
+    list-style: initial;           
+    margin-top: 0.2rem;            
+}
+.toc-box ul ul::marker {
+    color: var(--gentoo-purple-light2);
+}
+.toc-box ul ul li {
+    font-size: 0.8rem;             
+    margin: 0.2rem 0;              
+}
 
 html {
     scroll-behavior: smooth;
