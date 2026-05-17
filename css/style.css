@@ -184,3 +184,47 @@ footer {
     font-size: 11px;
     color: #aaa;
 }
+
+.wiki-thumb {
+    margin-bottom: 1.2rem;
+    max-width: 320px; 
+    width: 100%;
+}
+
+.thumb-right {
+    float: right;
+    margin-left: 1.5rem;
+}
+
+.thumb-left {
+    float: left;
+    margin-right: 1.5rem;
+}
+
+.thumb-inner {
+    background-color: var(--bg-navbar); 
+    border: 1px solid var(--gentoo-purple-light); 
+    padding: 6px;
+    border-radius: 2px;
+}
+
+.wiki-thumb img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.thumb-caption {
+    padding-top: 6px;
+    font-size: 0.75rem; 
+    line-height: 1.4;
+    color: var(--text-main);
+    opacity: 0.85; 
+}
+
+.wiki-container::after {
+    content: "";
+    display: table;
+    clear: both;
+}
