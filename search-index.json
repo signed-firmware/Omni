@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Home",
+    "tags": ["hub", "main", "wiki"],
+    "snippet": "Welcome to the Plane Crazy Shredder & Tech wiki!",
+    "url": "index.html"
+  },
+  {
+    "title": "Shredder Hub",
+    "tags": ["shredder", "pvp", "combat", "shred"],
+    "snippet": "A comprehensive guide and collection of information on shredders.",
+    "url": "pages/shredderhub.html"
+  },
+  {
+    "title": "Tech Manifest",
+    "tags": ["tech", "leaks", "mechanics", "glitch"],
+    "snippet": "A complete manifest of known techs and authorized tech leaks.",
+    "url": "pages/tech/techmanifest.html"
+  },
+  {
+    "title": "3x5 Gyro",
+    "tags": ["gyro", "movement", "build"],
+    "snippet": "Detailed specifications and building guide for the 3x5 gyro stabilizer.",
+    "url": "pages/shreds/3x5gyro.html"
+  }
+]

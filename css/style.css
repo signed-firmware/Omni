@@ -1,0 +1,190 @@
+:root {
+    --gentoo-purple: #54487A;
+    --gentoo-purple-light: #61538D;
+    --gentoo-purple-light2: #6E56AF;
+    --gentoo-grey: #DDDAEC;
+    --gentoo-grey-light: #DDDFFF;
+    --gentoo-green: #73D216;
+    --gentoo-red: #D9534F;
+    
+    --bg-body: #16141c;              
+    --bg-navbar: #221d2e;            
+    --bg-footer: #1e1b24;            
+    --text-main: #DDDAEC;            
+    --text-bright: #DDDFFF;          
+
+    --bg-tip: #1b2e1a;               
+    --bg-important: #332b17;         
+    --bg-warning: #361a1a;           
+    --bg-note: #142533;              
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Consolas', 'Courier New', monospace;
+}
+
+
+
+body {
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    line-height: 1.6;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--bg-navbar);
+    padding: 1rem 2rem;
+    border-bottom: 2px solid var(--gentoo-purple);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--gentoo-green);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-links a {
+    color: var(--gentoo-grey);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: var(--gentoo-purple-light2);
+    border-bottom: 2px solid var(--gentoo-purple-light2);
+}
+
+.wiki-container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+}
+
+h1, h2, h3 {
+    color: var(--text-bright);
+    margin-bottom: 1rem;
+}
+
+h1 {
+    border-bottom: 1px solid var(--gentoo-purple-light);
+    padding-bottom: 0.5rem;
+}
+
+p {
+    margin-bottom: 1.5rem;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.card {
+    background-color: var(--bg-navbar);
+    padding: 1.5rem;
+    border-radius: 4px;
+    border: 1px solid var(--gentoo-purple);
+}
+
+.card h3 {
+    color: var(--gentoo-purple-light2);
+}
+
+.callout {
+    padding: 1rem;
+    margin: 1.5rem 0;
+    border-radius: 4px;
+    border-left: 5px solid transparent;
+}
+
+.callout-tip {
+    background-color: var(--bg-tip);
+    border-left-color: var(--gentoo-green);
+}
+
+.callout-important {
+    background-color: var(--bg-important);
+    border-left-color: #f0ad4e; 
+}
+
+.callout-warning {
+    background-color: var(--bg-warning);
+    border-left-color: var(--gentoo-red);
+}
+
+.callout-note {
+    background-color: var(--bg-note);
+    border-left-color: #5bc0de;
+}
+
+footer {
+    background-color: var(--bg-footer);
+    text-align: center;
+    padding: 2rem;
+    margin-top: 4rem;
+    border-top: 1px solid var(--gentoo-purple);
+    color: var(--gentoo-purple-light);
+    font-size: 0.9rem;
+}
+/* Fixes the layout container position */
+.search-container {
+    position: relative;
+    display: inline-block;
+}
+
+/* Forces the results box to drop down and float *above* the wiki content */
+.search-results-box {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: #2a2a2a; /* Match this to your navbar background color */
+    border: 1px solid #444;
+    border-radius: 4px;
+    max-height: 300px;
+    overflow-y: auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* Optional styling to make each search item clear and clickable */
+.search-item {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #fff;
+    border-bottom: 1px solid #333;
+}
+
+.search-item:last-child {
+    border-bottom: none;
+}
+
+.search-item:hover {
+    background: #3a3a3a; /* Slight highlight on hover */
+}
+
+.search-item strong {
+    display: block;
+    font-size: 14px;
+}
+
+.search-item span {
+    display: block;
+    font-size: 11px;
+    color: #aaa;
+}
