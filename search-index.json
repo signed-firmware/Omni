@@ -20,7 +20,13 @@
   {
     "title": "3x5 Gyro",
     "tags": ["gyro", "movement", "build"],
-    "snippet": "Detailed specifications and building guide for the 3x5 gyro stabilizer.",
+    "snippet": "Specifications and guide for the 3x5 gyro stabilizer.",
     "url": "pages/shreds/3x5gyro.html"
+  },
+  {
+    "title": "1x1 Gyro", 
+    "tags": ["gyro", "movment", "build"],
+    "snippet": "Specifications for and building guide for a rigid and normal 1x1 gyro",
+    "url": "pages/shreds/1x1gyro.html"
   }
 ]
