@@ -15,7 +15,19 @@
     "title": "Tech Manifest",
     "tags": ["tech", "leaks", "mechanics", "glitch"],
     "snippet": "A complete manifest of known techs and authorized tech leaks.",
-    "url": "pages/tech/techmanifest.html"
+    "url": "pages/techmanifest.html"
+  },
+  {
+    "title": "Movement mechanics",
+    "tags": ["movement", "movementinfo", "hover", "hover engines", "rocket", "rocket engines", "angled", "angled rocket engines", "hybrid", "hybrid rocket engines", "acceleration", "skybounce", "aerobounce"],
+    "snippet": "A comprehensive guide to movement mechanics",
+    "url": "pages/shreds/movementmechanics.html"
+  },
+  {
+    "title": "Armor info",
+    "tags": ["armor", "armorinfo", "pushback", "thickness", "angling", "armorlogic", "armor logic", "rigidity"],
+    "snippet": "A comprehensive guide to armor info",
+    "url": "pages/shreds/armorinfo.html"
   },
   {
     "title": "3x5 Gyro",
@@ -28,11 +40,5 @@
     "tags": ["gyro", "movment", "build"],
     "snippet": "Specifications for and building guide for a rigid and normal 1x1 gyro",
     "url": "pages/shreds/1x1gyro.html"
-  },
-  {
-    "title": "Armor info",
-    "tags": ["armor", "armorinfo", "pushback", "thickness", "angling", "armorlogic", "armor logic", "rigidity"],
-    "snippet": "A comprehensive guide to armor info",
-    "url": "pages/shreds/armorinfo.html"
   }
 ]
