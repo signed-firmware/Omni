@@ -30,6 +30,12 @@
     "url": "pages/shreds/armorinfo.html"
   },
   {
+    "title": "Massless",
+    "tags": ["massless", "staging", "modules"],
+    "snippet": "A comphrensive and complete guide on staging and massless",
+    "url": "pages/shreds/massless.html"
+  },
+  {
     "title": "3x5 Gyro",
     "tags": ["gyro", "movement", "build"],
     "snippet": "Specifications and guide for the 3x5 gyro stabilizer.",
