@@ -48,6 +48,48 @@
     "url": "pages/shreds/voidtech.html"
   },
   {
+    "title": "Template",
+    "tags": ["template"],
+    "snippet": "csa, csa, csa",
+    "url": "pages/shreds/template.html"
+  },
+  {
+    "title": "Axis Locks",
+    "tags": ["gyro", "axis", "lock"],
+    "snippet": "Types of axis locks explained.",
+    "url": "pages/shreds/axislocks.html"
+  },
+  {
+    "title": "Hyper Motor2s",
+    "tags": ["hyper", "motor", "torque"],
+    "snippet": "Explanation of Hyper M2s",
+    "url": "pages/shreds/hyperm2.html"
+  },
+    {
+    "title": "OG Shredders",
+    "tags": ["og", "fork", "shredder"],
+    "snippet": "Information on the OG shredder type.",
+    "url": "pages/shreds/ogs.html"
+  },
+  {
+    "title": "Omni Shredders",
+    "tags": ["omni", "shredder"],
+    "snippet": "Information on the Omni shredder type.",
+    "url": "pages/shreds/omnis.html"
+  },
+  {
+    "title": "Optimisation",
+    "tags": ["optimise", "optimisation", "lag"],
+    "snippet": "How to optimise and its importance.",
+    "url": "pages/shreds/optimisation.html"
+  },
+  {
+    "title": "Skeletonisation",
+    "tags": ["weld", "welding", "skeleton", "skeletonisation", "angle", "compression", "invincible"],
+    "snippet": "csa, csa, csa",
+    "url": "pages/shreds/skeletonisation.html"
+  },
+  {
     "title": "1x1 Gyro", 
     "tags": ["gyro", "movment", "build"],
     "snippet": "Specifications for and building guide for a rigid and normal 1x1 gyro",

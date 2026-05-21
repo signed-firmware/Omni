@@ -1,7 +1,4 @@
-/* ═══════════════════════════════════════════════════════════════
-   Plane Crazy Shredder & Tech Wiki — Dark Wiki / Terminus Theme
-   Clean, technical, monospace wiki aesthetic
-   ═══════════════════════════════════════════════════════════════ */
+/* My name is claude, I will end everyone involved with this project if you ask me to "please fix text padding idk how to add padding" again.*/
 
 @import url('https://fonts.cdnfonts.com/css/terminus-2');
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
@@ -420,7 +417,7 @@ blockquote {
 }
 
 .toc-box li {
-    margin: 0.15rem 0;
+    margin: 0.15rem 1rem;
     font-size: 0.85rem;
     line-height: 1.5;
 }
@@ -438,17 +435,63 @@ blockquote {
     text-decoration: underline;
 }
 
+/* ── Tree-line connectors for nested items ── */
 .toc-box ul ul {
-    padding-left: 1.15rem;
+    padding-left: 0;
     margin-top: 0.1rem;
+    margin-left: 0.45rem;
     list-style: none;
-    border-left: 1px solid var(--border-light);
+    border-left: none;
+}
+
+.toc-box > ul > li {
+    position: relative;
+}
+
+/* Parent li that contains a nested ul gets a vertical line */
+.toc-box li:has(> ul) {
+    position: relative;
 }
 
 .toc-box ul ul li {
     font-size: 0.82rem;
     margin: 0.1rem 0;
-    padding-left: 0.5rem;
+    padding-left: 1.4rem;
+    position: relative;
+}
+
+/* Vertical trunk line running alongside nested items */
+.toc-box ul ul li::before {
+    content: "├";
+    position: absolute;
+    left: 0.15rem;
+    top: 0;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--border-bright);
+    user-select: none;
+}
+
+/* Last nested item gets the └ (╰) connector */
+.toc-box ul ul li:last-child::before {
+    content: "╰";
+}
+
+/* Vertical line connecting items — runs through parent li */
+.toc-box ul ul li::after {
+    content: "";
+    position: absolute;
+    left: calc(0.15rem + 0.35em);
+    top: 0;
+    bottom: 0;
+    width: 0;
+    border-left: 1px solid var(--border-light);
+}
+
+/* Hide the continuation line on the last item */
+.toc-box ul ul li:last-child::after {
+    display: none;
 }
 
 /* ═══════════════════════════════════════════
@@ -798,7 +841,7 @@ section, article {
 }
 
 .wiki-stub::before {
-    content: "🔧 ";
+    content: "STUB PAGE";
 }
 
 /* ── Blockquote with attribution ──
@@ -918,15 +961,6 @@ section, article {
        <span class="wiki-cat">PvP</span>
    </div>
 */
-.wiki-categories {
-    margin-top: 2rem;
-    padding-top: 0.75rem;
-    border-top: 1px solid var(--border-light);
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    align-items: center;
-}
 
 .wiki-categories::before {
     content: "Categories:";
