@@ -34,7 +34,9 @@
    </nav>
 
     <p>Health is a measurement of how many hits your shredder can take without being destroyed. Increasing health is mostly done through strengthening components and also constraints between sections of your shredder with redundancy.</p>
-
+        <div class="callout callout-note">
+            <strong>NOTE:</strong> The generally accepted limit for redundancy is 6x.
+        </div>
            <nav class="toc-box">
             <div class="toc-title">Contents</div>
             <ul>
@@ -48,10 +50,18 @@
         </nav>
     <section id="Stuff"></section>
         <h2>Redundancy</h2>
-        <p>Redundancy is the main factor for health, it directly strengthens constraints by 100% for each </p>
+        <p>Redundancy is the main factor for health, it directly strengthens constraints and regular blocks by one hit from a cutter. Cutters have a cooldown of 0.1 seconds and do not have a multi hitting effect, which means you can place two blocks within the same space and each block would have to be hit individually.</p>
+        <p>This fact is applied to constraints like motor2s within a core, though they have to be welded and folded correctly to function.</p>
+        <h4>Redundancy is referred to as (number of redundancy)x. The lowest amount of redundancy you have on every constraint (that is required for your shredder to work) is referred to global redundancy.</h4>
+        <h4>Example: A shredder has a 6x blade motor and 3x core, it has 3x global redundancy.</h4>
     <section id="11"></section>
-        <h3>Stuff</h3>
+        <h3>Component Redundancy</h3>
         <p></p>
+        <!--TODO ADD HYPER M2 LINK-->
+    <section id="12"></section>
+        <h3>Constraint Redundancy</h3>
+        <p>Any constraint with a weld point on its base and end can be made redundant. An extra perk of motor redundancy is that torque stacks, 6x redundant hyper motor2s have 594,000,000 torque.</p>
+        <p>To make a constraint redundant, you must create an angle lock fold on both sides of it. This locks both ends of the multiple constraints into the same space on the axis they rotate.</p>
 
     </main>
 <footer>
