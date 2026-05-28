@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plane Crazy Tech | Health </title>
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+    <!-- nav bar FEELS AURA -->
+    <nav class="navbar">
+        <!--todo: add NSG logo :cold:-->
+        <div class="logo"> Plane Crazy Shredder and Tech wiki</div>
+        <ul class="nav-links">
+            <li><a href="../../index.html" >Home</a></li>
+            <li><a href="../../pages/shredderhub.html">ShredderHub</a></li>
+            <li><a href="../../pages/techmanifest.html">TechManifest</a></li>
+            <div class="search-container">
+                <input type="text" id="wiki-search" placeholder="Search for TECH..." autocomplete="off" onkeyup="runWikiSearch()" onfocus="runWikiSearch()">
+                <div id="wiki-results" class="search-results-box"></div>
+            </div>
+        </ul>
+    </nav>
+    <main class="wiki-container">
+
+    <h2>Overview of Health</h2>
+          <div class="wiki-categories">
+       <span class="wiki-cat">Shredders</span>
+       <span class="wiki-cat">Enhancement</span>
+   </div>
+
+      <nav class="wiki-breadcrumb">
+       <a href="/">Home</a> <a href="/pages/shredderhub.html">ShredderHub</a> <span>Health</span>
+   </nav>
+
+    <p>Health is a measurement of how many hits your shredder can take without being destroyed. Increasing health is mostly done through strengthening components and also constraints between sections of your shredder with redundancy.</p>
+        <div class="callout callout-note">
+            <strong>NOTE:</strong> The generally accepted limit for redundancy is 6x.
+        </div>
+           <nav class="toc-box">
+            <div class="toc-title">Contents</div>
+            <ul>
+                <li>
+                    <a href="#Stuff">1 Stuff</a>
+                    <ul>
+                        <li><a href="#11">1.1 Stuff</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    <section id="Stuff"></section>
+        <h2>Redundancy</h2>
+        <p>Redundancy is the main factor for health, it directly strengthens constraints and regular blocks by one hit from a cutter. Cutters have a cooldown of 0.1 seconds and do not have a multi hitting effect, which means you can place two blocks within the same space and each block would have to be hit individually.</p>
+        <p>This fact is applied to constraints like motor2s within a core, though they have to be welded and folded correctly to function.</p>
+        <h4>Redundancy is referred to as (number of redundancy)x. The lowest amount of redundancy you have on every constraint (that is required for your shredder to work) is referred to global redundancy.</h4>
+        <h4>Example: A shredder has a 6x blade motor and 3x core, it has 3x global redundancy.</h4>
+    <section id="11"></section>
+        <h3>Component Redundancy</h3>
+        <p></p>
+        <!--TODO ADD HYPER M2 LINK-->
+    <section id="12"></section>
+        <h3>Constraint Redundancy</h3>
+        <p>Any constraint with a weld point on its base and end can be made redundant. An extra perk of motor redundancy is that torque stacks, 6x redundant hyper motor2s have 594,000,000 torque.</p>
+        <p>To make a constraint redundant, you must create an angle lock fold on both sides of it. This locks both ends of the multiple constraints into the same space on the axis they rotate.</p>
+
+    </main>
+<footer>
+    <div class="credits-container">
+        <div class="credit-category">
+            <strong>Main Coder:</strong> 
+            <span>platform2 (759825779974209616)</span>
+        </div>
+        
+        <div class="credit-category">
+            <strong>Main Writer:</strong> 
+            <span>peacekeepe_r (850394478895300629), platform2 (759825779974209616)</span>
+        </div>
+
+        <div class="credit-category">
+            <strong>Writers:</strong> 
+            <span>killer_meetball., legallypvid</span>
+        </div>
+
+        <div class="credit-category">
+            <strong>Contributors:</strong> 
+            <span>glitchedtm, kameon</span>
+        </div>
+    </div>
+    
+    <hr>
+    
+    <p>Made for the <a href="https://discord.gg/89gEYNR7zd" target="_blank" rel="noopener noreferrer">Neo Shredder Group Discord</a></p>
+</footer>
+
+    <script src="../../js/skidunited.js"></script>
+
+</body>
+</html>

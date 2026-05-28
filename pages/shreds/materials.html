@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plane Crazy Tech | Materials </title>
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+    <!-- nav bar FEELS AURA -->
+    <nav class="navbar">
+        <!--todo: add NSG logo :cold:-->
+        <div class="logo"> Plane Crazy Shredder and Tech wiki</div>
+        <ul class="nav-links">
+            <li><a href="../../index.html" >Home</a></li>
+            <li><a href="../../pages/shredderhub.html">ShredderHub</a></li>
+            <li><a href="../../pages/techmanifest.html">TechManifest</a></li>
+            <div class="search-container">
+                <input type="text" id="wiki-search" placeholder="Search for TECH..." autocomplete="off" onkeyup="runWikiSearch()" onfocus="runWikiSearch()">
+                <div id="wiki-results" class="search-results-box"></div>
+            </div>
+        </ul>
+    </nav>
+    <main class="wiki-container">
+
+    <h2>Overview of Materials</h2>
+          <div class="wiki-categories">
+       <span class="wiki-cat">Shredders</span>
+       <span class="wiki-cat">Enhancement</span>
+   </div>
+
+      <nav class="wiki-breadcrumb">
+       <a href="/">Home</a> <a href="/pages/shredderhub.html">ShredderHub</a> <span>Stuff</span>
+   </nav>
+
+    <p>Materials are a feature of roblox parts, changing the visual texture and physical properties of the part. These physical properties are somewhat useful for shredder <a href="shreds/shredders.html">armor</a> and <a href="shreds/shredders.html">blades</a>.</p>
+    <h4>"For example, concrete is heavier than plastic and sinks faster in water. When you set the material of a part or terrain, Roblox simulates its physical material properties to make this behavior just work." <a href="https://create.roblox.com/docs/parts/materials">https://create.roblox.com/docs/parts/materials</a></h4>
+
+           <nav class="toc-box">
+            <div class="toc-title">Contents</div>
+            <ul>
+                <li>
+                    <a href="#Stuff">1 Physical Properties</a>
+                    <ul>
+                        <li><a href="#11">1.1 Elasticity</a></li>
+                        <li><a href="#12">1.2 Friction</a></li>
+                        <li><a href="#13">1.3 E/F Weights</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+    <section id="Stuff"></section>
+        <h2>Physical Properties</h2>
+        <p>Elasticity, friction, and their weights. There are a few others like density but these two properties actually affect shredders</p>
+    <section id="11"></section>
+        <h3>Elasticity</h3>
+                    <div class="wiki-thumb thumb-right">
+        <div class="thumb-inner">
+            <img src="../../assests/materialgif.gif" alt="oldest massless">
+            <div class="thumb-caption">
+                100 Elasticity part showing the effects of elasticity.
+            </div>
+        </div>
+    </div>
+        <p>The elasticity of a part determnines the bounciness of the part when contacting something with force. Armor with more elasticity will bounce blades away, helping to remove force thats aimed at the core.</p>
+        <p>Materials with the most elasticity are default, smoothplastic, and fabric.</p>
+        <div style="height: 10px;"></div>
+            <section id="12"></section>
+        <h3>Friction</h3>
+        <div class="wiki-thumb thumb-right">
+        <div class="thumb-inner">
+            <img src="../../assests/materialgif2.gif" alt="oldest massless">
+            <div class="thumb-caption">
+                A part with too little friction to stop sliding.
+            </div>
+        </div>
+    </div>
+        <p>Parts with more friction are less able to slide against surfaces, which means blades should have less of it to have more penetrating force.</p>
+        <p>Armor is not recommended to use friction, but theres not much of a difference.</p>
+        <p>The material with the least friction is ice, at 0.06.</p>
+    <section id="13"></section>
+        <h3>E/F Weights</h3>
+        <p>Friction and elasticity weights act as a multiplier for the value. Ice has 0.02 friction but 3 friction weight, which means it has 0.06 friction.</p>
+    </main>
+<footer>
+    <div class="credits-container">
+        <div class="credit-category">
+            <strong>Main Coder:</strong> 
+            <span>platform2 (759825779974209616)</span>
+        </div>
+        
+        <div class="credit-category">
+            <strong>Main Writer:</strong> 
+            <span>peacekeepe_r (850394478895300629), platform2 (759825779974209616)</span>
+        </div>
+
+        <div class="credit-category">
+            <strong>Writers:</strong> 
+            <span>killer_meetball., legallypvid</span>
+        </div>
+
+        <div class="credit-category">
+            <strong>Contributors:</strong> 
+            <span>glitchedtm, kameon</span>
+        </div>
+    </div>
+    
+    <hr>
+    
+    <p>Made for the <a href="https://discord.gg/89gEYNR7zd" target="_blank" rel="noopener noreferrer">Neo Shredder Group Discord</a></p>
+</footer>
+
+    <script src="../../js/skidunited.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plane Crazy Tech | Blades </title>
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+    <!-- nav bar FEELS AURA -->
+    <nav class="navbar">
+        <!--todo: add NSG logo :cold:-->
+        <div class="logo"> Plane Crazy Shredder and Tech wiki</div>
+        <ul class="nav-links">
+            <li><a href="../../index.html" >Home</a></li>
+            <li><a href="../../pages/shredderhub.html">ShredderHub</a></li>
+            <li><a href="../../pages/techmanifest.html">TechManifest</a></li>
+            <div class="search-container">
+                <input type="text" id="wiki-search" placeholder="Search for TECH..." autocomplete="off" onkeyup="runWikiSearch()" onfocus="runWikiSearch()">
+                <div id="wiki-results" class="search-results-box"></div>
+            </div>
+        </ul>
+    </nav>
+    <main class="wiki-container">
+
+    <h2>Overview of Blades</h2>
+          <div class="wiki-categories">
+       <span class="wiki-cat">Shredders</span>
+       <span class="wiki-cat">Module</span>
+   </div>
+
+      <nav class="wiki-breadcrumb">
+       <a href="/">Home</a> <a href="/pages/shredderhub.html">ShredderHub</a> <span>Blades</span>
+   </nav>
+
+    <p>Blades are what makes a shredder a shredder, that is why this page is important. Blades have a few factors for being good, mainly Spacing and CE. This page has information on many things related to blades.</p>
+        <nav class="toc-box">
+            <div class="toc-title">Contents</div>
+            <ul>
+                <li>
+                    <a href="#design">1 Blade Design</a>
+                    <ul>
+                        <li><a href="#Hover-engines">1.1 Spaced CS</a></li>
+                        <li><a href="#Rocket-engines">1.2 Sinusoid</a></li>
+                        <li><a href="#Angled-Rockets">1.3 CS (deprecated)</a></li>
+                        <li><a href="#Angled-Rockets">1.4 Spacing</a></li>
+                        <li><a href="#Angled-Rockets">1.5 Efficiency</a></li>
+                        <li><a href="#Angled-Rockets">1.6 Area Coverage</a></li>
+                    </ul>
+                </li>
+                <li><a href="#Acceleration">2 Cutter Rules</a></li>
+                    <ul>
+                        <li><a href="#Hover-engines">1.1 Minimum distance</a></li>
+                        <li><a href="#Rocket-engines">1.2 Maximum speed</a></li>
+                        <li><a href="#Angled-Rockets">1.3 Pingspiking</a></li>
+                    </ul>
+                <li><a href="#Skybounce">3 CE/Demean</a></li>
+                    <ul>
+                        <li><a href="#Hover-engines">1.1 Values</a></li>
+                        <li><a href="#Rocket-engines">1.2 Functionality</a></li>
+                        <li><a href="#Angled-Rockets">1.3 CS</a></li>
+                    </ul>
+            </ul>
+        </nav>
+        <section id="skelop"></section>
+    <h2>Blade Design</h2>
+    <p>Blade design is the general design of a shredders blade, the pattern and logic. This will show the 3 main types of blade designs that were made and also some principles of blade design.</p>
+    <h3>Modern Spaced CS</h3>
+                <div class="wiki-thumb thumb-right">
+        <div class="thumb-inner">
+            <img src="../../assests/spacedcs.png" alt="a">
+            <div class="thumb-caption">
+                Spaced CS Blade.
+            </div>
+        </div>
+    </div>
+    <p>This type of blade came from the change making compressor blocks invincible, using its max compression setting to make a long and wide spaced blade. this is the best type of blade for now. It is decently immune to pingspikes, spaced well, covers alot of area, block efficient, and deals high damage.</p>
+    <p>There are a few variants, most simply cut down the sides of the blade shape from four to three or two. Two sides, flat blades, are considered to not actually cover as much area and also require a lot of speed to actually rotate properly.(30pi).</p>
+    <h3>Sinusoid</h3>
+                    <div class="wiki-thumb thumb-right">
+        <div class="thumb-inner">
+            <img src="../../assests/sinusoid.png" alt="a">
+            <div class="thumb-caption">
+                Sinusoid Blade.
+            </div>
+        </div>
+    </div>
+    <p>This blade uses a repeated pattern of angles to create a spinning sinusoid. These are spaced well, having a very efficient use of cutters. However, spaced cs is typically much better.</p>
+    <p>A mistake people make when using this type of blade is creating a helix, stacking the pattern to make two sinusoids. This uses way too many blocks and can make the blade dense enough to be pingspiked.</p>
+    <div style="height: 50px;"></div>
+    <h3>Old CS (deprecated)</h3>
+                    <div class="wiki-thumb thumb-right">
+        <div class="thumb-inner">
+            <img src="../../assests/csblade.png" alt="a">
+            <div class="thumb-caption">
+                CS Blade.
+            </div>
+        </div>
+    </div>
+    <p>This was the main type of blade from early forks, up until sinusoids. Before compression it would simply snap in half from damage. It was used on ogs and gyros, and was upgraded to cover more area by being slightly spaced when compression was added.</p>
+    <h2>Zippering</h2>
+    <p>Zippering is when you use the drag tool to create welds with an angle block while also bringing the welded pieces to wherever the angle lock is last placed. When used right, it can save many blocks.</p>
+
+            <section id="balance"></section>
+    <h2>Balancing Stats</h2>
+    <p>Balancing your shredder is necessary when working with limited blocks. For example, if you put everything into speed and not armor, if you add armor you will be too laggy.</p>
+            <section id="bladedes"></section>
+    <h2>Blade Design</h2>
+    <p>Blade design can help with optimisation, as its something that uses a lot of blocks. Try keeping your blade to a maximum of 80 blocks, and spacing out your cutters to be more efficiently used. This has more benefits than just optimisation too, which can be seen in blade design.</p>
+    </main>
+<footer>
+    <div class="credits-container">
+        <div class="credit-category">
+            <strong>Main Coder:</strong> 
+            <span>platform2 (759825779974209616)</span>
+        </div>
+        
+        <div class="credit-category">
+            <strong>Main Writer:</strong> 
+            <span>peacekeepe_r (850394478895300629), platform2 (759825779974209616)</span>
+        </div>
+
+        <div class="credit-category">
+            <strong>Writers:</strong> 
+            <span>killer_meetball., legallypvid</span>
+        </div>
+
+        <div class="credit-category">
+            <strong>Contributors:</strong> 
+            <span>glitchedtm, kameon</span>
+        </div>
+    </div>
+    
+    <hr>
+    
+    <p>Made for the <a href="https://discord.gg/89gEYNR7zd" target="_blank" rel="noopener noreferrer">Neo Shredder Group Discord</a></p>
+</footer>
+
+    <script src="../../js/skidunited.js"></script>
+
+</body>
+</html>

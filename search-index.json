@@ -3,48 +3,119 @@
     "title": "Home",
     "tags": ["hub", "main"],
     "snippet": "Welcome to the Plane Crazy Shredder & Tech wiki!",
-    "url": "index.html"
+    "url": "index.html",
+    "categories": []
   },
   {
     "title": "Shredder Hub",
     "tags": ["shredder", "pvp", "combat", "shred"],
     "snippet": "A meta block on shredders",
-    "url": "pages/shredderhub.html"
+    "url": "pages/shredderhub.html",
+    "categories": ["Shredders", "Documentation"]
   },
   {
     "title": "Tech Manifest",
     "tags": ["tech", "leaks", "mechanics", "glitch"],
     "snippet": "A complete manifest of known techs and authorized tech leaks.",
-    "url": "pages/techmanifest.html"
+    "url": "pages/techmanifest.html",
+    "categories": ["Tech", "Documentation"]
   },
   {
     "title": "Movement mechanics",
     "tags": ["movement", "movementinfo", "hover", "hover engines", "rocket", "rocket engines", "angled", "angled rocket engines", "hybrid", "hybrid rocket engines", "acceleration", "skybounce", "aerobounce"],
     "snippet": "A comprehensive guide to movement mechanics",
-    "url": "pages/shreds/movementmechanics.html"
+    "url": "pages/shreds/movementmechanics.html",
+    "categories": ["Shredders", "Functionality"]
   },
   {
     "title": "Armor info",
     "tags": ["armor", "armorinfo", "pushback", "thickness", "angling", "armorlogic", "armor logic", "rigidity"],
     "snippet": "A comprehensive guide to armor info",
-    "url": "pages/shreds/armorinfo.html"
+    "url": "pages/shreds/armorinfo.html",
+    "categories": ["Shredders", "Module"]
   },
   {
     "title": "Massless",
     "tags": ["massless", "staging", "modules"],
     "snippet": "A comphrensive and complete guide on staging and massless",
-    "url": "pages/shreds/massless.html"
+    "url": "pages/shreds/massless.html",
+    "categories": ["Shredders", "Functionality"]
   },
   {
-    "title": "3x5 Gyro",
-    "tags": ["gyro", "movement", "build"],
-    "snippet": "Specifications and guide for the 3x5 gyro stabilizer.",
-    "url": "pages/shreds/3x5gyro.html"
+    "title": "Void Tech",
+    "tags": ["tech", "void", "surge"],
+    "snippet": "Information on void tech and its abilites.",
+    "url": "pages/shreds/voidtech.html",
+    "categories": ["Tech"]
   },
   {
-    "title": "1x1 Gyro", 
-    "tags": ["gyro", "movment", "build"],
-    "snippet": "Specifications for and building guide for a rigid and normal 1x1 gyro",
-    "url": "pages/shreds/1x1gyro.html"
+    "title": "Axis Locks",
+    "tags": ["gyro", "axis", "lock"],
+    "snippet": "Types of axis locks explained.",
+    "url": "pages/shreds/blades.html",
+    "categories": ["Shredders", "Module"]
+  },
+  {
+    "title": "Blades",
+    "tags": ["blade", "cutter", "design", "rules", "spacing"],
+    "snippet": "General information about blades and cutters.",
+    "url": "pages/shreds/axislocks.html",
+    "categories": ["Shredders", "Module"]
+  },
+  {
+    "title": "Hyper Motor2s",
+    "tags": ["hyper", "motor", "torque"],
+    "snippet": "Explanation of Hyper M2s",
+    "url": "pages/shreds/hyperm2.html",
+    "categories": ["Shredders", "Enhancement"]
+  },
+  {
+    "title": "OG Shredders",
+    "tags": ["og", "fork", "shredder"],
+    "snippet": "Information on the OG shredder type.",
+    "url": "pages/shreds/ogs.html",
+    "categories": ["Shredders", "Variant"]
+  },
+  {
+    "title": "Omni Shredders",
+    "tags": ["omni", "shredder"],
+    "snippet": "Information on the Omni shredder type.",
+    "url": "pages/shreds/omnis.html",
+    "categories": ["Shredders", "Variant"]
+  },
+    {
+    "title": "Materials",
+    "tags": ["material", "friction", "blade", "armor", "elasticity"],
+    "snippet": "Information on materials, their properties, and uses.",
+    "url": "pages/shreds/materials.html",
+    "categories": ["Shredders", "Enhancement"]
+  },
+  {
+    "title": "Optimisation",
+    "tags": ["optimise", "optimisation", "lag"],
+    "snippet": "How to optimise and its importance.",
+    "url": "pages/shreds/optimisation.html",
+    "categories": ["Shredders", "Enhancement"]
+  },
+  {
+    "title": "Skeletonisation",
+    "tags": ["weld", "welding", "skeleton", "skeletonisation", "angle", "compression", "invincible"],
+    "snippet": "",
+    "url": "pages/shreds/skeletonisation.html",
+    "categories": ["Shredders", "Functionality"]
+  },
+  {
+    "title": "health",
+    "tags": ["weld", "welding", "skeleton", "skeletonisation", "angle", "compression", "invincible"],
+    "snippet": "",
+    "url": "pages/shreds/health.html",
+    "categories": ["Shredders", "Enhancement"]
+  },
+  {
+    "title": "Gyro Cores", 
+    "tags": ["gyro", "shredder", "build", "core"],
+    "snippet": "Guide and explanation on the gyro core and it's variants.",
+    "url": "pages/shreds/gyrocore.html",
+    "categories": ["Shredders", "Variant"]
   }
 ]

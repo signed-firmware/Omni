@@ -1,200 +1,505 @@
-:root {
-    --gentoo-purple: #54487A;
-    --gentoo-purple-light: #61538D;
-    --gentoo-purple-light2: #6E56AF;
-    --gentoo-grey: #DDDAEC;
-    --gentoo-grey-light: #DDDFFF;
-    --gentoo-green: #73D216;
-    --gentoo-red: #D9534F;
-    
-    --bg-body: #16141c;              
-    --bg-navbar: #221d2e;            
-    --bg-footer: #1e1b24;            
-    --text-main: #DDDAEC;            
-    --text-bright: #DDDFFF;          
+/* My name is claude, I will end everyone involved with this project if you ask me to "please fix text padding idk how to add padding" again.*/
 
-    --bg-tip: #1b2e1a;               
-    --bg-important: #332b17;         
-    --bg-warning: #361a1a;           
-    --bg-note: #142533;              
+@import url('https://fonts.cdnfonts.com/css/terminus-2');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+
+:root {
+    /* ── Font stack ── */
+    --font-body:      'Terminus', 'JetBrains Mono', 'Consolas', 'Courier New', monospace;
+    --font-heading:   'JetBrains Mono', 'Terminus', 'Consolas', monospace;
+    --font-ui:        'JetBrains Mono', 'Terminus', 'Consolas', monospace;
+
+    /* ── Core palette ── */
+    --bg-body:        #0e0e18;
+    --bg-content:     #131320;
+    --bg-surface:     #181830;
+    --bg-navbar:      #101020;
+    --bg-footer:      #0c0c18;
+
+    --border-subtle:  #1e1e38;
+    --border-light:   #282848;
+    --border-medium:  #363660;
+    --border-bright:  #4a4a78;
+
+    --text-main:      #c8c8dc;
+    --text-bright:    #e0e0f0;
+    --text-secondary: #9090ac;
+    --text-muted:     #606080;
+
+    --link-color:     #7dacff;
+    --link-hover:     #a8c8ff;
+    --link-visited:   #b09aff;
+
+    --accent-blue:    #7dacff;
+    --accent-green:   #5ae0b0;
+    --accent-red:     #ff7b7b;
+    --accent-orange:  #ffb84d;
+    --accent-cyan:    #5ce0e0;
+    --accent-purple:  #b09aff;
+
+    /* ── Callout backgrounds ── */
+    --bg-tip:         #0e1f16;
+    --bg-important:   #1f1a0e;
+    --bg-warning:     #1f0e0e;
+    --bg-note:        #0e151f;
+
+    /* ── Callout borders ── */
+    --border-tip:     #5ae0b0;
+    --border-important: #ffb84d;
+    --border-warning: #ff7b7b;
+    --border-note:    #7dacff;
+
+    /* ── Transition timing ── */
+    --ease-out:       cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-* {
+/* ── Reset ── */
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Consolas', 'Courier New', monospace;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 14px;
 }
 
 body {
     background-color: var(--bg-body);
     color: var(--text-main);
-    line-height: 1.6;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
+::selection {
+    background: rgba(125, 172, 255, 0.25);
+    color: var(--text-bright);
+}
+
+/* ═══════════════════════════════════════════
+   NAVBAR
+   ═══════════════════════════════════════════ */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: var(--bg-navbar);
-    padding: 1rem 2rem;
-    border-bottom: 2px solid var(--gentoo-purple);
+    padding: 0.65rem 2rem;
+    border-bottom: 2px solid var(--accent-blue);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: var(--gentoo-green);
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--accent-blue);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
 }
 
 .nav-links {
     list-style: none;
     display: flex;
-    gap: 1.5rem;
+    align-items: center;
+    gap: 0.25rem;
 }
 
 .nav-links a {
-    color: var(--gentoo-grey);
+    font-family: var(--font-ui);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-secondary);
     text-decoration: none;
-    font-weight: 600;
+    padding: 0.35rem 0.7rem;
+    border-radius: 3px;
+    transition: color 0.15s var(--ease-out), background-color 0.15s var(--ease-out);
 }
 
-.nav-links a:hover, .nav-links a.active {
-    color: var(--gentoo-purple-light2);
-    border-bottom: 2px solid var(--gentoo-purple-light2);
-}
-
-.wiki-container {
-    max-width: 1000px;
-    margin: 2rem auto;
-    padding: 0 1.5rem;
-}
-
-h1, h2, h3 {
+.nav-links a:hover {
     color: var(--text-bright);
-    margin-bottom: 1rem;
+    background-color: rgba(125, 172, 255, 0.08);
 }
-hr {
-  border: none;             
-  height: 1px;              
-  background-color: var(--gentoo-purple-light2);   
-  width: 75%;               
-  margin: 20px auto;        
+
+.nav-links a.active {
+    color: var(--accent-blue);
+    background-color: rgba(125, 172, 255, 0.1);
+}
+
+/* ═══════════════════════════════════════════
+   MAIN CONTENT AREA
+   ═══════════════════════════════════════════ */
+.wiki-container {
+    max-width: 960px;
+    margin: 1.5rem auto;
+    padding: 2rem 2.5rem;
+    background-color: var(--bg-content);
+    border: 1px solid var(--border-light);
+    border-top: none;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+}
+
+.wiki-container::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* ═══════════════════════════════════════════
+   TYPOGRAPHY
+   ═══════════════════════════════════════════ */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--text-bright);
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+    line-height: 1.35;
 }
 
 h1 {
-    border-bottom: 1px solid var(--gentoo-purple-light);
+    font-size: 1.6rem;
+    border-bottom: 2px solid var(--border-medium);
     padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    letter-spacing: 0.01em;
+}
+
+h2 {
+    font-size: 1.25rem;
+    border-bottom: 1px solid var(--border-light);
+    padding-bottom: 0.35rem;
+    margin-top: 2rem;
+    color: var(--accent-blue);
+}
+
+h3 {
+    font-size: 1.05rem;
+    margin-top: 1.5rem;
+    color: var(--text-bright);
+}
+
+h4 {
+    font-size: 0.95rem;
+    margin-top: 1rem;
+    color: var(--text-secondary);
+    font-style: italic;
 }
 
 p {
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.9rem;
 }
 
+a {
+    color: var(--link-color);
+    text-decoration: none;
+    transition: color 0.12s var(--ease-out);
+}
+
+a:hover {
+    color: var(--link-hover);
+    text-decoration: underline;
+}
+
+a:visited {
+    color: var(--link-visited);
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-medium), transparent);
+    margin: 1.75rem 0;
+}
+
+ul, ol {
+    margin-bottom: 0.9rem;
+    padding-left: 1.5rem;
+}
+
+li {
+    margin-bottom: 0.2rem;
+}
+
+code {
+    font-family: var(--font-body);
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-light);
+    padding: 0.15em 0.4em;
+    border-radius: 3px;
+    font-size: 0.9em;
+    color: var(--accent-cyan);
+}
+
+pre {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-light);
+    border-radius: 3px;
+    padding: 1rem;
+    overflow-x: auto;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+pre code {
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--text-main);
+}
+
+blockquote {
+    border-left: 3px solid var(--border-medium);
+    padding: 0.5rem 1rem;
+    margin: 1rem 0;
+    color: var(--text-secondary);
+    background-color: rgba(255, 255, 255, 0.015);
+    font-style: italic;
+}
+
+/* ═══════════════════════════════════════════
+   CARDS
+   ═══════════════════════════════════════════ */
 .card-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin: 2rem 0;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
 }
 
 .card {
-    background-color: var(--bg-navbar);
-    padding: 1.5rem;
+    background-color: var(--bg-surface);
+    padding: 1.15rem 1.25rem;
+    border: 1px solid var(--border-light);
     border-radius: 4px;
-    border: 1px solid var(--gentoo-purple);
+    transition: border-color 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out), transform 0.2s var(--ease-out);
+}
+
+.card:hover {
+    border-color: var(--accent-blue);
+    box-shadow: 0 4px 16px rgba(125, 172, 255, 0.06);
+    transform: translateY(-1px);
 }
 
 .card h3 {
-    color: var(--gentoo-purple-light2);
+    font-size: 0.95rem;
+    color: var(--accent-blue);
+    margin-top: 0;
+    margin-bottom: 0.4rem;
+    border-bottom: none;
 }
 
+.card p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.6rem;
+}
+
+.card a {
+    font-family: var(--font-ui);
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--accent-green);
+}
+
+.card a:hover {
+    color: var(--text-bright);
+}
+
+/* ═══════════════════════════════════════════
+   CALLOUTS / ADMONITIONS
+   ═══════════════════════════════════════════ */
 .callout {
-    padding: 1rem;
-    margin: 1.5rem 0;
+    padding: 0.75rem 1rem;
+    margin: 1.25rem 0;
     border-radius: 4px;
-    border-left: 5px solid transparent;
+    border-left: 3px solid transparent;
+    font-size: 0.9rem;
+    position: relative;
+}
+
+.callout strong {
+    font-family: var(--font-ui);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-right: 0.3rem;
 }
 
 .callout-tip {
     background-color: var(--bg-tip);
-    border-left-color: var(--gentoo-green);
+    border-left-color: var(--border-tip);
+}
+
+.callout-tip strong {
+    color: var(--accent-green);
 }
 
 .callout-important {
     background-color: var(--bg-important);
-    border-left-color: #f0ad4e; 
+    border-left-color: var(--border-important);
+}
+
+.callout-important strong {
+    color: var(--accent-orange);
 }
 
 .callout-warning {
     background-color: var(--bg-warning);
-    border-left-color: var(--gentoo-red);
+    border-left-color: var(--border-warning);
+}
+
+.callout-warning strong {
+    color: var(--accent-red);
 }
 
 .callout-note {
     background-color: var(--bg-note);
-    border-left-color: #5bc0de;
+    border-left-color: var(--border-note);
 }
 
-footer {
-    background-color: var(--bg-footer);
-    text-align: center;
-    padding: 2rem;
-    margin-top: 4rem;
-    border-top: 1px solid var(--gentoo-purple);
-    color: var(--gentoo-purple-light);
-    font-size: 0.9rem;
+.callout-note strong {
+    color: var(--accent-blue);
 }
 
-.search-container {
-    position: relative;
-    display: inline-block;
-}
-
-.search-results-box {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    background: #2a2a2a; 
-    border: 1px solid #444;
+/* ═══════════════════════════════════════════
+   TABLE OF CONTENTS — polished wiki style
+   ═══════════════════════════════════════════ */
+.toc-box {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-medium);
     border-radius: 4px;
-    max-height: 300px;
-    overflow-y: auto;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    padding: 0;
+    display: inline-block;
+    min-width: 220px;
+    max-width: 420px;
+    margin: 0.75rem 0 1.5rem 0;
+    overflow: hidden;
 }
 
-.search-item {
-    display: block;
-    padding: 10px;
+.toc-title {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.82rem;
+    color: var(--accent-blue);
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.6rem 1rem;
+    margin-bottom: 0;
+    background-color: rgba(125, 172, 255, 0.06);
+    border-bottom: 1px solid var(--border-light);
+}
+
+.toc-box > ul {
+    padding: 0.6rem 1rem 0.75rem 1rem;
+    margin: 0;
+}
+
+.toc-box ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    counter-reset: toc-counter;
+}
+
+.toc-box > ul > li {
+    counter-increment: toc-counter;
+}
+
+.toc-box li {
+    margin: 0.15rem 1rem;
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+
+.toc-box a {
+    color: var(--link-color);
     text-decoration: none;
-    color: #fff;
-    border-bottom: 1px solid #333;
+    display: inline-block;
+    padding: 0.1rem 0;
+    transition: color 0.12s var(--ease-out);
 }
 
-.search-item:last-child {
-    border-bottom: none;
+.toc-box a:hover {
+    color: var(--link-hover);
+    text-decoration: underline;
 }
 
-.search-item:hover {
-    background: #3a3a3a; 
+/* ── Tree-line connectors for nested items ── */
+.toc-box ul ul {
+    padding-left: 0;
+    margin-top: 0.1rem;
+    margin-left: 0.45rem;
+    list-style: none;
+    border-left: none;
 }
 
-.search-item strong {
-    display: block;
-    font-size: 14px;
+.toc-box > ul > li {
+    position: relative;
 }
 
-.search-item span {
-    display: block;
-    font-size: 11px;
-    color: #aaa;
+/* Parent li that contains a nested ul gets a vertical line */
+.toc-box li:has(> ul) {
+    position: relative;
 }
 
+.toc-box ul ul li {
+    font-size: 0.82rem;
+    margin: 0.1rem 0;
+    padding-left: 1.4rem;
+    position: relative;
+}
+
+/* Vertical trunk line running alongside nested items */
+.toc-box ul ul li::before {
+    content: "├";
+    position: absolute;
+    left: 0.15rem;
+    top: 0;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--border-bright);
+    user-select: none;
+}
+
+/* Last nested item gets the └ (╰) connector */
+.toc-box ul ul li:last-child::before {
+    content: "╰";
+}
+
+/* Vertical line connecting items — runs through parent li */
+.toc-box ul ul li::after {
+    content: "";
+    position: absolute;
+    left: calc(0.15rem + 0.35em);
+    top: 0;
+    bottom: 0;
+    width: 0;
+    border-left: 1px solid var(--border-light);
+}
+
+/* Hide the continuation line on the last item */
+.toc-box ul ul li:last-child::after {
+    display: none;
+}
+
+/* ═══════════════════════════════════════════
+   WIKI THUMBNAIL IMAGES
+   ═══════════════════════════════════════════ */
 .wiki-thumb {
-    margin-bottom: 1.2rem;
-    max-width: 320px; 
+    margin-bottom: 1rem;
+    max-width: 300px;
     width: 100%;
 }
 
@@ -209,63 +514,90 @@ footer {
 }
 
 .thumb-inner {
-    background-color: var(--bg-navbar); 
-    border: 1px solid var(--gentoo-purple-light); 
-    padding: 6px;
-    border-radius: 2px;
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-medium);
+    padding: 4px;
+    border-radius: 3px;
 }
 
 .wiki-thumb img {
     display: block;
     width: 100%;
     height: auto;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 2px;
 }
 
 .thumb-caption {
-    padding-top: 6px;
-    font-size: 0.75rem; 
+    padding: 5px 4px 2px;
+    font-size: 0.75rem;
     line-height: 1.4;
-    color: var(--text-main);
-    opacity: 0.85; 
+    color: var(--text-muted);
+    font-style: italic;
 }
 
-.wiki-container::after {
-    content: "";
-    display: table;
-    clear: both;
+/* ═══════════════════════════════════════════
+   WIKI VIDEO EMBEDS (lazy-loaded)
+   ═══════════════════════════════════════════ */
+.wiki-video {
+    margin: 1.25rem 0;
+    width: 100%;
 }
+
+.wiki-video .thumb-inner {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-medium);
+    padding: 4px;
+    border-radius: 3px;
+}
+
+.wiki-video video,
+.wiki-video .lazy-video {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 2px;
+    background-color: #000;
+}
+
+
+/* ═══════════════════════════════════════════
+   TABLES
+   ═══════════════════════════════════════════ */
 .wiki-table {
     width: 100%;
     border-collapse: collapse;
-    margin: 1.5rem 0;
-    font-size: 0.9rem;
-    background-color: var(--bg-navbar);
-    border: 1px solid var(--gentoo-purple-light);
+    margin: 1.25rem 0;
+    font-size: 0.88rem;
+    background-color: var(--bg-content);
+    border: 1px solid var(--border-medium);
 }
 
 .wiki-table th {
-    background-color: var(--bg-body); 
-    color: var(--gentoo-green); 
-    font-weight: bold;
+    background-color: var(--bg-surface);
+    color: var(--accent-blue);
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.82rem;
     text-align: left;
-    padding: 10px 12px;
-    border: 1px solid var(--gentoo-purple-light);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 8px 12px;
+    border: 1px solid var(--border-medium);
 }
 
 .wiki-table td {
-    padding: 10px 12px;
-    border: 1px solid var(--gentoo-purple-light);
+    padding: 7px 12px;
+    border: 1px solid var(--border-light);
     color: var(--text-main);
     vertical-align: middle;
 }
 
 .wiki-table tr:nth-child(even) {
-    background-color: rgba(255, 255, 255, 0.02); 
+    background-color: rgba(255, 255, 255, 0.015);
 }
 
 .wiki-table tr:hover {
-    background-color: rgba(110, 86, 175, 0.1); 
+    background-color: rgba(125, 172, 255, 0.05);
 }
 
 .table-responsive {
@@ -274,78 +606,598 @@ footer {
     -webkit-overflow-scrolling: touch;
 }
 
+/* ═══════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════ */
+footer {
+    background-color: var(--bg-footer);
+    text-align: center;
+    padding: 1.25rem 2rem;
+    margin-top: 0;
+    border-top: 2px solid var(--border-light);
+    color: var(--text-muted);
+    font-size: 0.78rem;
+}
+
+footer a {
+    color: var(--link-color);
+}
+
+footer strong {
+    font-family: var(--font-ui);
+    color: var(--text-secondary);
+}
+
+.credits-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 0.6rem;
+}
+
+.credit-category {
+    font-size: 0.78rem;
+}
+
+/* ═══════════════════════════════════════════
+   SEARCH
+   ═══════════════════════════════════════════ */
+.search-container {
+    position: relative;
+    display: inline-block;
+}
+
+#wiki-search {
+    font-family: var(--font-ui);
+    font-size: 0.82rem;
+    width: 200px;
+    padding: 0.35rem 0.6rem;
+    border-radius: 3px;
+    border: 1px solid var(--border-medium);
+    background-color: var(--bg-surface);
+    color: var(--text-main);
+    transition: width 0.25s var(--ease-out), border-color 0.15s var(--ease-out), box-shadow 0.15s var(--ease-out);
+}
+
+#wiki-search:focus {
+    width: 320px;
+    border-color: var(--accent-blue);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(125, 172, 255, 0.12);
+}
+
+#wiki-search::placeholder {
+    color: var(--text-muted);
+}
+
+.search-results-box {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-medium);
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    max-height: 300px;
+    overflow-y: auto;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.search-item {
+    display: block;
+    padding: 8px 12px;
+    text-decoration: none;
+    color: var(--text-main);
+    border-bottom: 1px solid var(--border-light);
+    transition: background-color 0.1s var(--ease-out);
+}
+
+.search-item:last-child {
+    border-bottom: none;
+}
+
+.search-item:hover {
+    background: rgba(125, 172, 255, 0.06);
+}
+
+.search-item strong {
+    display: block;
+    font-family: var(--font-ui);
+    font-size: 0.82rem;
+    color: var(--link-color);
+}
+
+.search-item span {
+    display: block;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+}
+
+.search-item .wiki-categories {
+    margin-top: 6px;
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    flex-wrap: wrap;
+    pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════
+   INFOBOX SIDEBAR
+   ═══════════════════════════════════════════ */
+.infobox {
+    float: right;
+    width: 265px;
+    margin: 0 0 1.25rem 1.5rem;
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-medium);
+    border-radius: 4px;
+    font-size: 0.85rem;
+    overflow: hidden;
+}
+
+.infobox-title {
+    background: linear-gradient(135deg, rgba(125, 172, 255, 0.12), rgba(176, 154, 255, 0.08));
+    color: var(--accent-blue);
+    text-align: center;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 0.55rem 0.75rem;
+    border-bottom: 1px solid var(--border-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.infobox-image {
+    padding: 5px;
+    text-align: center;
+    background-color: var(--bg-content);
+}
+
+.infobox-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 2px;
+}
+
+.infobox-image-caption {
+    padding-top: 3px;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.infobox table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.infobox th,
+.infobox td {
+    padding: 5px 10px;
+    border-top: 1px solid var(--border-light);
+    vertical-align: top;
+    text-align: left;
+    color: var(--text-main);
+    font-size: 0.8rem;
+}
+
+.infobox th {
+    width: 45%;
+    font-family: var(--font-ui);
+    font-weight: 600;
+    font-size: 0.75rem;
+    background-color: rgba(125, 172, 255, 0.04);
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.infobox tr:hover {
+    background-color: rgba(125, 172, 255, 0.04);
+}
+
+/* ── Status badges ── */
+.status-badge {
+    display: inline-block;
+    padding: 1px 7px;
+    border-radius: 3px;
+    font-family: var(--font-ui);
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.status-active {
+    background-color: rgba(90, 224, 176, 0.1);
+    color: var(--accent-green);
+    border: 1px solid rgba(90, 224, 176, 0.25);
+}
+
+.status-patched {
+    background-color: rgba(255, 123, 123, 0.1);
+    color: var(--accent-red);
+    border: 1px solid rgba(255, 123, 123, 0.25);
+}
+
+.status-countered {
+    background-color: rgba(255, 184, 77, 0.1);
+    color: var(--accent-orange);
+    border: 1px solid rgba(255, 184, 77, 0.25);
+}
+
+/* ═══════════════════════════════════════════
+   SECTION / ARTICLE CLEAR
+   ═══════════════════════════════════════════ */
 section, article {
     clear: both;
-    overflow: hidden; 
+    overflow: hidden;
 }
 
-.toc-box {
-    background-color: var(--bg-navbar);
-    border: 1px solid var(--gentoo-purple-light);
-    border-radius: 4px;
-    padding: 1rem;
-    display: inline-block;
-    min-width: 200px;
-    margin: 1rem 0 2rem 0;
-}
 
-.toc-title {
-    font-weight: bold;
-    color: var(--text-bright);
-    text-align: center;
-    margin-bottom: 0.5rem;
-    font-size: 0.95rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding-bottom: 0.25rem;
-}
+/* ═══════════════════════════════════════════════════════════════
+   INSERTABLE WIKI COMPONENTS
+   Drop these class names into your HTML for instant wiki styling.
+   ═══════════════════════════════════════════════════════════════ */
 
-.toc-box ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.toc-box li {
-    margin: 0.4rem 0;
+/* ── Hatnote ──
+   Small italic note at the top of an article.
+   Usage: <div class="wiki-hatnote">This article is about X. For Y, see <a>Z</a>.</div>
+*/
+.wiki-hatnote {
     font-size: 0.85rem;
+    font-style: italic;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    padding-left: 0.5rem;
+    border-left: 2px solid var(--border-light);
 }
 
-.toc-box a {
-    color: var(--gentoo-green);
+/* ── Stub / WIP marker ──
+   Usage: <div class="wiki-stub">This article is a stub. You can help by expanding it.</div>
+*/
+.wiki-stub {
+    background-color: var(--bg-important);
+    border: 1px dashed var(--accent-orange);
+    border-radius: 4px;
+    padding: 0.6rem 1rem;
+    margin: 1.25rem 0;
+    font-size: 0.82rem;
+    color: var(--accent-orange);
+    text-align: center;
+    font-style: italic;
+}
+
+.wiki-stub::before {
+    content: "STUB PAGE";
+}
+
+/* ── Blockquote with attribution ──
+   Usage:
+   <figure class="wiki-quote">
+       <blockquote>Quote text here.</blockquote>
+       <figcaption>— Author, <cite>Source</cite></figcaption>
+   </figure>
+*/
+.wiki-quote {
+    margin: 1.25rem 0;
+    padding: 0;
+}
+
+.wiki-quote blockquote {
+    border-left: 3px solid var(--accent-purple);
+    background-color: rgba(176, 154, 255, 0.04);
+    padding: 0.75rem 1.1rem;
+    margin: 0;
+    font-style: italic;
+    color: var(--text-main);
+    font-size: 0.95rem;
+    border-radius: 0 4px 4px 0;
+}
+
+.wiki-quote figcaption {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-top: 0.35rem;
+    padding-left: 1.1rem;
+}
+
+/* ── Image gallery grid ──
+   Usage:
+   <div class="wiki-gallery">
+       <figure><img src="..."><figcaption>Caption</figcaption></figure>
+       <figure><img src="..."><figcaption>Caption</figcaption></figure>
+   </div>
+*/
+.wiki-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 0.75rem;
+    margin: 1.25rem 0;
+}
+
+.wiki-gallery figure {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-light);
+    border-radius: 3px;
+    padding: 4px;
+    margin: 0;
+    transition: border-color 0.15s var(--ease-out);
+}
+
+.wiki-gallery figure:hover {
+    border-color: var(--border-bright);
+}
+
+.wiki-gallery img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 2px;
+}
+
+.wiki-gallery figcaption {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    padding: 4px 4px 2px;
+    font-style: italic;
+    text-align: center;
+}
+
+/* ── Definition list ──
+   Usage:
+   <dl class="wiki-dl">
+       <dt>Term</dt>
+       <dd>Definition</dd>
+   </dl>
+*/
+.wiki-dl {
+    margin: 1rem 0;
+}
+
+.wiki-dl dt {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--accent-blue);
+    margin-top: 0.75rem;
+    margin-bottom: 0.15rem;
+}
+
+.wiki-dl dt::after {
+    content: "";
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--border-medium);
+    margin-top: 2px;
+}
+
+.wiki-dl dd {
+    margin-left: 1rem;
+    padding-left: 0.75rem;
+    border-left: 2px solid var(--border-light);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+/* ── Category tags ──
+   Usage:
+   <div class="wiki-categories">
+       <span class="wiki-cat">Shredders</span>
+       <span class="wiki-cat">PvP</span>
+   </div>
+*/
+
+.wiki-categories::before {
+    content: "Categories:";
+    font-family: var(--font-ui);
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-right: 0.3rem;
+}
+
+.wiki-cat {
+    font-family: var(--font-ui);
+    font-size: 0.72rem;
+    padding: 2px 8px;
+    border-radius: 3px;
+    background-color: rgba(125, 172, 255, 0.06);
+    border: 1px solid var(--border-light);
+    color: var(--link-color);
+    cursor: default;
+    transition: background-color 0.12s var(--ease-out);
+}
+
+.wiki-cat:hover {
+    background-color: rgba(125, 172, 255, 0.12);
+}
+
+/* ── Breadcrumbs ──
+   Usage:
+   <nav class="wiki-breadcrumb">
+       <a href="/">Home</a> <a href="/pages/shredderhub.html">ShredderHub</a> <span>Armor Info</span>
+   </nav>
+*/
+.wiki-breadcrumb {
+    font-family: var(--font-ui);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.15rem;
+}
+
+.wiki-breadcrumb a {
+    color: var(--text-muted);
     text-decoration: none;
 }
 
-.toc-box a:hover {
+.wiki-breadcrumb a:hover {
+    color: var(--link-color);
     text-decoration: underline;
-    color: var(--text-bright);
-}
-.toc-box ul ul {
-    padding-left: 1.5rem;         
-    list-style: initial;           
-    margin-top: 0.2rem;            
-}
-.toc-box ul ul::marker {
-    color: var(--gentoo-purple-light2);
-}
-.toc-box ul ul li {
-    font-size: 0.8rem;             
-    margin: 0.2rem 0;              
 }
 
-html {
-    scroll-behavior: smooth;
+.wiki-breadcrumb a::after {
+    content: " /";
+    color: var(--border-bright);
+    margin-left: 0.3rem;
 }
-#wiki-search {
-    width: 260px;
-    padding: 0.5rem 0.75rem;
+
+.wiki-breadcrumb span {
+    color: var(--text-secondary);
+}
+
+/* ── "See also" / related articles box ──
+   Usage:
+   <div class="wiki-see-also">
+       <strong>See also</strong>
+       <ul><li><a href="...">Article</a></li></ul>
+   </div>
+*/
+.wiki-see-also {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-light);
     border-radius: 4px;
-    border: 1px solid var(--gentoo-purple-light);
-    background-color: var(--bg-body);
-    color: var(--text-main);
-    transition: width 0.2s ease;
+    padding: 0.75rem 1rem;
+    margin: 1.25rem 0;
 }
 
+.wiki-see-also strong {
+    font-family: var(--font-heading);
+    font-size: 0.82rem;
+    color: var(--accent-blue);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    display: block;
+    margin-bottom: 0.4rem;
+}
 
-#wiki-search:focus {
-    width: 400px;
+.wiki-see-also ul {
+    margin: 0;
+    padding-left: 1.25rem;
+}
+
+.wiki-see-also li {
+    font-size: 0.85rem;
+    margin-bottom: 0.15rem;
+}
+
+/* ── Keyboard shortcut / key badge ──
+   Usage: Press <kbd class="wiki-key">E</kbd> to activate.
+*/
+.wiki-key {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    padding: 1px 6px;
+    border-radius: 3px;
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-medium);
+    border-bottom-width: 2px;
+    color: var(--text-bright);
+    box-shadow: 0 1px 0 var(--border-light);
+}
+
+/* ── Inline stat indicator ──
+   Usage: <span class="wiki-stat wiki-stat-high">High</span>
+*/
+.wiki-stat {
+    font-family: var(--font-ui);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 1px 6px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.wiki-stat-high {
+    color: var(--accent-green);
+    background-color: rgba(90, 224, 176, 0.08);
+}
+
+.wiki-stat-medium {
+    color: var(--accent-orange);
+    background-color: rgba(255, 184, 77, 0.08);
+}
+
+.wiki-stat-low {
+    color: var(--accent-red);
+    background-color: rgba(255, 123, 123, 0.08);
+}
+
+/* ── Article last-edited line ──
+   Usage: <div class="wiki-last-edited">Last edited on 19 May 2026 by platform2</div>
+*/
+.wiki-last-edited {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    text-align: right;
+    margin-top: 2rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--border-subtle);
+    font-style: italic;
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════ */
+@media (max-width: 768px) {
+    html {
+        font-size: 13px;
+    }
+
+    .navbar {
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 0.6rem 1rem;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.35rem;
+    }
+
+    .wiki-container {
+        margin: 0;
+        padding: 1.25rem 1rem;
+        border-left: none;
+        border-right: none;
+    }
+
+    .wiki-thumb,
+    .infobox {
+        float: none;
+        max-width: 100%;
+        width: 100%;
+        margin: 0 0 1rem 0;
+    }
+
+    .toc-box {
+        display: block;
+        max-width: 100%;
+    }
+
+    #wiki-search,
+    #wiki-search:focus {
+        width: 160px;
+    }
+
+    .wiki-gallery {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    }
 }
