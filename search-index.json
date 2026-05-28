@@ -74,14 +74,21 @@
     "tags": ["og", "fork", "shredder"],
     "snippet": "Information on the OG shredder type.",
     "url": "pages/shreds/ogs.html",
-    "categories": ["Shredders", "Module"]
+    "categories": ["Shredders", "Variant"]
   },
   {
     "title": "Omni Shredders",
     "tags": ["omni", "shredder"],
     "snippet": "Information on the Omni shredder type.",
     "url": "pages/shreds/omnis.html",
-    "categories": ["Shredders", "Module"]
+    "categories": ["Shredders", "Variant"]
+  },
+    {
+    "title": "Materials",
+    "tags": ["material", "friction", "blade", "armor", "elasticity"],
+    "snippet": "Information on materials, their properties, and uses.",
+    "url": "pages/shreds/materials.html",
+    "categories": ["Shredders", "Enhancement"]
   },
   {
     "title": "Optimisation",
@@ -101,8 +108,8 @@
     "title": "health",
     "tags": ["weld", "welding", "skeleton", "skeletonisation", "angle", "compression", "invincible"],
     "snippet": "",
-    "url": "pages/shreds/skeletonisation.html",
-    "categories": ["Shredders", "Health"]
+    "url": "pages/shreds/health.html",
+    "categories": ["Shredders", "Enhancement"]
   },
   {
     "title": "Gyro Cores", 
