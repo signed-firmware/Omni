@@ -2,8 +2,7 @@
 
 @font-face {
     font-family: 'TerminusWiki';
-    src: url('/fonts/Terminus.tff') format('tff'),
-         url('/fonts/terminus.woff') format('woff');
+    src: url('/fonts/terminus.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
@@ -51,53 +50,55 @@
 }
 
 :root {
-    /* ── Font stack ── */
     --font-body: 'TerminusWiki', 'JetBrains Mono', 'Consolas', 'Courier New', monospace;
-    --font-heading:   'JetBrains Mono', 'TerminusWiki', 'Consolas', monospace;
-    --font-ui:        'JetBrains Mono', 'TerminusWiki', 'Consolas', monospace;
+    --font-heading: 'JetBrains Mono', 'TerminusWiki', 'Consolas', monospace;
+    --font-ui: 'JetBrains Mono', 'TerminusWiki', 'Consolas', monospace;
 
     /* ── Core palette ── */
-    --bg-body:        #0e0e18;
-    --bg-content:     #131320;
-    --bg-surface:     #181830;
-    --bg-navbar:      #101020;
-    --bg-footer:      #0c0c18;
+    --bg-body: #0a0a0f;
+    --bg-content: #0f0f15;
+    --bg-surface: #15151f;
+    --bg-navbar: #0c0c12;
+    --bg-footer: #08080c;
 
-    --border-subtle:  #1e1e38;
-    --border-light:   #282848;
-    --border-medium:  #363660;
-    --border-bright:  #4a4a78;
+    /* ── Borders ── */
+    --border-subtle: #2a2822;
+    --border-light: #2a2a3a;
+    --border-medium: #3a3a55;
+    --border-bright: #5a5250;
 
-    --text-main:      #c8c8dc;
-    --text-bright:    #e0e0f0;
-    --text-secondary: #9090ac;
-    --text-muted:     #606080;
+    /* ── Typography ── */
+    --text-main: #e0dcd5;
+    --text-bright: #f0eef0;
+    --text-secondary: #b8b0a5;
+    --text-muted: #999084;
 
-    --link-color:     #7dacff;
-    --link-hover:     #a8c8ff;
-    --link-visited:   #b09aff;
+    /* ── Links ── */
+    --link-color: #7dbdff;
+    --link-hover: #9aceff;
+    --link-visited: #b594ff;
 
-    --accent-blue:    #7dacff;
-    --accent-green:   #5ae0b0;
-    --accent-red:     #ff7b7b;
-    --accent-orange:  #ffb84d;
-    --accent-cyan:    #5ce0e0;
-    --accent-purple:  #b09aff;
+    /* ── Accent colors ── */
+    --accent-blue: #7dbdff;
+    --accent-green: #70e8b8;
+    --accent-red: #ff8080;
+    --accent-orange: #ffc56a;
+    --accent-cyan: #6ee2e2;
+    --accent-purple: #b594ff;
 
     /* ── Callout backgrounds ── */
-    --bg-tip:         #0e1f16;
-    --bg-important:   #1f1a0e;
-    --bg-warning:     #1f0e0e;
-    --bg-note:        #0e151f;
+    --bg-tip: #0b1a12;
+    --bg-important: #1a160b;
+    --bg-warning: #1a0c0c;
+    --bg-note: #0c121c;
 
     /* ── Callout borders ── */
-    --border-tip:     #5ae0b0;
-    --border-important: #ffb84d;
-    --border-warning: #ff7b7b;
-    --border-note:    #7dacff;
+    --border-tip: #1f8c64;
+    --border-important: #b26a00;
+    --border-warning: #a00000;
+    --border-note: #0045a3;
 
-    /* ── Transition timing ── */
-    --ease-out:       cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --ease-out: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 /* ── Reset ── */
@@ -174,12 +175,12 @@ body {
 
 .nav-links a:hover {
     color: var(--text-bright);
-    background-color: rgba(125, 172, 255, 0.08);
+    background-color: rgba(0, 47, 129, 0.08);
 }
 
 .nav-links a.active {
     color: var(--accent-blue);
-    background-color: rgba(125, 172, 255, 0.1);
+    background-color: rgba(0, 47, 129, 0.1);
 }
 
 /* ═══════════════════════════════════════════
@@ -309,7 +310,7 @@ blockquote {
     padding: 0.5rem 1rem;
     margin: 1rem 0;
     color: var(--text-secondary);
-    background-color: rgba(255, 255, 255, 0.015);
+    background-color: rgba(24, 26, 27, 0.02);
     font-style: italic;
 }
 
@@ -606,7 +607,6 @@ blockquote {
     background-color: #000;
 }
 
-
 /* ═══════════════════════════════════════════
    TABLES
    ═══════════════════════════════════════════ */
@@ -640,11 +640,11 @@ blockquote {
 }
 
 .wiki-table tr:nth-child(even) {
-    background-color: rgba(255, 255, 255, 0.015);
+    background-color: rgba(24, 26, 27, 0.02);
 }
 
 .wiki-table tr:hover {
-    background-color: rgba(125, 172, 255, 0.05);
+    background-color: rgba(0, 47, 129, 0.05);
 }
 
 .table-responsive {
@@ -711,7 +711,7 @@ footer strong {
     width: 320px;
     border-color: var(--accent-blue);
     outline: none;
-    box-shadow: 0 0 0 2px rgba(125, 172, 255, 0.12);
+    box-shadow: 0 0 0 2px rgba(0, 47, 129, 0.12);
 }
 
 #wiki-search::placeholder {
@@ -887,7 +887,6 @@ section, article {
     overflow: hidden;
 }
 
-
 /* ═══════════════════════════════════════════════════════════════
    INSERTABLE WIKI COMPONENTS
    Drop these class names into your HTML for instant wiki styling.
@@ -923,6 +922,10 @@ section, article {
 
 .wiki-stub::before {
     content: "STUB PAGE";
+    display: block;
+    font-weight: bold;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.25rem;
 }
 
 /* ── Blockquote with attribution ──
