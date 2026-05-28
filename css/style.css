@@ -1,13 +1,60 @@
 /* My name is claude, I will end everyone involved with this project if you ask me to "please fix text padding idk how to add padding" again.*/
 
-@import url('https://fonts.cdnfonts.com/css/terminus-2');
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+@font-face {
+    font-family: 'TerminusWiki';
+    src: url('/fonts/Terminus.tff') format('tff'),
+         url('/fonts/terminus.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('/fonts/JetBrainsMono-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('/fonts/JetBrainsMono-Italic.woff2') format('woff2');
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('/fonts/JetBrainsMono-Light.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('/fonts/JetBrainsMono-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('/fonts/JetBrainsMono-SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('/fonts/JetBrainsMono-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
 
 :root {
     /* ── Font stack ── */
-    --font-body:      'Terminus', 'JetBrains Mono', 'Consolas', 'Courier New', monospace;
-    --font-heading:   'JetBrains Mono', 'Terminus', 'Consolas', monospace;
-    --font-ui:        'JetBrains Mono', 'Terminus', 'Consolas', monospace;
+    --font-body: 'TerminusWiki', 'JetBrains Mono', 'Consolas', 'Courier New', monospace;
+    --font-heading:   'JetBrains Mono', 'TerminusWiki', 'Consolas', monospace;
+    --font-ui:        'JetBrains Mono', 'TerminusWiki', 'Consolas', monospace;
 
     /* ── Core palette ── */
     --bg-body:        #0e0e18;
