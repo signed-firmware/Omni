@@ -74,12 +74,12 @@
     --text-muted: #999084;
 
     /* ── Links ── */
-    --link-color: #7dbdff;
+    --link-color: #6868d4;
     --link-hover: #9aceff;
     --link-visited: #b594ff;
 
     /* ── Accent colors ── */
-    --accent-blue: #7dbdff;
+    --accent-blue: #6868d4;
     --accent-green: #70e8b8;
     --accent-red: #ff8080;
     --accent-orange: #ffc56a;
@@ -1241,18 +1241,20 @@ body::after {
     opacity: 0.35;
 }
 
-/* Left triangle — base runs full left edge, apex points right */
+/* Left triangle — base on left edge, apex points right */
 body::before {
     left: 0;
-    background: linear-gradient(160deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
     clip-path: polygon(0% 0%, 0% 100%, 45% 50%);
+    /* 45° gradient: base (left) = purple, tip (right) = near-black */
+    background: linear-gradient(90deg, #6868d4 0%, #0a0a0f 35%);
 }
 
-/* Right triangle — base runs full right edge, apex points left */
+/* Right triangle — base on right edge, apex points left */
 body::after {
     right: 0;
-    background: linear-gradient(200deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
     clip-path: polygon(100% 0%, 100% 100%, 55% 50%);
+    /* 45° gradient: tip (left) = near-black, base (right) = purple */
+    background: linear-gradient(90deg, #0a0a0f 65%, #6868d4 100%);
 }
 
 /* Ensure navbar & footer render above the triangles */
