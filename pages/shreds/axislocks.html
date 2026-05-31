@@ -4,72 +4,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Axis Lock | Plane Crazy Shredder</title>
-    <link rel="stylesheet" href="../../css/style.css">
+    <!-- Change this title for every page -->
+    <title>Article Title | Plane Crazy Wiki</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
-    <!-- nav bar FEELS AURA -->
+
+    <!-- Nav is injected here by skidunited.js — do not touch -->
     <div id="wiki-nav"></div>
+
     <main class="wiki-container">
 
-        <div class="callout callout-note">
-            <strong>NOTE:</strong> PLACEHOLDER
-        </div>
+        <!-- ═══════════════════════════════════════
+             PAGE HEADER
+        ═══════════════════════════════════════ -->
 
-        <h2>Overview of X</h2>
+        <h1>Axis Locks</h1>
+
+        <!-- Category tags shown at the top of the page -->
         <div class="wiki-categories">
             <span class="wiki-cat">Shredders</span>
             <span class="wiki-cat">Functionality</span>
         </div>
 
+        <!-- Breadcrumb: update each segment to match the page location -->
         <nav class="wiki-breadcrumb">
-            <a href="/">Home</a> <a href="/pages/shredderhub.html">ShredderHub</a> <span>Template</span>
+            <a href="/index.html">Home</a>
+            <a href="/pages/shredderhub.html">ShredderHub</a>
+            <span>Axis Locks</span>
         </nav>
 
-        <p>Stuff</p>
+        <!-- Hatnote: small disambiguation line at the top, use if needed -->
+        <div class="wiki-hatnote">This article is about axis locks. For gyro cores, see <a href="pages/shreds/gyrocore">Gyro Cores</a>.</div>
+
+        <!-- Stub banner — uncomment and use for incomplete pages -->
+         <div class="wiki-stub"></div> 
+
+        <!-- ═══════════════════════════════════════
+             OPENING PARAGRAPH
+             Written before the TOC, like Wikipedia.
+        ═══════════════════════════════════════ -->
+
+        <p>Axis locks are the main functionality of shredders. They are used for movement control by limiting the rotation of a part, which lets you use it as a base for aiming.</p>
+        <p>There are two categories of axis lock, preventative and correctional. Some are stronger than others.</p>
 
 
-        <div class="wiki-last-edited">Last edited on 20.05.26 by peacekeepe_r</div>
+        <!-- ═══════════════════════════════════════
+             TABLE OF CONTENTS
+             Update hrefs to match your section IDs.
+        ═══════════════════════════════════════ -->
 
         <nav class="toc-box">
             <div class="toc-title">Contents</div>
             <ul>
                 <li>
-                    <a href="#Stuff">1 Stuff</a>
+                    <a href="#overview">1 Correctional Axis Locks</a>
                     <ul>
-                        <li><a href="#stuff2">1.1 stuff</a></li>
+                        <li><a href="#how-it-works">1.1 How it works</a></li>
+                    </ul>
+                        <ul>
+                        <li><a href="#how-it-works">1.1 How it works</a></li>
                     </ul>
                 </li>
+                <li><a href="#mechanics">2 Preventative Axis Lock</a></li>
+                <li><a href="#usage">3 Usage</a></li>
             </ul>
         </nav>
 
-        <div class="wiki-thumb thumb-right">
-            <div class="thumb-inner">
-                <img src="../../assests/3x5.png" alt="Anchorfling Void, Hypersurge.">
-                <div class="thumb-caption">
-                    Image.
+        <!-- ═══════════════════════════════════════
+             SECTION
+        ═══════════════════════════════════════ -->
+
+            <!-- Data table -->
+            <div class="table-responsive">
+                <table class="wiki-table">
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Value</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Damage</td>
+                            <td>100</td>
+                            <td>Per hit</td>
+                        </tr>
+                        <tr>
+                            <td>Speed</td>
+                            <td><span class="wiki-stat wiki-stat-high">High</span></td>
+                            <td>At base build weight</td>
+                        </tr>
+                        <tr>
+                            <td>Health</td>
+                            <td><span class="wiki-stat wiki-stat-low">Low</span></td>
+                            <td>Without armoring</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        <!-- ═══════════════════════════════════════
+             SECTION: USAGE OR GUIDE
+        ═══════════════════════════════════════ -->
+
+        <section id="usage">
+            <h2>Usage/Guide</h2>
+
+            <!-- Image thumbnail floated right — swap thumb-right for thumb-left if needed -->
+            <div class="wiki-thumb thumb-right">
+                <div class="thumb-inner">
+                    <img src="/assests/yourimage.png" alt="Description">
+                    <div class="thumb-caption">Caption describing what this image shows.</div>
                 </div>
             </div>
-        </div>
 
-        <section id="Stuff"></section>
-        <h2>Stuff</h2>
+            <p>Usage instructions and practical advice. The image floats to the right of this paragraph.</p>
 
-        <section id="stuff2"></section>
-        <h3>stuff2</h3>
+            <p>More content here. Section clears automatically so the next heading starts below the image.</p>
 
+            <!-- Lazy-loaded video — replace data-src with the actual path -->
+            <div class="wiki-video">
+                <div class="thumb-inner">
+                    <video class="lazy-video" data-src="/assests/yourvideo.mp4" controls loop muted playsinline></video>
+                </div>
+            </div>
 
+            <!-- Image gallery — good for showing multiple examples -->
+            <div class="wiki-gallery">
+                <figure>
+                    <img src="/assests/yourimage.png" alt="Example 1">
+                    <figcaption>Example one caption.</figcaption>
+                </figure>
+                <figure>
+                    <img src="/assests/yourimage.png" alt="Example 2">
+                    <figcaption>Example two caption.</figcaption>
+                </figure>
+                <figure>
+                    <img src="/assests/yourimage.png" alt="Example 3">
+                    <figcaption>Example three caption.</figcaption>
+                </figure>
+            </div>
 
-
-
-
+            <!-- Keyboard shortcut reference -->
+            <p>Press <kbd class="wiki-key">F</kbd> to toggle, or <kbd class="wiki-key">R</kbd> to reset position.</p>
 
     </main>
+
+    <!-- Footer is injected here by skidunited.js — do not touch -->
     <footer id="wiki-footer"></footer>
 
-    <script src="../../js/skidunited.js"></script>
+    <script src="/js/skidunited.js"></script>
 
 </body>
-
 </html>
