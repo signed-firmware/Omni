@@ -165,7 +165,7 @@ body {
     gap: 0.25rem;
 }
 
-.nav-links a {
+.nav-links > li > a {
     display: flex;
     align-items: center;
     height: 34px;
@@ -181,13 +181,13 @@ body {
     transition: color 0.15s var(--ease-out), background-color 0.15s var(--ease-out), border-color 0.15s var(--ease-out);
 }
 
-.nav-links a:hover {
+.nav-links > li > a:hover {
     color: var(--text-bright);
     background-color: rgba(0, 47, 129, 0.08);
     border-color: var(--accent-blue);
 }
 
-.nav-links a.active {
+.nav-links > li > a.active {
     color: var(--accent-blue);
     background-color: rgba(0, 47, 129, 0.1);
     border-color: var(--accent-blue);
@@ -1351,4 +1351,43 @@ footer {
     body::after {
         clip-path: polygon(100% 0%, 100% 100%, 70% 50%);
     }
+}
+
+/* ═══════════════════════════════════════════
+   SCROLLBAR CUSTOMIZATION
+   ═══════════════════════════════════════════ */
+
+/* Firefox support */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-medium) var(--bg-body);
+}
+
+/* Webkit browser support (Chrome, Safari, Edge, Opera) */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-body);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-medium);
+    border-radius: 4px;
+    border: 2px solid var(--bg-body);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-blue);
+}
+
+/* Specific scrollbar styling for search results box */
+.search-results-box::-webkit-scrollbar-track {
+    background: var(--bg-surface);
+}
+
+.search-results-box::-webkit-scrollbar-thumb {
+    border: 2px solid var(--bg-surface);
 }
