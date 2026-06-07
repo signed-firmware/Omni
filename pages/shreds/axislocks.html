@@ -97,13 +97,52 @@
                         </tr>
                         <tr>
                         <tr>
-                            <td>ANO</td>
-                            <td><span class="wiki-stat wiki-stat-medium">Medium</span></td>
-                            <td><span class="wiki-stat wiki-stat-medium">Medium</span></td>
+                            <td>Balljoint</td>
+                            <td><span class="wiki-stat wiki-stat-medium">Low-Medium</span></td>
+                            <td><span class="wiki-stat wiki-stat-low">High</span></td>
                         </tr>
                             <td>Void Lock</td>
                             <td><span class="wiki-stat wiki-stat-high">High</span></td>
                             <td><span class="wiki-stat wiki-stat-medium">Low-High</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+        <section id="#1x1Cores"></section>
+            <h3>Gyro</h3>
+            <p>Gyro axis lock simply requires the use of a gyro block, which has the <a href="https://create.roblox.com/docs/reference/engine/classes/BodyGyro">BodyGyro</a> function which applies a corretional axis lock to the block.</p>
+            <p>It is <strong>proportional to mass</strong> though, which makes it the weakest <strong>(but still decent)</strong> form of axis lock, and also cannot function when massless. There is a fix for this, <a href="../../pages/shreds/massless#Staging-MassGyro">Staging Gyros</a>.</p>
+        <section id="#1x1Cores"></section>
+            <h3>Balljoint</h3>
+            <p>Balljoint Axis lock is a corrective form of axis lock that works by void/NaN deleting one end of an already activated mouse guided balljoint. It doesn't work off of tnt/gun/cutter/etc deletion.
+                The balljoint becomes an axis lock because of the mouse tracking getting disabled, it's slightly stronger than gyro but not by much.</p>
+        <section id="#1x1Cores"></section>
+            <h3>Void</h3>
+            <p>Void axis lock is when you stretch out any form of <strong>non teleporting constraint</strong> past its pull reach <strong>(generally 100k studs)</strong>.
+                This causes an effect where <strong>only the rotation correcting forces apply</strong>, without any of the position correcting forces.</p>
+            <p>It's the <strong>strongest form of axis lock</strong>  if paired with a <strong>hinge constraint(motor)</strong>,
+                giving you both a preventative and corrective form of axis lock on every axis besides the one the motor is meant to spin to normally.
+                In that one specific axis it still has preventative axis lock but not corrective, which is why this form of axis lock is best made when using 3 different motors pointing at all 3 axes.</p>
+
+            <section id="#1x1Cores"></section>
+            <h2>Preventative Axis Locks</h2>
+            <p>This type of axis lock increases the difficulty of rotating the assembly it is effecting</p>
+            <!-- Data table -->
+            <div class="table-responsive">
+                <table class="wiki-table">
+                    <thead>
+                        <tr>
+                            <th>Method</th>
+                            <th>Strength</th>
+                            <th>Complexity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>ANO</td>
+                            <td><span class="wiki-stat wiki-stat-medium">Medium</span></td>
+                            <td><span class="wiki-stat wiki-stat-medium">Medium</span></td>
                         </tr>
                         <tr>
                             <td>Torque Lock</td>
@@ -113,20 +152,17 @@
                     </tbody>
                 </table>
             </div>
-            
-        <section id="#1x1Cores"></section>
-            <h3>Gyro</h3>
-            <p>Gyro axis lock simply requires the use of a gyro block, which has the <a href="https://create.roblox.com/docs/reference/engine/classes/BodyGyro">BodyGyro</a> function which applies a corretional axis lock to the block.</p>
-            <p>It is <strong>proportional to mass</strong> though, which makes it the weakest <strong>(but still decent)</strong> form of axis lock, and also cannot function when massless. There is a fix for this, <a href="#Staging-MassGyro">Staging Gyros</a>.</p>
-        <section id="#1x1Cores"></section>
-            <h3>ANO</h3>
-            <p></p>
-        <section id="#1x1Cores"></section>
-            <h3>Void</h3>
-            <p></p>
-        <section id="#1x1Cores"></section>
+
+            <section id="#1x1Cores"></section>
             <h3>Torque</h3>
-            <p></p>
+            <p>Torque lock is the strongest form of axis lock and uses the <a href="https://en.wikipedia.org/wiki/Moment_of_inertia#:~:text=The%20moment%20of%20inertia%20(also,body%20about%20a%20given%20axis.">moment of inertia principle</a> to create a massively resistant preventative axis lock.
+            It's made by offsetting 3 or more parts of equal mass an equal distance apart from the center of your build, which makes it so rotating the central part holding those other parts require massive amounts of torque.
+            If paired with a gyro block it can be literally untwistable.</p>
+
+            <section id="#1x1Cores"></section>
+            <h3>ANO</h3>
+            <p>Forced axis lock, known as ANO, uses the rotation correcting forces that prismatic constraints have by applying said force to itself by twisting and offsetting a part connected to another part using a prismatic.
+            One issue with this method is that it's a preventative form of axis lock rather than corrective, so using it by itself is not recommended as it can still turn. This is why generally it's paired with a gyro block, known as <a href="https://youtu.be/usrm0Y6NgK0?si=Y30n_vKC06YREgw8">Hybrid Lock.</a></p>
 
         <!-- ═══════════════════════════════════════
              SECTION: USAGE OR GUIDE
