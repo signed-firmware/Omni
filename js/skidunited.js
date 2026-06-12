@@ -16,7 +16,7 @@ function buildNav() {
 
     placeholder.outerHTML = `
         <nav class="navbar">
-            <div class="logo">Plane Crazy Shredder and Tech wiki</div>
+            <div class="logo"><h2 class="wiki-ambient-reflection">Plane Crazy Shredder and Tech wiki</h2></div>
             <ul class="nav-links">
                 ${link('/index.html', 'Home')}
                 ${link('/pages/shredderhub.html', 'ShredderHub')}
@@ -37,27 +37,68 @@ function buildFooter() {
     const el = document.getElementById('wiki-footer');
     if (!el) return;
 
-    el.innerHTML = `
-        <div class="credits-container">
-            <div class="credit-category">
-                <strong>Main Coder:</strong>
-                <span>platform2 (759825779974209616)</span>
+    el.innerHTML = `<div class="credits-container">
+    <div class="credit-category central-feature">
+        <strong><span class="wiki-title-shimmer">Repository Contributors:</span></strong>
+        <div class="credit-member">
+            <span class="member-name">platform2 (759825779974209616)</span>
+            <small class="credit-note">Main coder, page writing, design.</small>
+        </div>
+        <div class="credit-member">
+            <span class="member-name">peacekeepe_r (850394478895300629)</span>
+            <small class="credit-note">Main writer, main design, minor coding.</small>
+        </div>
+    </div>
+
+    <div class="credits-row">
+        <div class="credit-category">
+            <strong>Major Contributors:</strong>
+            <div class="credit-member">
+                <span class="member-name">kameon</span>
+                <small class="credit-note">Fully influenced the style of writing.</small>
             </div>
-            <div class="credit-category">
-                <strong>Main Writer:</strong>
-                <span>peacekeepe_r (850394478895300629), platform2 (759825779974209616)</span>
-            </div>
-            <div class="credit-category">
-                <strong>Writers:</strong>
-                <span>killer_meetball., legallypvid</span>
-            </div>
-            <div class="credit-category">
-                <strong>Contributors:</strong>
-                <span>glitchedtm, kameon</span>
+            <div class="credit-member">
+                <span class="member-name">IntegrativeGenesis</span>
+                <small class="credit-note">Provided history almost fully lost to time.</small>
             </div>
         </div>
-        <hr>
-        <p>Made for the <a href="https://discord.gg/89gEYNR7zd" target="_blank" rel="noopener noreferrer">Neo Shredder Group Discord</a></p>`;
+
+        <div class="credit-category">
+            <strong>Writers:</strong>
+            <div class="credit-member">
+                <span class="member-name">kameon</span>
+                <small class="credit-note">Writing, design assets, "beta testing" and major corrections.</small>
+            </div>
+            <div class="credit-member">
+                <span class="member-name">peacekeepe_r</span>
+                <small class="credit-note">Most of the shredder-side, rewriting</small>
+            </div>
+            <div class="credit-member">
+                <span class="member-name">platform2</span>
+                <small class="credit-note">Drafting and writing shredder pages.</small>
+            </div>
+        </div>
+
+        <div class="credit-category">
+            <strong>Contributors:</strong>
+            <div class="credit-member">
+                <span class="member-name">glitchedtm</span>
+                <small class="credit-note">Natural Selection.</small>
+            </div>
+            <div class="credit-member">
+                <span class="member-name">killer_meetball.</span>
+                <small class="credit-note">Tech info, minor writing.</small>
+            </div>
+            <div class="credit-member">
+                <span class="member-name">legallypvid</span>
+                <small class="credit-note">Tech info, minor writing.</small>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr>
+<p style="text-align: center;">Made for the <a href="https://discord.gg/89gEYNR7zd" target="_blank" rel="noopener noreferrer">Neo Shredder Group Discord</a></p>`;
 }
 
 // ═══════════════════════════════════════════
