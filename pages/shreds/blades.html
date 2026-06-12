@@ -64,9 +64,7 @@
                 </div>
             </div>
         </div>
-        <p>This type of blade came from the change making compressor blocks invincible, using its max compression
-            setting to make a long and wide spaced blade. this is the best type of blade for now. It is decently immune
-            to pingspikes, spaced well, covers alot of area, block efficient, and deals high damage.</p>
+        <p>This blade design uses the invincibility of compressor blocks and outwards compression setting to make a vertically and horizontally spaced blade. This is the best general design of blade for now, preferred for its high area coverage and block efficiency.</p>
         <p>There are a few variants, most simply cut down the sides of the blade shape from four to three or two. Two
             sides, flat blades, are considered to not actually cover as much area and also require a lot of speed to
             actually rotate properly (30pi).</p>
@@ -110,7 +108,24 @@
         <p>When your cutters interact with an excessive amount of blocks, affected by density of blade and target, your ping can spike up to ~200,000 milliseconds or more. This causes you to freeze on the server but not your client. You can move but your hitbox will stay in one place on the server which allows for people to kill your shredder.</p>
 
         <h2>CE/Demean</h2>
-        <p></p>
+        <p>Cutter Enhancement/Demean is a method of boosting the damage of cutters in a blade. This is done through a calculated MotorSpeed that aligns a specific amount of motor rotation with ingame ticks.
+            The exact rotation needed for a blade is calculated through a few steps, but the end result is between usually 3 different numbers.</p>
+
+            <h4>A full MotorRevolution per second is <span class="wiki-stat-number">360° ÷ 1T</span>, where  T=Seconds. This is achieved by setting MotorSpeed to 2π.</h4>
+
+            <h4>Roblox operates with the <a href = https://create.roblox.com/docs/physics>roblox.com/docs/physics</a> engine running at a maximum of 60hz (60 hertz = a frequency of 60 cycles per second where something can happen.) making the optimal fps, FPS ≥ 60.
+            This also increases the value of <a href = ../../shreds/optimisation.html>Optimisation</a></h4>
+
+            <h4>To find the correct MotorSpeed for a 4 sided blade, you must perform this equation. <span class="wiki-stat-number">(2π×60)÷(360÷45)</span>, meaning CE is <span class="wiki-glow-purple">15π</span> or <span class="wiki-glow-purple">47.124</span>.</h4>
+
+            <h4>To find the MotorSpeed for a 3 sided "tri blade", you must do <span class="wiki-stat-number">(2π×60)÷(360÷45).</span> The answer, 20π, cannot fit within a singular motor. The MotorSpeed limit is 50, 20π is ~62.832.
+                The fix to this is 2x Demean, which stacks the speed of two motors. So the correct value for the motors is divided by two to fit within the 2 motors, 31.416.</h4>
+            
+            <h4>The optimal MotorTorque value for blades, tested over 1000 times with CE, is 0.63.</h4>
+
+            <h4>The blade must spin backwards to have maximum effect, as it pulls. Spinning forwards will make the blade push targets away from itself.</h4>
+
+            <p>In summary:</p>
         <h3>Values</h3>
         <p></p>
         <h3>Functionality</h3>
