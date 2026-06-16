@@ -25,21 +25,21 @@
     "tags": ["movement", "movementinfo", "hover", "hover engines", "rocket", "rocket engines", "angled", "angled rocket engines", "hybrid", "hybrid rocket engines", "acceleration", "skybounce", "aerobounce"],
     "snippet": "A comprehensive guide to movement mechanics",
     "url": "pages/shreds/movementmechanics.html",
-    "categories": ["Shredders", "Functionality"]
+    "categories": ["Shredders", "Module"]
   },
   {
     "title": "Armor info",
     "tags": ["armor", "armorinfo", "pushback", "thickness", "angling", "armorlogic", "armor logic", "rigidity"],
     "snippet": "A comprehensive guide to armor info",
     "url": "pages/shreds/armorinfo.html",
-    "categories": ["Shredders", "Armoring"]
+    "categories": ["Shredders", "Module"]
   },
   {
     "title": "Massless",
     "tags": ["massless", "staging", "modules"],
     "snippet": "A comphrensive and complete guide on staging and massless",
     "url": "pages/shreds/massless.html",
-    "categories": ["Shredders", "Functionality"]
+    "categories": ["Shredders", "Module"]
   },
   {
     "title": "Physics Priority Distribituion",
@@ -66,7 +66,7 @@
     "title": "Blades",
     "tags": ["blade", "cutter", "design", "rules", "spacing"],
     "snippet": "General information about blades and cutters.",
-    "url": "pages/shreds/axislocks.html",
+    "url": "pages/shreds/blades.html",
     "categories": ["Shredders", "Module"]
   },
   {
@@ -109,7 +109,7 @@
     "tags": ["weld", "welding", "skeleton", "skeletonisation", "angle", "compression", "invincible"],
     "snippet": "Skeletonisation is the process of creating a structure that cannot be broken, reducing the weak points of a build to just the components",
     "url": "pages/shreds/skeletonisation.html",
-    "categories": ["Shredders", "Functionality"]
+    "categories": ["Shredders", "Enhancement"]
   },
   {
     "title": "Health",

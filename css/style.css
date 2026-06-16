@@ -1556,3 +1556,233 @@ footer {
   /* Optional: Keeps pixel art sharp if your GIF uses retro sprites */
 
 }
+.wiki-keyword-reveal {
+  color: #6868d4;
+  font-weight: 600;
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+}
+
+.wiki-keyword-glow {
+  font-weight: 600; /* Slightly thicker than normal text */
+  color: #e6e6ff;   /* Soft lavender-white text so it pops against dark themes */
+  
+  /* A single, low-positioned shadow that acts as a floor underline glow */
+  text-shadow: 0 3px 6px rgba(104, 104, 212, 0.7);
+}
+
+/* ═══════════════════════════════════════════
+   HUB CATEGORY BOXES
+   Grouped card containers with transparent
+   background images for the ShredderHub page.
+   ═══════════════════════════════════════════ */
+
+.hub-category {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--border-medium);
+    border-radius: 6px;
+    padding: 1.75rem 1.5rem 1.5rem;
+    margin-bottom: 1.75rem;
+    background-color: rgba(15, 15, 21, 0.85);
+
+    /* Entrance animation */
+    animation: hubFadeIn 0.5s var(--ease-out) both;
+}
+
+.hub-category:nth-child(2) { animation-delay: 0.08s; }
+.hub-category:nth-child(3) { animation-delay: 0.16s; }
+.hub-category:nth-child(4) { animation-delay: 0.24s; }
+.hub-category:nth-child(5) { animation-delay: 0.32s; }
+
+@keyframes hubFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ── Semi-transparent background image ── */
+.hub-category::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: var(--hub-bg-image);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.08;
+    pointer-events: none;
+    z-index: 0;
+    transition: opacity 0.4s var(--ease-out), transform 0.6s var(--ease-out);
+}
+
+/* Subtle parallax-feel on hover */
+.hub-category:hover::before {
+    opacity: 0.14;
+    transform: scale(1.03);
+}
+
+/* Glow border on hover */
+.hub-category:hover {
+    border-color: var(--accent-blue);
+    box-shadow:
+        0 0 20px rgba(104, 104, 212, 0.08),
+        0 4px 24px rgba(0, 0, 0, 0.25);
+}
+
+/* Push children above the background image */
+.hub-category > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* ── Category header ── */
+.hub-category-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 1.15rem;
+    padding-bottom: 0.65rem;
+    border-bottom: 1px solid var(--border-light);
+    background: linear-gradient(90deg,
+        rgba(104, 104, 212, 0.06) 0%,
+        transparent 100%);
+    margin: -1.75rem -1.5rem 1.25rem;
+    padding: 1rem 1.5rem 0.75rem;
+}
+
+.hub-category-icon {
+    font-size: 1.3rem;
+    line-height: 1;
+    filter: saturate(0.8);
+}
+
+.hub-category-title {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--accent-blue);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+/* ── Card grid inside category ── */
+.hub-category-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 0.9rem;
+}
+
+/* Cards inside hub categories inherit existing .card styles
+   but get a slightly elevated look */
+.hub-category-cards .card {
+    background-color: rgba(21, 21, 31, 0.75);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border-color: var(--border-light);
+    transition:
+        border-color 0.2s var(--ease-out),
+        box-shadow 0.2s var(--ease-out),
+        transform 0.2s var(--ease-out),
+        background-color 0.2s var(--ease-out);
+}
+
+.hub-category-cards .card:hover {
+    background-color: rgba(21, 21, 31, 0.92);
+    border-color: var(--accent-blue);
+    box-shadow: 0 6px 20px rgba(104, 104, 212, 0.1);
+    transform: translateY(-2px);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+    .hub-category {
+        padding: 1.25rem 1rem 1rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .hub-category-header {
+        margin: -1.25rem -1rem 1rem;
+        padding: 0.75rem 1rem 0.6rem;
+    }
+
+    .hub-category-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .hub-category-icon {
+        font-size: 1.1rem;
+    }
+
+    .hub-category-title {
+        font-size: 0.92rem;
+    }
+}
+
+/* ═══════════════════════════════════════════
+   CARD BACKGROUND IMAGES
+   Add class="card card-bg" and set
+   style="--card-bg: url('...')" on any card
+   to show an image behind the card text.
+   ═══════════════════════════════════════════ */
+
+.card.card-bg {
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+}
+
+/* The background image layer */
+.card.card-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: var(--card-bg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 0;
+    transition: transform 0.4s var(--ease-out), opacity 0.4s var(--ease-out);
+}
+
+/* Dark overlay so text stays readable */
+.card.card-bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        180deg,
+        rgba(10, 10, 15, 0.55) 0%,
+        rgba(10, 10, 15, 0.78) 100%
+    );
+    z-index: 1;
+    transition: background 0.3s var(--ease-out);
+}
+
+/* Push card content above both layers */
+.card.card-bg > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* Hover: image brightens and drifts slightly */
+.card.card-bg:hover::before {
+    transform: scale(1.06);
+}
+
+.card.card-bg:hover::after {
+    background: linear-gradient(
+        180deg,
+        rgba(10, 10, 15, 0.4) 0%,
+        rgba(10, 10, 15, 0.7) 100%
+    );
+}

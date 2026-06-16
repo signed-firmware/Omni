@@ -24,28 +24,28 @@
         </nav>
 
         <p>Blades and their design influence how much damage your shredder can output. Blades have a few factors
-            for being good, mainly Spacing and CE. This page has information on many things related to blades.</p>
+            for being good, mainly spacing and CE. This page has information on many things related to blades.</p>
         <nav class="toc-box">
             <div class="toc-title">Contents</div>
             <ul>
                 <li>
                     <a href="#design">1 Blade Design</a>
                     <ul>
-                        <li><a href="#Hover-engines">1.1 Spaced CS</a></li>
+                        <li><a href="#Hover-engines">1.1 Modern Blades</a></li>
                         <li><a href="#Rocket-engines">1.2 Sinusoid</a></li>
                         <li><a href="#Angled-Rockets">1.3 Density</a></li>
                         <li><a href="#Angled-Rockets">1.4 Efficiency</a></li>
-                        <li><a href="#Angled-Rockets">1.5 Area Coverage</a></li>
+                        <li><a href="#Angled-Rockets">1.5 Surface Area</a></li>
                     </ul>
                 </li>
                 <li><a href="#Acceleration">2 Cutter Rules</a></li>
                 <ul>
-                    <li><a href="#Hover-engines">1.1 Minimum Distance</a></li>
-                    <li><a href="#Rocket-engines">1.2 Maximum Speed</a></li>
+                    <li><a href="#Hover-engines">1.1 Density</a></li>
+                    <li><a href="#Rocket-engines">1.2 Minimum Speed</a></li>
                     <li><a href="#Rocket-engines">1.3 Damage per Second</a></li>
                     <li><a href="#Angled-Rockets">1.4 Pingspiking</a></li>
                 </ul>
-                <li><a href="#Skybounce">3 CE/Demean</a></li>
+                <li><a href="#Skybounce">3 Demean</a></li>
                 <ul>
                     <li><a href="#Hover-engines">1.1 Values</a></li>
                     <li><a href="#Rocket-engines">1.2 Functionality</a></li>
@@ -55,19 +55,18 @@
         <section id="skelop"></section>
         <h2>Blade Design</h2>
         <p>Blade design is the general design of a shredders blade, the pattern and logic. The principles of blade design are density, efficiency, and area coverage. Following these will produce a better blade.</p>
-        <h3>Modern Spaced CS</h3>
+        <h3>Modern Blades</h3>
         <div class="wiki-thumb thumb-right">
             <div class="thumb-inner">
                 <img src="../../assests/spacedcs.png" alt="a">
                 <div class="thumb-caption">
-                    Spaced CS Blade.
+                    Example.
                 </div>
             </div>
         </div>
-        <p>This blade design uses the invincibility of compressor blocks and outwards compression setting to make a vertically and horizontally spaced blade. This is the best general design of blade for now, preferred for its high area coverage and block efficiency.</p>
+        <p>This blade design uses the invincibility of compressor blocks and outwards compression setting to make a vertically and horizontally spaced cross blade. This is the best general design of blade for now, preferred for its high area coverage and block efficiency.</p>
         <p>There are a few variants, most simply cut down the sides of the blade shape from four to three or two. Two
-            sides, flat blades, are considered to not actually cover as much area and also require a lot of speed to
-            actually rotate properly (30pi).</p>
+            sided blades, flat blades, do not cover as much area as other blades and have less hits per second.</p>
             
         <div style="height: 20px;"></div>
         <h3>Sinusoid</h3>
@@ -79,8 +78,7 @@
                 </div>
             </div>
         </div>
-        <p>This blade uses a repeated pattern of angles to create a spinning sinusoid. These are spaced well, having a
-            very efficient use of cutters. However, spaced cs is typically much better.</p>
+        <p>This blade uses a repeated pattern of angles to create a spinning sinusoid. These are spaced well, but do not use cutters as efficiently.</p>
         <p>A mistake people make when using this type of blade is creating a helix, stacking the pattern to make two
             sinusoids. This uses way too many blocks and can make the blade dense enough to be pingspiked.</p>
         
@@ -94,38 +92,65 @@
         <div style="height: 80px;"></div>
 
         <h2>Cutter Rules</h2>
+
+
         <p>Cutter blocks follow a set of rules, both scripted and naturally occouring.</p>
+
+
         <h3>Minimum Distance</h3>
+
+
         <p>Cutters have a minimum distance rule, this prevents redundant cutters and side by side cutters.</p>
+
+
         <h3>Maximum Speed</h3>
+
+
         <p>Cutters have limits to the speed where they can still function. The first cause of this is ping, this is from the serverside and clientside hitbox being more and more offset the higher the speed is.
         This, combined with serverside damage checks for cutters, makes ping heavily determine the effectiveness of cutters.
         </p>
         <p>The second cause is a speed limit, cutters eventually stop working at thousands of SPS.</p>
+
+
         <h3>Damage per Second</h3>
-        <p>When a cutter deals damage, it deactivates for 0.1 seconds. This prevents cutters from just dealing infinite damage and instantly pingspiking.</p>
+
+
+        <p>When a cutter deals damage, it deactivates for 0.1 seconds. This prevents cutters from just dealing infinite damage and instantly pingspiking.
+            Demean makes blades have constant hits per second by making the cutters land in the same exact spot while the blade spins (Each frame the blade must rotate in a way that a cutter goes to the same position as the previous cutter.)
+            With 1 motor demean, the blade will spin <span class="wiki-stat-number">45°</span> per tick.
+            The DPS of a blade depends on the shape and demean settings.</p>
+
+        <h4>Example: a Flat Blade <span class="wiki-stat-number">(15 h/s)</span> has half the DPS of a Cross Blade <span class="wiki-stat-number">(30 h/s)</span> when using <span class="wiki-stat-number">15π</span> demean.</h4>
+
+
+
         <h3>Pingspiking</h3>
-        <p>When your cutters interact with an excessive amount of blocks, affected by density of blade and target, your ping can spike up to ~200,000 milliseconds or more. This causes you to freeze on the server but not your client. You can move but your hitbox will stay in one place on the server which allows for people to kill your shredder.</p>
 
-        <h2>CE/Demean</h2>
-        <p>Cutter Enhancement/Demean is a method of boosting the damage of cutters in a blade. This is done through a calculated MotorSpeed that aligns a specific amount of motor rotation with ingame ticks.
-            The exact rotation needed for a blade is calculated through a few steps, but the end result is between usually 3 different numbers.</p>
 
-            <h4>A full MotorRevolution per second is <span class="wiki-stat-number">360° ÷ 1T</span>, where  T=Seconds. This is achieved by setting MotorSpeed to 2π.</h4>
+        <p>When your cutters interact with an excessive amount of blocks, affected by density of blade and target, your ping can spike up with no limit.
+            This causes you to freeze on the server but not your client, making your position stop replicating. This can lead to certain death.</p>
 
-            <h4>Roblox operates with the <a href = https://create.roblox.com/docs/physics>roblox.com/docs/physics</a> engine running at a maximum of 60hz (60 hertz = a frequency of 60 cycles per second where something can happen.) making the optimal fps, FPS ≥ 60.
+
+
+
+
+        <h2>Demean</h2>
+        <p>Demean is a method of boosting the damage of cutters in a blade. This is done through a calculated MotorSpeed that aligns a specific amount of motor rotation with ingame ticks.
+            The exact rotation needed for a blade is calculated through a few steps.</p>
+
+            <h4>Roblox operates with the <a href = https://create.roblox.com/docs/physics>roblox.com/docs/physics</a> engine running at a maximum of <span class="wiki-keyword-glow">60hz</span> (like frames per second) making the optimal fps, FPS ≥ 60.
             This also increases the value of <a href = ../../shreds/optimisation.html>Optimisation</a></h4>
 
-            <h4>To find the correct MotorSpeed for a 4 sided blade, you must perform this equation. <span class="wiki-stat-number">(2π×60)÷(360÷45)</span>, meaning CE is <span class="wiki-glow-purple">15π</span> or <span class="wiki-glow-purple">47.124</span>.</h4>
+            <h4>To find the correct MotorSpeed for a 4 sided blade, this equation is used <span class="wiki-stat-number">(2π×60)÷(360÷45)</span>. meaning demean is <span class="wiki-stat-number">15π</span> or <span class="wiki-stat-number">47.124</span>.</h4>
 
-            <h4>To find the MotorSpeed for a 3 sided "tri blade", you must do <span class="wiki-stat-number">(2π×60)÷(360÷45).</span> The answer, 20π, cannot fit within a singular motor. The MotorSpeed limit is 50, 20π is ~62.832.
-                The fix to this is 2x Demean, which stacks the speed of two motors. So the correct value for the motors is divided by two to fit within the 2 motors, 31.416.</h4>
+            <h4>To find the MotorSpeed for a 3 sided "tri blade", the equation <span class="wiki-stat-number">(2π×60)÷(360÷60)</span> is used. The answer, <span class="wiki-stat-number">20π</span>, cannot fit within a singular motor. The MotorSpeed limit is 50, 20π is <span class="wiki-stat-number">~62.832</span>.
+                The fix to this is 2x Demean, which stacks the speed of two motors. This means the correct value for the motors, divided across the 2 motors, is <span class="wiki-stat-number">31.416</span>.</h4>
             
-            <h4>The optimal MotorTorque value for blades, tested over 1000 times with CE, is 0.63.</h4>
+            <h4>The optimal MotorTorque value for blades, tested over 1000 times with demean, is <span class="wiki-stat-number">0.63</span>.</h4>
 
-            <h4>The blade must spin backwards to have maximum effect, as it pulls. Spinning forwards will make the blade push targets away from itself.</h4>
+            <h4>To have a better effect, spin backwards to make it capable of pulling targets into itself. Forwards will have a reversed effect.</h4>
 
-            <p>In summary:</p>
+            <p>In summary, a cross blade</p>
         <h3>Values</h3>
         <p></p>
         <h3>Functionality</h3>
