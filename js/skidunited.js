@@ -45,7 +45,7 @@ function buildFooter() {
             <small class="credit-note">Main coder, page writing, design.</small>
         </div>
         <div class="credit-member">
-            <span class="member-name">peacekeepe_r (850394478895300629)</span>
+            <span class="member-name">SALAMI (850394478895300629)</span>
             <small class="credit-note">Main writer, main design, minor coding.</small>
         </div>
     </div>
@@ -70,7 +70,7 @@ function buildFooter() {
                 <small class="credit-note">Writing, design assets, "beta testing" and major corrections.</small>
             </div>
             <div class="credit-member">
-                <span class="member-name">peacekeepe_r</span>
+                <span class="member-name">SALAMI</span>
                 <small class="credit-note">Most of the shredder-side, rewriting</small>
             </div>
             <div class="credit-member">
