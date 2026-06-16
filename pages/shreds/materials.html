@@ -22,7 +22,8 @@
             <a href="/">Home</a> <a href="/pages/shredderhub.html">ShredderHub</a> <span>Stuff</span>
         </nav>
 
-        <p>Materials are a feature of roblox parts, changing the visual texture and physical properties of the part.
+        <p>Materials are properties all Roblox parts have, changing both the physical and visual characteristics of a
+            part.
             These physical properties are somewhat useful for shredder <a href="shreds/shredders.html">armor</a> and <a
                 href="shreds/shredders.html">blades</a>.</p>
         <h4>"For example, concrete is heavier than plastic and sinks faster in water. When you set the material of a
@@ -46,8 +47,8 @@
 
         <section id="Stuff"></section>
         <h2>Physical Properties</h2>
-        <p>Elasticity, friction, and their weights. There are a few others like density but these two properties
-            actually affect shredders</p>
+        <p>Materials have several physical properties, including elasticity, friction, density, and their associated
+            weights. For shredders, elasticity and friction are generally the most relevant.</p>
         <section id="11"></section>
         <h3>Elasticity</h3>
         <div class="wiki-thumb thumb-right">
@@ -58,12 +59,11 @@
                 </div>
             </div>
         </div>
-        <p>The elasticity of a part determnines the bounciness of the part when contacting something with force. Armor
-            with more elasticity will bounce blades away, helping to remove force thats aimed at the core.</p>
+        <p>Elasticity determines how much a part bounces when it collides with another object. Higher elasticity can
+            help armor deflect incoming blades, reducing the force transferred toward the core.</p>
         <p>Materials with the most elasticity are default, smoothplastic, and fabric.</p>
         <div style="height: 10px;"></div>
         <section id="12"></section>
-        <h3>Friction</h3>
         <div class="wiki-thumb thumb-right">
             <div class="thumb-inner">
                 <img src="../../assests/materialgif2.gif" alt="oldest massless">
@@ -72,14 +72,27 @@
                 </div>
             </div>
         </div>
-        <p>Parts with more friction are less able to slide against surfaces, which means blades should have less of it
-            to have more penetrating force.</p>
-        <p>Armor is not recommended to use friction, but theres not much of a difference.</p>
+        <h3>Friction</h3>
+        <p>Parts with lower friction slide more easily against other surfaces. As a result, blades with lower friction
+            values generally experience less resistance and can achieve greater penetration force.</p>
+
+        <!--actually terrible wording and i dont know much about armoring so m leaving this here-->
+        <p>Friction is generally less important for armor than for blades, and the practical difference between
+            materials is often small.</p>
+
         <p>The material with the least friction is ice, at 0.06.</p>
+
         <section id="13"></section>
         <h3>E/F Weights</h3>
-        <p>Friction and elasticity weights act as a multiplier for the value. Ice has 0.02 friction but 3 friction
-            weight, which means it has 0.06 friction.</p>
+        <p>Friction Weight and Elasticity Weight act as multipliers on a material's base friction and elasticity values.
+            For example, Ice has a friction value of 0.02 and a Friction Weight of 3, resulting in an effective friction
+            value of 0.06. If you'd like to read up more on this check the offical roblox
+            developer doccumentation for <a
+                href="https://create.roblox.com/docs/reference/engine/datatypes/PhysicalProperties#FrictionWeight"
+                target="_blank" rel="noopener noreferrer">friction weight</a> and <a target="_blank"
+                rel="noopener noreferrer"
+                href="https://create.roblox.com/docs/reference/engine/datatypes/PhysicalProperties#ElasticityWeight">
+                respectfully.</p>
     </main>
     <footer id="wiki-footer"></footer>
 
