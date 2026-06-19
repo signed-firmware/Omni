@@ -264,17 +264,3 @@ document.addEventListener('keydown', function (e) {
         typedKeys = '';
     }
 });
-
-/* 3. JS — draw forked bolt, shoot + retract */
-function bolt(ctx, x1, y1, x2, y2, roughness, depth) {
-  if (depth === 0) { ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); return; }
-  const mx = (x1+x2)/2 + (Math.random()-.5)*roughness;
-  const my = (y1+y2)/2 + (Math.random()-.5)*roughness;
-  bolt(ctx,x1,y1,mx,my,roughness/2,depth-1);
-  bolt(ctx,mx,my,x2,y2,roughness/2,depth-1);
-  if (Math.random() > .65) {
-    const fx = mx+(Math.random()-.5)*60;
-    const fy = my+Math.random()*40;
-    bolt(ctx,mx,my,fx,fy,roughness/2,depth-2);
-  }
-}

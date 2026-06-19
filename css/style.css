@@ -1818,23 +1818,4 @@ footer {
   animation: boltStrikeTop 2s infinite steps(1);
 }
 
-.red-glow-text {
-  color: #ffffff;
-  animation: textFlicker 2.4s ease-in-out infinite;
-}
-@keyframes textFlicker {
-  0%,100% { text-shadow: 0 0 6px #ff2000, 0 0 18px #cc0000; }
-  18%     { text-shadow: 0 0 14px #ff3010, 0 0 40px #ff0000, 0 0 80px #aa0000; }
-  20%     { text-shadow: 0 0 4px #ff1000; }
-  78%     { text-shadow: 0 0 20px #ff3010, 0 0 60px #ff0000; }
-  80%     { text-shadow: 0 0 4px #ff1000; }
-}
-
-/* 2. Canvas lightning — overlay on text */
-.lightning-canvas {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  pointer-events: none;
-}
 
