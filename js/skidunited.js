@@ -23,15 +23,17 @@ function buildNav() {
       <a href="/index.html" style="text-decoration: none; color: inherit;">Plane Crazy Shredder and Tech wiki</a>
     </h2>
   </div> 
-  <ul class="nav-links"> 
-    ${link('/index.html', 'Home')} 
-    ${link('/pages/shredderhub.html', 'ShredderHub')} 
-    ${link('/pages/techmanifest.html', 'TechManifest')} 
+  <div class="nav-right">
+    <ul class="nav-links"> 
+      ${link('/index.html', 'Home')} 
+      ${link('/pages/shredderhub.html', 'ShredderHub')} 
+      ${link('/pages/techmanifest.html', 'TechManifest')} 
+    </ul> 
     <div class="search-container"> 
       <input type="text" id="wiki-search" placeholder="Search for TECH..." autocomplete="off"> 
       <div id="wiki-results" class="search-results-box"></div> 
-    </div> 
-  </ul> 
+    </div>
+  </div>
 </nav>`;
 
 }
@@ -117,10 +119,13 @@ function buildFooter() {
 // ═══════════════════════════════════════════
 
 function initWikiSearch() {
-    const path = window.location.pathname;
-    const rootEndIndex = path.indexOf('/Omni/');
-    const basePath = rootEndIndex !== -1 ? path.substring(0, rootEndIndex + 6) : '/';
+    // Wrap the folder path in quotes and remove the filename
+    let basePath = '/data/';
 
+    if (!basePath.startsWith('/')) basePath = '/' + basePath;
+    if (!basePath.endsWith('/')) basePath = basePath + '/';
+
+    // This correctly builds the URL: '/data/' + 'search-index.json'
     fetch(basePath + 'search-index.json')
         .then(r => {
             if (!r.ok) throw new Error('Could not load search index: ' + r.status);
@@ -148,6 +153,7 @@ function initWikiSearch() {
         }
     });
 }
+
 
 function runWikiSearch() {
     const input = document.getElementById('wiki-search');
