@@ -1818,4 +1818,190 @@ footer {
   animation: boltStrikeTop 2s infinite steps(1);
 }
 
+/* ═══════════════════════════════════════════
+   BATTLE INFOBOX — Wiki dark theme conflict box
+   Title → Info rows → Combatants columns → Commanders combatants columns
+   ═══════════════════════════════════════════ */
+
+.battle-infobox {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-medium);
+    border-radius: 4px;
+    margin: 1.5rem 0;
+    overflow: hidden;
+    max-width: 450px;
+    color: var(--text-main);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* Float it right like a Wikipedia infobox when inside articles */
+.battle-infobox.infobox-float {
+    float: right;
+    margin: 0 0 1.25rem 1.5rem;
+}
+
+/* ── Title banner ── */
+.battle-infobox-title {
+    background: linear-gradient(135deg, rgba(104, 104, 212, 0.25) 0%, rgba(176, 154, 255, 0.15) 100%);
+    border-bottom: 1px solid var(--border-medium);
+    padding: 0.65rem 0.85rem;
+    text-align: center;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--text-bright);
+    letter-spacing: 0.04em;
+}
+
+/* ── Info rows (Date, Location, Status, etc.) ── */
+.battle-infobox-info {
+    border-bottom: 1px solid var(--border-medium);
+}
+
+.battle-info-row {
+    padding: 0.55rem 0.85rem;
+    border-bottom: 1px solid var(--border-light);
+    background-color: rgba(15, 15, 21, 0.4);
+}
+
+.battle-info-row:last-child {
+    border-bottom: none;
+}
+
+.battle-info-label {
+    display: block;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--text-bright);
+    margin-bottom: 0.15rem;
+}
+
+.battle-info-value {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    padding-left: 1.2rem;
+}
+
+.battle-info-value a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+.battle-info-value a:hover {
+    color: var(--link-hover);
+    text-decoration: underline;
+}
+
+/* ── Section header (Combatants, Commanders combatants, etc.) ── */
+.battle-section-header {
+    background: linear-gradient(90deg, rgba(104, 104, 212, 0.18) 0%, rgba(21, 21, 31, 0.8) 100%);
+    border-top: 1px solid var(--border-medium);
+    border-bottom: 1px solid var(--border-medium);
+    padding: 0.45rem 0.85rem;
+    text-align: center;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--accent-blue);
+    letter-spacing: 0.03em;
+}
+
+/* ── Two-column split (used for both Combatants and Commanders) ── */
+.battle-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid var(--border-medium);
+    background-color: rgba(15, 15, 21, 0.4);
+}
+
+.battle-column {
+    padding: 0.6rem 0.85rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+/* Vertical divider between columns */
+.battle-column:first-child {
+    border-right: 1px solid var(--border-light);
+}
+
+/* ── Column items (names / entries / icons) ── */
+.battle-column-item {
+    font-size: 0.85rem;
+    color: var(--text-main);
+    padding: 0.15rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+/* Linked names */
+.battle-column-item a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+.battle-column-item a:hover {
+    color: var(--link-hover);
+    text-decoration: underline;
+}
+
+/* Sub-detail below a name */
+.battle-column-detail {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    padding-left: 0.5rem;
+}
+
+.battle-column-item.battle-leader {
+    font-weight: 600;
+    color: var(--text-bright);
+}
+
+/* ── Outcome / Result row at bottom ── */
+.battle-infobox-result {
+    border-top: 1px solid var(--border-medium);
+    padding: 0.55rem 0.85rem;
+    background-color: rgba(15, 15, 21, 0.4);
+}
+
+.battle-result-label {
+    display: block;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--text-bright);
+    margin-bottom: 0.15rem;
+}
+
+.battle-result-value {
+    display: block;
+    font-size: 0.85rem;
+    padding-left: 1.2rem;
+    color: var(--text-secondary);
+}
+
+/* ── Responsive: stack on small screens ── */
+@media (max-width: 600px) {
+    .battle-infobox {
+        max-width: 100%;
+    }
+
+    .battle-infobox.infobox-float {
+        float: none;
+        margin: 1rem 0;
+    }
+
+    .battle-columns {
+        grid-template-columns: 1fr;
+    }
+
+    .battle-column:first-child {
+        border-right: none;
+        border-bottom: 1px solid var(--border-light);
+    }
+}
 
