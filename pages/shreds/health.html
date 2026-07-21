@@ -27,39 +27,56 @@
             mostly done through strengthening components and also constraints between sections of your shredder with
             redundancy.</p>
         <div class="callout callout-note">
-            <strong>NOTE:</strong> The generally accepted limit for redundancy is 6x.
+            <strong>NOTE:</strong> The generally accepted limit for redundancy is 6x, anymore and it can cause flings
+            and nans.
         </div>
         <nav class="toc-box">
             <div class="toc-title">Contents</div>
             <ul>
                 <li>
-                    <a href="#Stuff">1 Stuff</a>
+                    <a href="#Stuff">1 Redudancy</a>
                     <ul>
-                        <li><a href="#11">1.1 Stuff</a></li>
+                        <li><a href="#Stuff">1.1 Redudancy</a></li>
+                        <li><a href="#12">1.2 Constraint Redudancy</a></li>
                     </ul>
+                    <a href="#Gamblecore">2 Gamblecore</a>
                 </li>
             </ul>
         </nav>
-        <section id="Stuff"></section>
-        <h2>Redundancy</h2>
-        <p>Redundancy is the main factor for health, it directly strengthens constraints and regular blocks by one hit
-            from a cutter. Cutters have a cooldown of 0.1 seconds and do not have a multi hitting effect, which means
-            you can place two blocks within the same space and each block would have to be hit individually.</p>
-        <p>This fact is applied to constraints like motor2s within a core, though they have to be welded and folded
-            correctly to function.</p>
-        <h4>Redundancy is referred to as (number of redundancy)x. The lowest amount of redundancy you have on every
-            constraint (that is required for your shredder to work) is referred to global redundancy.</h4>
-        <h4>Example: A shredder has a 6x blade motor and 3x core, it has 3x global redundancy.</h4>
-        <section id="11"></section>
-        <h3>Component Redundancy</h3>
-        <p></p>
-        <!--TODO ADD HYPER M2 LINK-->
-        <section id="12"></section>
-        <h3>Constraint Redundancy</h3>
-        <p>Any constraint with a weld point on its base and end can be made redundant. An extra perk of motor redundancy
-            is that torque stacks, 6x redundant hyper motor2s have 594,000,000 torque.</p>
-        <p>To make a constraint redundant, you must create an angle lock fold on both sides of it. This locks both ends
-            of the multiple constraints into the same space on the axis they rotate.</p>
+        <section id="Stuff">
+            <h2>Redundancy</h2>
+            <p>Redundancy is the main factor for health, it directly strengthens constraints and regular blocks by one
+                hit
+                from a cutter. Cutters have a cooldown of 0.1 seconds and do not have a multi hitting effect, which
+                means
+                you can place two blocks within the same space and each block would have to be hit individually.</p>
+            <p>This fact is applied to constraints like motor2s within a core, though they have to be welded and folded
+                correctly to function.</p>
+            <h4>Redundancy is referred to as (number of redundancy)x. The lowest amount of redundancy you have on every
+                constraint (that is required for your shredder to work) is referred to global redundancy.</h4>
+            <h4>Example: A shredder has a 6x blade motor and 3x core, it has 3x global redundancy.</h4>
+            <h3>Component Redundancy</h3>
+            <p>not removing this cuz idk what salami was doing and i dont understand the different </p>
+            <!--TODO ADD HYPER M2 LINK-->
+            <section id="12">
+                <h3>Constraint Redundancy</h3>
+                <p>Any constraint with a weld point on its base and end can be made redundant. An extra perk of motor
+                    redundancy
+                    is that torque stacks, 6x redundant hyper motor2s have 594,000,000 torque.</p>
+                <p>To make a constraint redundant, you must create an angle lock fold on both sides of it. This locks
+                    both ends
+                    of the multiple constraints into the same space on the axis they rotate.</p>
+            </section>
+        </section>
+        <section id="Gamblecore">
+            <h2>Gamblecore</h2>
+            <p>Gamblecore is as it says in its name, something that involves gambling. It decreases the chance that your
+                critcal components (motors, motor2s) by placing something in its space. Traditonally it is a spacer
+                block such as paint or normal blocks but in super optimized shredders it has been seen to use rocket
+                engines or super rockets instead of blocks.</p>
+                <p>It follows this formula to find out what the chance of it hitting your critical components <kbd class="wiki-key"><strong>gbc+redun/redun</strong></kbd>; Though it assumes no offset and first hit, it has not been changed to intergrated.</p>
+                
+        </section>
 
     </main>
     <footer id="wiki-footer"></footer>

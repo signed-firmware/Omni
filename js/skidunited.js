@@ -1,3 +1,5 @@
+//YES THIS IS SKIDDED PLZ DONT HANG ME
+
 let searchData = [];
 
 // ═══════════════════════════════════════════
@@ -15,18 +17,23 @@ function buildNav() {
     };
 
     placeholder.outerHTML = `
-        <nav class="navbar">
-            <div class="logo"><h2 class="wiki-ambient-reflection">Plane Crazy Shredder and Tech wiki</h2></div>
-            <ul class="nav-links">
-                ${link('/index.html', 'Home')}
-                ${link('/pages/shredderhub.html', 'ShredderHub')}
-                ${link('/pages/techmanifest.html', 'TechManifest')}
-                <div class="search-container">
-                    <input type="text" id="wiki-search" placeholder="Search for TECH..." autocomplete="off">
-                    <div id="wiki-results" class="search-results-box"></div>
-                </div>
-            </ul>
-        </nav>`;
+<nav class="navbar"> 
+  <div class="logo">
+    <h2 class="wiki-ambient-reflection">
+      <a href="/index.html" style="text-decoration: none; color: inherit;">Plane Crazy Shredder and Tech wiki</a>
+    </h2>
+  </div> 
+  <ul class="nav-links"> 
+    ${link('/index.html', 'Home')} 
+    ${link('/pages/shredderhub.html', 'ShredderHub')} 
+    ${link('/pages/techmanifest.html', 'TechManifest')} 
+    <div class="search-container"> 
+      <input type="text" id="wiki-search" placeholder="Search for TECH..." autocomplete="off"> 
+      <div id="wiki-results" class="search-results-box"></div> 
+    </div> 
+  </ul> 
+</nav>`;
+
 }
 
 // ═══════════════════════════════════════════
@@ -157,9 +164,9 @@ function runWikiSearch() {
     const results = query === ''
         ? searchData.slice(0, 8)
         : searchData.filter(page => {
-            const matchesTitle   = page.title.toLowerCase().includes(query);
+            const matchesTitle = page.title.toLowerCase().includes(query);
             const matchesSnippet = String(page.snippet ?? '').toLowerCase().includes(query);
-            const matchesTags    = page.tags.some(tag => tag.toLowerCase().includes(query));
+            const matchesTags = page.tags.some(tag => tag.toLowerCase().includes(query));
             return matchesTitle || matchesSnippet || matchesTags;
         });
 
