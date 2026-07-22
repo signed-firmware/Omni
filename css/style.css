@@ -120,11 +120,9 @@ body {
 }
 
 .wiki-sidebar {
-    width: var(--sidebar-width);
-    flex-shrink: 0;
+    width: 100%;
     border: 1px solid var(--border-medium);
     background: var(--bg-sidebar);
-    margin-right: 0.5rem;
     font-size: 0.82rem;
 }
 
@@ -240,101 +238,169 @@ body {
 }
 
 /* ═══════════════════════════════════════════
-   NAVBAR
+   SIDEBAR COLUMN + LOGO BOX (monobook style:
+   logo sits top-left, above the sidebar)
    ═══════════════════════════════════════════ */
-.navbar {
+.wiki-sidebar-column {
+    width: var(--sidebar-width);
+    flex-shrink: 0;
+    margin-right: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.wiki-logo-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    padding: 0.6rem 0.4rem 0.5rem;
+    text-decoration: none;
+}
+
+.wiki-logo-box img {
+    width: 100%;
+    max-width: 140px;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 0 10px rgba(104, 104, 212, 0.3));
+    transform-origin: 50% 92%;
+    animation:
+        wikiLogoRotate 17s ease-in-out infinite,
+        wikiLogoBob 11s ease-in-out infinite;
+    transition: filter 0.2s var(--ease-out);
+}
+
+.wiki-logo-box:hover img {
+    filter: drop-shadow(0 0 16px rgba(130, 130, 235, 0.55));
+}
+
+.wiki-logo-name {
+    width: 100%;
+    max-width: 100%;
+    white-space: normal;
+    text-align: center;
+    font-size: 0.72rem;
+    line-height: 1.35;
+    letter-spacing: 0.02em;
+    overflow-wrap: break-word;
+}
+
+@keyframes wikiLogoRotate {
+    0%,
+    100% {
+        rotate: -1.4deg;
+    }
+
+    18% {
+        rotate: 1.1deg;
+    }
+
+    39% {
+        rotate: 2.2deg;
+    }
+
+    57% {
+        rotate: -0.6deg;
+    }
+
+    76% {
+        rotate: -2.1deg;
+    }
+
+    91% {
+        rotate: 0.9deg;
+    }
+}
+
+@keyframes wikiLogoBob {
+    0%,
+    100% {
+        translate: 0 0;
+    }
+
+    28% {
+        translate: 0 -1.5px;
+    }
+
+    54% {
+        translate: 0 0.8px;
+    }
+
+    79% {
+        translate: 0 -0.6px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .wiki-logo-box img {
+        animation: none;
+    }
+}
+
+/* ═══════════════════════════════════════════
+   CONTENT TOPBAR (MediaWiki page-tab strip,
+   fully integrated with the sidebar shell)
+   ═══════════════════════════════════════════ */
+.wiki-topbar {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: center;
+    align-items: flex-end;
     gap: 0.35rem;
-    background: var(--bg-navbar);
-    padding: 0.35rem 0.75rem;
-    border-bottom: 2px solid var(--accent-blue);
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    padding: 0 0 0;
+    margin-bottom: -1px;
 }
 
-.logo {
-    font-family: var(--font-heading);
-    font-size: 0.88rem;
-    font-weight: 700;
-    color: var(--accent-blue);
-    letter-spacing: 0.02em;
-    flex: 1 1 auto;
-    min-width: 0;
+.wiki-topbar-title {
+    padding: 0.2rem 0.15rem 0.3rem;
+    line-height: 1.2;
 }
 
-.wiki-brand {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    text-decoration: none;
-    max-width: 100%;
-}
-
-.wiki-brand-logo {
-    height: 2.35rem;
-    width: 2.35rem;
-    object-fit: contain;
-    flex-shrink: 0;
-    display: block;
-    border-radius: 3px;
-    box-shadow: 0 0 12px rgba(104, 104, 212, 0.25);
-}
-
-.wiki-brand:hover .wiki-brand-logo {
-    box-shadow: 0 0 16px rgba(104, 104, 212, 0.45);
-}
-
-.nav-links {
+.wiki-topbar-tabs {
     list-style: none;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
+    justify-content: center;
     flex-wrap: wrap;
-    gap: 0;
+    gap: 0.2rem;
+    width: 100%;
     margin: 0;
     padding: 0;
-    border: 1px solid var(--border-medium);
 }
 
-.nav-right {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-}
-
-.nav-links>li>a {
+.wiki-topbar-tabs>li>a {
     display: block;
-    height: auto;
     font-family: var(--font-ui);
-    font-size: 0.78rem;
+    font-size: 0.76rem;
     font-weight: 500;
     color: var(--text-secondary);
     text-decoration: none;
-    padding: 0.3rem 0.65rem;
-    border-right: 1px solid var(--border-light);
+    padding: 0.28rem 0.7rem;
     background: var(--bg-surface);
-    border-radius: 0;
+    border: 1px solid var(--border-medium);
+    border-bottom: none;
     transition: color 0.12s var(--ease-out), background-color 0.12s var(--ease-out);
 }
 
-.nav-links>li:last-child>a {
-    border-right: none;
-}
-
-.nav-links>li>a:hover {
+.wiki-topbar-tabs>li>a:hover {
     color: var(--text-bright);
     background: var(--purple-muted);
 }
 
-.nav-links>li>a.active {
+.wiki-topbar-tabs>li>a.active {
     color: var(--text-bright);
-    background: var(--purple-muted);
-    border-color: var(--border-light);
-    box-shadow: inset 0 -2px 0 var(--accent-blue);
+    background: var(--bg-content);
+    border-color: rgba(104, 104, 212, 0.28);
+    box-shadow: inset 0 2px 0 var(--accent-blue);
+    position: relative;
+}
+
+/* Sidebar search block */
+.wiki-sidebar-search {
+    padding: 0.4rem 0.45rem;
 }
 
 /* ═══════════════════════════════════════════
@@ -897,23 +963,23 @@ footer strong {
     position: relative;
     display: flex;
     align-items: center;
+    width: 100%;
 }
 
 #wiki-search {
     font-family: var(--font-ui);
     font-size: 0.78rem;
-    width: 180px;
+    width: 100%;
     height: 28px;
     padding: 0 0.5rem;
     border-radius: 0;
     border: 1px solid var(--border-medium);
     background: var(--bg-surface);
     color: var(--text-main);
-    transition: width 0.2s var(--ease-out), border-color 0.12s var(--ease-out);
+    transition: border-color 0.12s var(--ease-out), box-shadow 0.12s var(--ease-out);
 }
 
 #wiki-search:focus {
-    width: 260px;
     border-color: var(--accent-blue);
     outline: none;
     box-shadow: 0 0 0 1px rgba(104, 104, 212, 0.2);
@@ -1458,10 +1524,10 @@ body::after {
     background: linear-gradient(270deg, rgba(104, 104, 212, 0.18) 0%, transparent 70%);
 }
 
-/* Ensure navbar & footer render above the triangles */
-.navbar {
-    z-index: 100;
-    position: sticky;
+/* Ensure shell & footer render above the triangles */
+.wiki-page-wrap {
+    position: relative;
+    z-index: 2;
 }
 
 footer {
@@ -1487,39 +1553,46 @@ footer {
         padding: 0.35rem;
     }
 
-    .wiki-sidebar {
+    .wiki-sidebar-column {
         width: 100%;
         margin-right: 0;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: stretch;
         margin-bottom: 0.35rem;
+    }
+
+    .wiki-logo-box {
+        flex: 0 0 auto;
+        padding: 0.4rem;
+    }
+
+    .wiki-logo-box img {
+        max-width: 72px;
+    }
+
+    .wiki-sidebar {
+        flex: 1 1 220px;
+        width: auto;
+        margin-right: 0;
     }
 
     .wiki-block-grid {
         grid-template-columns: 1fr;
     }
 
-    .navbar {
+    .wiki-topbar {
         flex-direction: column;
-        align-items: stretch;
-        padding: 0.4rem 0.5rem;
+        align-items: center;
     }
 
-    .wiki-brand {
-        gap: 0.35rem;
-    }
-
-    .wiki-brand-logo {
-        height: 2rem;
-        width: 2rem;
+    .wiki-topbar-tabs>li>a {
+        padding: 0.28rem 0.5rem;
     }
 
     .wiki-site-logo {
         font-size: 0.72rem;
         white-space: normal;
-    }
-
-    .nav-links {
-        flex-wrap: wrap;
-        width: 100%;
     }
 
     .wiki-container {
@@ -1537,11 +1610,6 @@ footer {
     .toc-box {
         display: block;
         max-width: 100%;
-    }
-
-    #wiki-search,
-    #wiki-search:focus {
-        width: 160px;
     }
 
     .wiki-gallery {
@@ -1745,6 +1813,14 @@ footer {
     line-height: 1;
 }
 
+.wiki-logo-box .wiki-logo-name {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    white-space: normal;
+    overflow: visible;
+}
+
 .wiki-site-logo {
     font-family: var(--font-heading);
     font-weight: 700;
@@ -1772,10 +1848,6 @@ footer {
     animation: wikiLogoGradient 5s ease-in-out infinite alternate;
 }
 
-.wiki-brand:hover .wiki-site-logo {
-    filter: drop-shadow(0 0 14px rgba(104, 104, 212, 0.55));
-    text-decoration: none;
-}
 
 @keyframes wikiLogoGradient {
     0% {

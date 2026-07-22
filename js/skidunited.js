@@ -40,43 +40,16 @@ function debounce(fn, ms) {
 }
 
 // ═══════════════════════════════════════════
-//  NAV INJECTION
+//  SHELL INJECTION — MediaWiki/monobook style:
+//  logo top-left above the sidebar, search inside
+//  the sidebar, slim tab bar atop the content.
 // ═══════════════════════════════════════════
 
-function buildNav() {
+function buildShell() {
+    // Remove the legacy top-navbar placeholder if present
     const placeholder = document.getElementById('wiki-nav');
-    if (!placeholder) return;
+    if (placeholder) placeholder.remove();
 
-    const p = window.location.pathname;
-    const link = (href, label) => {
-        const url = wikiUrl(href);
-        const cls = (p === url || p.endsWith(href)) ? ' class="active"' : '';
-        return `<li><a href="${url}"${cls}>${label}</a></li>`;
-    };
-
-    placeholder.outerHTML = `
-<header class="navbar" aria-label="Site header">
-  <div class="logo">
-    <a href="${wikiUrl('index.html')}" class="wiki-brand">
-      <img src="${wikiUrl('assests/nsg-logo.png')}" alt="NSG logo" class="wiki-brand-logo" width="38" height="38">
-      <span class="wiki-site-logo">Neo Shredder Group WIKI</span>
-    </a>
-  </div>
-  <div class="nav-right">
-    <ul class="nav-links">
-      ${link('index.html', 'Main Page')}
-      ${link('pages/shredderhub.html', 'ShredderHub')}
-      ${link('pages/techmanifest.html', 'TechManifest')}
-    </ul>
-    <div class="search-container">
-      <input type="text" id="wiki-search" placeholder="Search wiki..." autocomplete="off" aria-label="Search wiki">
-      <div id="wiki-results" class="search-results-box" role="listbox"></div>
-    </div>
-  </div>
-</header>`;
-}
-
-function buildSidebar() {
     if (document.getElementById('wiki-sidebar')) return;
 
     const main = document.querySelector('main.wiki-container');
@@ -88,47 +61,76 @@ function buildSidebar() {
         const cls = (p === url || p.endsWith(href)) ? ' class="active"' : '';
         return `<li><a href="${url}"${cls}>${label}</a></li>`;
     };
+    const tabLink = (href, label) => {
+        const url = wikiUrl(href);
+        const cls = (p === url || p.endsWith(href)) ? ' class="active"' : '';
+        return `<li><a href="${url}"${cls}>${label}</a></li>`;
+    };
 
-    const sidebar = document.createElement('aside');
-    sidebar.id = 'wiki-sidebar';
-    sidebar.className = 'wiki-sidebar';
-    sidebar.setAttribute('aria-label', 'Site navigation');
-    sidebar.innerHTML = `
-<div class="wiki-sidebar-block">
-  <div class="wiki-sidebar-head">Navigation</div>
-  <ul>
-    ${sideLink('index.html', 'Main Page')}
-    ${sideLink('pages/shredderhub.html', 'ShredderHub')}
-    ${sideLink('pages/techmanifest.html', 'TechManifest')}
-    ${sideLink('registery.html', 'Registry')}
-  </ul>
-</div>
-<div class="wiki-sidebar-block">
-  <div class="wiki-sidebar-head">Shredder Modules</div>
-  <ul>
-    ${sideLink('pages/shreds/massless.html', 'Massless')}
-    ${sideLink('pages/shreds/gyrocore.html', 'Gyro Cores')}
-    ${sideLink('pages/shreds/armorinfo.html', 'Armor Info')}
-    ${sideLink('pages/shreds/blades.html', 'Blades')}
-    ${sideLink('pages/shreds/movementmechanics.html', 'Movement')}
-  </ul>
-</div>
-<div class="wiki-sidebar-block">
-  <div class="wiki-sidebar-head">Toolbox</div>
-  <ul>
-    <li><a href="${wikiUrl('pages/misc/TemplateAI.html')}">Article Template</a></li>
-    <li><a href="https://discord.gg/89gEYNR7zd" target="_blank" rel="noopener noreferrer">Discord</a></li>
-  </ul>
-</div>`;
+    // ── Sidebar column: logo box on top, then nav blocks ──
+    const sidebarCol = document.createElement('div');
+    sidebarCol.className = 'wiki-sidebar-column';
+    sidebarCol.innerHTML = `
+<a href="${wikiUrl('index.html')}" class="wiki-logo-box" title="Main Page">
+  <img src="${wikiUrl('assests/nsg-logo.png')}" alt="Neo Shredder Group logo" class="wiki-brand-img">
+  <span class="wiki-site-logo wiki-logo-name">Neo Shredder Group Wiki</span>
+</a>
+<aside id="wiki-sidebar" class="wiki-sidebar" aria-label="Site navigation">
+  <div class="wiki-sidebar-block">
+    <div class="wiki-sidebar-head">Search</div>
+    <div class="wiki-sidebar-search search-container">
+      <input type="text" id="wiki-search" placeholder="Search wiki..." autocomplete="off" aria-label="Search wiki">
+      <div id="wiki-results" class="search-results-box" role="listbox"></div>
+    </div>
+  </div>
+  <div class="wiki-sidebar-block">
+    <div class="wiki-sidebar-head">Navigation</div>
+    <ul>
+      ${sideLink('index.html', 'Main Page')}
+      ${sideLink('pages/shredderhub.html', 'ShredderHub')}
+      ${sideLink('pages/techmanifest.html', 'TechManifest')}
+      ${sideLink('registery.html', 'Registry')}
+    </ul>
+  </div>
+  <div class="wiki-sidebar-block">
+    <div class="wiki-sidebar-head">Shredder Modules</div>
+    <ul>
+      ${sideLink('pages/shreds/massless.html', 'Massless')}
+      ${sideLink('pages/shreds/gyrocore.html', 'Gyro Cores')}
+      ${sideLink('pages/shreds/armorinfo.html', 'Armor Info')}
+      ${sideLink('pages/shreds/blades.html', 'Blades')}
+      ${sideLink('pages/shreds/movementmechanics.html', 'Movement')}
+    </ul>
+  </div>
+  <div class="wiki-sidebar-block">
+    <div class="wiki-sidebar-head">Toolbox</div>
+    <ul>
+      <li><a href="${wikiUrl('pages/misc/TemplateAI.html')}">Article Template</a></li>
+      <li><a href="https://discord.gg/89gEYNR7zd" target="_blank" rel="noopener noreferrer">Discord</a></li>
+    </ul>
+  </div>
+</aside>`;
+
+    // ── Content column: slim tab bar + page content ──
+    const column = document.createElement('div');
+    column.className = 'wiki-content-column';
+
+    const topbar = document.createElement('div');
+    topbar.className = 'wiki-topbar';
+    topbar.setAttribute('aria-label', 'Page views');
+    topbar.innerHTML = `
+<ul class="wiki-topbar-tabs">
+  ${tabLink('index.html', 'Main Page')}
+  ${tabLink('pages/shredderhub.html', 'ShredderHub')}
+  ${tabLink('pages/techmanifest.html', 'TechManifest')}
+</ul>`;
 
     const wrap = document.createElement('div');
     wrap.className = 'wiki-page-wrap';
 
-    const column = document.createElement('div');
-    column.className = 'wiki-content-column';
-
     main.parentNode.insertBefore(wrap, main);
-    wrap.appendChild(sidebar);
+    wrap.appendChild(sidebarCol);
+    column.appendChild(topbar);
     column.appendChild(main);
     wrap.appendChild(column);
 }
@@ -329,8 +331,7 @@ function runWikiSearch() {
 // ═══════════════════════════════════════════
 
 document.addEventListener('DOMContentLoaded', function () {
-    buildNav();
-    buildSidebar();
+    buildShell();
     buildSiteNotice();
     buildFooter();
     initWikiSearch();
