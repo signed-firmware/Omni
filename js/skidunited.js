@@ -1,6 +1,43 @@
 //YES THIS IS SKIDDED PLZ DONT HANG ME
 
 let searchData = [];
+let searchIndexPromise = null;
+
+// ═══════════════════════════════════════════
+//  BASE PATH — derived from this script's URL
+//  so nav, search, and assets work from any page depth
+// ═══════════════════════════════════════════
+
+function getWikiBasePath() {
+    const script = document.querySelector('script[src*="skidunited.js"]');
+    if (script) {
+        const scriptUrl = new URL(script.getAttribute('src'), window.location.href);
+        const marker = '/js/skidunited.js';
+        const idx = scriptUrl.pathname.lastIndexOf(marker);
+        if (idx !== -1) {
+            return scriptUrl.pathname.slice(0, idx + 1);
+        }
+    }
+    return '/';
+}
+
+function wikiUrl(relativePath) {
+    const clean = String(relativePath).replace(/^\//, '');
+    return getWikiBasePath() + clean;
+}
+
+function normalizeSnippet(snippet) {
+    if (Array.isArray(snippet)) return snippet.join(', ');
+    return String(snippet ?? '');
+}
+
+function debounce(fn, ms) {
+    let timer;
+    return function (...args) {
+        clearTimeout(timer);
+        timer = setTimeout(() => fn.apply(this, args), ms);
+    };
+}
 
 // ═══════════════════════════════════════════
 //  NAV INJECTION
@@ -12,30 +49,103 @@ function buildNav() {
 
     const p = window.location.pathname;
     const link = (href, label) => {
-        const cls = (p === href || p.endsWith(href)) ? ' class="active"' : '';
-        return `<li><a href="${href}"${cls}>${label}</a></li>`;
+        const url = wikiUrl(href);
+        const cls = (p === url || p.endsWith(href)) ? ' class="active"' : '';
+        return `<li><a href="${url}"${cls}>${label}</a></li>`;
     };
 
     placeholder.outerHTML = `
-<nav class="navbar"> 
+<header class="navbar" aria-label="Site header">
   <div class="logo">
-    <h2 class="wiki-ambient-reflection">
-      <a href="/index.html" style="text-decoration: none; color: inherit;">Plane Crazy Shredder and Tech wiki</a>
-    </h2>
-  </div> 
+    <a href="${wikiUrl('index.html')}" class="wiki-brand">
+      <img src="${wikiUrl('assests/nsg-logo.png')}" alt="NSG logo" class="wiki-brand-logo" width="38" height="38">
+      <span class="wiki-site-logo">Neo Shredder Group WIKI</span>
+    </a>
+  </div>
   <div class="nav-right">
-    <ul class="nav-links"> 
-      ${link('/index.html', 'Home')} 
-      ${link('/pages/shredderhub.html', 'ShredderHub')} 
-      ${link('/pages/techmanifest.html', 'TechManifest')} 
-    </ul> 
-    <div class="search-container"> 
-      <input type="text" id="wiki-search" placeholder="Search for TECH..." autocomplete="off"> 
-      <div id="wiki-results" class="search-results-box"></div> 
+    <ul class="nav-links">
+      ${link('index.html', 'Main Page')}
+      ${link('pages/shredderhub.html', 'ShredderHub')}
+      ${link('pages/techmanifest.html', 'TechManifest')}
+    </ul>
+    <div class="search-container">
+      <input type="text" id="wiki-search" placeholder="Search wiki..." autocomplete="off" aria-label="Search wiki">
+      <div id="wiki-results" class="search-results-box" role="listbox"></div>
     </div>
   </div>
-</nav>`;
+</header>`;
+}
 
+function buildSidebar() {
+    if (document.getElementById('wiki-sidebar')) return;
+
+    const main = document.querySelector('main.wiki-container');
+    if (!main) return;
+
+    const p = window.location.pathname;
+    const sideLink = (href, label) => {
+        const url = wikiUrl(href);
+        const cls = (p === url || p.endsWith(href)) ? ' class="active"' : '';
+        return `<li><a href="${url}"${cls}>${label}</a></li>`;
+    };
+
+    const sidebar = document.createElement('aside');
+    sidebar.id = 'wiki-sidebar';
+    sidebar.className = 'wiki-sidebar';
+    sidebar.setAttribute('aria-label', 'Site navigation');
+    sidebar.innerHTML = `
+<div class="wiki-sidebar-block">
+  <div class="wiki-sidebar-head">Navigation</div>
+  <ul>
+    ${sideLink('index.html', 'Main Page')}
+    ${sideLink('pages/shredderhub.html', 'ShredderHub')}
+    ${sideLink('pages/techmanifest.html', 'TechManifest')}
+    ${sideLink('registery.html', 'Registry')}
+  </ul>
+</div>
+<div class="wiki-sidebar-block">
+  <div class="wiki-sidebar-head">Shredder Modules</div>
+  <ul>
+    ${sideLink('pages/shreds/massless.html', 'Massless')}
+    ${sideLink('pages/shreds/gyrocore.html', 'Gyro Cores')}
+    ${sideLink('pages/shreds/armorinfo.html', 'Armor Info')}
+    ${sideLink('pages/shreds/blades.html', 'Blades')}
+    ${sideLink('pages/shreds/movementmechanics.html', 'Movement')}
+  </ul>
+</div>
+<div class="wiki-sidebar-block">
+  <div class="wiki-sidebar-head">Toolbox</div>
+  <ul>
+    <li><a href="${wikiUrl('pages/misc/TemplateAI.html')}">Article Template</a></li>
+    <li><a href="https://discord.gg/89gEYNR7zd" target="_blank" rel="noopener noreferrer">Discord</a></li>
+  </ul>
+</div>`;
+
+    const wrap = document.createElement('div');
+    wrap.className = 'wiki-page-wrap';
+
+    const column = document.createElement('div');
+    column.className = 'wiki-content-column';
+
+    main.parentNode.insertBefore(wrap, main);
+    wrap.appendChild(sidebar);
+    column.appendChild(main);
+    wrap.appendChild(column);
+}
+
+function buildSiteNotice() {
+    const path = window.location.pathname;
+    const homeUrl = wikiUrl('index.html');
+    const isHomePage = path === homeUrl || path.endsWith('index.html') || path.endsWith('/');
+    if (!isHomePage) return;
+
+    const main = document.querySelector('main.wiki-container');
+    if (!main || main.querySelector('.wiki-site-notice')) return;
+
+    const notice = document.createElement('div');
+    notice.className = 'wiki-site-notice';
+    notice.innerHTML = '<strong>Neo Shredder Group WIKI</strong> — Plane Crazy shredder &amp; tech documentation. Read the rules, hate all omnis responsibly.';
+    main.insertBefore(notice, main.firstChild);
 }
 
 // ═══════════════════════════════════════════
@@ -56,6 +166,10 @@ function buildFooter() {
         <div class="credit-member">
             <span class="member-name">peacekeepe_r (850394478895300629)</span>
             <small class="credit-note">Main writer, main design, minor coding.</small>
+        </div>
+        <div class="credit-member">
+            <span class="member-name">killer_meetball. (1457422090688008381)</span>
+            <small class="credit-note">Optimzed whole Wiki, Redesigned whole Wiki.</small>
         </div>
     </div>
 
@@ -99,10 +213,6 @@ function buildFooter() {
                 <small class="credit-note">Natural Selection.</small>
             </div>
             <div class="credit-member">
-                <span class="member-name">killer_meetball.</span>
-                <small class="credit-note">Tech info, minor writing.</small>
-            </div>
-            <div class="credit-member">
                 <span class="member-name">legallypvid</span>
                 <small class="credit-note">Tech info, minor writing.</small>
             </div>
@@ -118,24 +228,29 @@ function buildFooter() {
 //  SEARCH
 // ═══════════════════════════════════════════
 
+function loadSearchIndex() {
+    if (!searchIndexPromise) {
+        searchIndexPromise = fetch(wikiUrl('data/search-index.json'))
+            .then(r => {
+                if (!r.ok) throw new Error('Could not load search index: ' + r.status);
+                return r.json();
+            })
+            .then(data => {
+                searchData = Array.isArray(data) ? data : [];
+                console.log('[wiki-search] loaded', searchData.length, 'pages');
+                return searchData;
+            })
+            .catch(err => {
+                console.error('[wiki-search] fetch failed:', err);
+                searchData = [];
+                return searchData;
+            });
+    }
+    return searchIndexPromise;
+}
+
 function initWikiSearch() {
-    // Wrap the folder path in quotes and remove the filename
-    let basePath = '/data/';
-
-    if (!basePath.startsWith('/')) basePath = '/' + basePath;
-    if (!basePath.endsWith('/')) basePath = basePath + '/';
-
-    // This correctly builds the URL: '/data/' + 'search-index.json'
-    fetch(basePath + 'search-index.json')
-        .then(r => {
-            if (!r.ok) throw new Error('Could not load search index: ' + r.status);
-            return r.json();
-        })
-        .then(data => {
-            searchData = data;
-            console.log('[wiki-search] loaded', searchData.length, 'pages');
-        })
-        .catch(err => console.error('[wiki-search] fetch failed:', err));
+    loadSearchIndex();
 
     const searchInput = document.getElementById('wiki-search');
     if (!searchInput) {
@@ -143,7 +258,9 @@ function initWikiSearch() {
         return;
     }
 
-    searchInput.addEventListener('input', runWikiSearch);
+    const debouncedSearch = debounce(runWikiSearch, 120);
+
+    searchInput.addEventListener('input', debouncedSearch);
     searchInput.addEventListener('focus', runWikiSearch);
 
     document.addEventListener('click', function (e) {
@@ -152,8 +269,22 @@ function initWikiSearch() {
             if (box) box.innerHTML = '';
         }
     });
+
+    loadSearchIndex().then(() => {
+        if (document.activeElement === searchInput) {
+            runWikiSearch();
+        }
+    });
 }
 
+function pageMatchesQuery(page, query) {
+    const matchesTitle = page.title.toLowerCase().includes(query);
+    const snippet = normalizeSnippet(page.snippet).toLowerCase();
+    const matchesSnippet = snippet.includes(query);
+    const tags = Array.isArray(page.tags) ? page.tags : [];
+    const matchesTags = tags.some(tag => String(tag).toLowerCase().includes(query));
+    return matchesTitle || matchesSnippet || matchesTags;
+}
 
 function runWikiSearch() {
     const input = document.getElementById('wiki-search');
@@ -164,35 +295,29 @@ function runWikiSearch() {
 
     if (!searchData.length) {
         resultsContainer.innerHTML = '<div style="padding:10px;">Loading…</div>';
+        loadSearchIndex().then(runWikiSearch);
         return;
     }
 
     const results = query === ''
         ? searchData.slice(0, 8)
-        : searchData.filter(page => {
-            const matchesTitle = page.title.toLowerCase().includes(query);
-            const matchesSnippet = String(page.snippet ?? '').toLowerCase().includes(query);
-            const matchesTags = page.tags.some(tag => tag.toLowerCase().includes(query));
-            return matchesTitle || matchesSnippet || matchesTags;
-        });
+        : searchData.filter(page => pageMatchesQuery(page, query));
 
     if (results.length === 0) {
         resultsContainer.innerHTML = '<div style="padding:10px; font-size:12px; color:#999;">No pages found</div>';
         return;
     }
 
-    const path = window.location.pathname;
-    const rootEndIndex = path.indexOf('/Omni/');
-    const basePath = rootEndIndex !== -1 ? path.substring(0, rootEndIndex + 6) : '/';
+    const basePath = getWikiBasePath();
 
     resultsContainer.innerHTML = results.map(page => {
-        const cleanUrl = page.url.startsWith('/') ? page.url.substring(1) : page.url;
+        const cleanUrl = String(page.url).replace(/^\//, '');
         const catHtml = page.categories?.length
             ? `<div class="wiki-categories">${page.categories.map(c => `<span class="wiki-cat">${c}</span>`).join('')}</div>`
             : '';
         return `<a href="${basePath}${cleanUrl}" class="search-item">
             <strong>${page.title}</strong>
-            <span>${String(page.snippet ?? '')}</span>
+            <span>${normalizeSnippet(page.snippet)}</span>
             ${catHtml}
         </a>`;
     }).join('');
@@ -205,41 +330,39 @@ function runWikiSearch() {
 
 document.addEventListener('DOMContentLoaded', function () {
     buildNav();
+    buildSidebar();
+    buildSiteNotice();
     buildFooter();
     initWikiSearch();
 
-    // ── LAZY-LOAD VIDEOS ──────────────────────
-    // Add class="lazy-video" and data-src="path/to/video.mp4"
-    // to any <video> element to defer loading until in view.
     const lazyVideos = document.querySelectorAll('video.lazy-video');
-    if (lazyVideos.length) {
-        if ('IntersectionObserver' in window) {
-            const observer = new IntersectionObserver(function (entries) {
-                entries.forEach(function (entry) {
-                    if (entry.isIntersecting) {
-                        const video = entry.target;
-                        const src = video.getAttribute('data-src');
-                        if (src) {
-                            video.src = src;
-                            video.removeAttribute('data-src');
-                        }
-                        observer.unobserve(video);
-                    }
-                });
-            }, { rootMargin: '200px' });
+    if (!lazyVideos.length) return;
 
-            lazyVideos.forEach(v => observer.observe(v));
-        } else {
-            // Fallback: load all immediately
-            lazyVideos.forEach(function (video) {
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (!entry.isIntersecting) return;
+                const video = entry.target;
                 const src = video.getAttribute('data-src');
                 if (src) {
                     video.src = src;
                     video.removeAttribute('data-src');
                 }
+                observer.unobserve(video);
             });
-        }
+        }, { rootMargin: '200px' });
+
+        lazyVideos.forEach(v => observer.observe(v));
+        return;
     }
+
+    lazyVideos.forEach(function (video) {
+        const src = video.getAttribute('data-src');
+        if (src) {
+            video.src = src;
+            video.removeAttribute('data-src');
+        }
+    });
 });
 
 // ═══════════════════════════════════════════
@@ -252,25 +375,23 @@ const secretWord = 'duckless';
 let secretAudio = null;
 
 document.addEventListener('keydown', function (e) {
-    // Ignore keypresses inside inputs / editable fields
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.isContentEditable) return;
 
     const path = window.location.pathname;
-    const rootEndIndex = path.indexOf('/Omni/');
-    const basePath = rootEndIndex !== -1 ? path.substring(0, rootEndIndex + 6) : '/';
-    const isHomePage = path === basePath || path.endsWith('index.html') || path.endsWith('/');
+    const homeUrl = wikiUrl('index.html');
+    const isHomePage = path === homeUrl || path.endsWith('index.html') || path.endsWith('/');
 
     if (!isHomePage) return;
     if (e.key.length !== 1) return;
 
     typedKeys += e.key.toLowerCase();
     if (typedKeys.length > secretWord.length) {
-        typedKeys = typedKeys.substring(typedKeys.length - secretWord.length);
+        typedKeys = typedKeys.slice(-secretWord.length);
     }
 
     if (typedKeys === secretWord) {
         if (!secretAudio) {
-            secretAudio = new Audio(basePath + 'assests/secretmusic.mp3');
+            secretAudio = new Audio(wikiUrl('assests/secretmusic.mp3'));
         }
         secretAudio.currentTime = 0;
         secretAudio.play().catch(err => console.error('Error playing secret music:', err));
