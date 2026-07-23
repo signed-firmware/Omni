@@ -89,8 +89,8 @@ function buildShell() {
       ${sideLink('index.html', 'Main Page')}
       ${sideLink('pages/shredderhub.html', 'ShredderHub')}
       ${sideLink('pages/techmanifest.html', 'TechManifest')}
-      ${sideLink('registery.html', 'Registry')}
-      ${sideLink('askapro.html', 'Ask A Pro')}
+      ${sideLink('pages/registery.html', 'Registry')}
+      ${sideLink('pages/askapro.html', 'Ask A NERD')}
     </ul>
   </div>
   <div class="wiki-sidebar-block">
@@ -124,7 +124,7 @@ function buildShell() {
   ${tabLink('index.html', 'Main Page')}
   ${tabLink('pages/shredderhub.html', 'ShredderHub')}
   ${tabLink('pages/techmanifest.html', 'TechManifest')}
-  ${tabLink('registery.html', 'Registry')}
+  ${tabLink('pages/registery.html', 'Registry')}
 </ul>`;
 
     const wrap = document.createElement('div');

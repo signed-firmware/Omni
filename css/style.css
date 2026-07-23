@@ -2642,3 +2642,66 @@ footer {
     text-align: right;
     margin: 0;
 }
+
+/* wiki block slop or smth */
+.wiki-portal-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.45rem;
+    margin: 0.75rem 0;
+}
+
+.wiki-portal:nth-child(3) {
+    grid-column: 1 / -1;
+    /* Span both columns */
+    width: calc(50% - 0.225rem);
+    /* Match column width above */
+    margin: 0 auto;
+    /* Center in frame */
+}
+
+@media (max-width: 900px) {
+    .wiki-portal-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.wiki-portal {
+    padding: 0.6rem 0.5rem;
+    background: var(--panel-bg-flat);
+    border: 1px solid var(--border-light);
+    text-align: center;
+    transition: border-color 0.12s var(--ease-out);
+}
+
+.wiki-portal:hover {
+    border-color: var(--amber-border);
+}
+
+.wiki-portal h3 {
+    font-size: 0.8rem;
+    margin: 0 0 0.25rem;
+}
+
+.wiki-portal p {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    margin: 0 0 0.35rem;
+}
+
+.wiki-portal a {
+    font-size: 0.62rem;
+}
+
+.wiki-blocks-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+    .wiki-blocks-row {
+        grid-template-columns: 1fr;
+    }
+}
