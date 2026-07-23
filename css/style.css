@@ -1935,17 +1935,15 @@ footer {
     overflow: visible;
 }
 
+
+
+
 .wiki-site-logo {
     text-decoration: none;
     display: inline-block;
-    <<<<<<< HEAD=======line-height: 1.15;
+    line-height: 1.15;
     white-space: nowrap;
-    background: linear-gradient(100deg,
-            #c4c4ff 0%,
-            #7575e0 30%,
-            #e8e8ff 50%,
-            #7575e0 70%,
-            #5858c8 100%);
+    background: linear-gradient(100deg, #c4c4ff 0%, #7575e0 30%, #e8e8ff 50%, #7575e0 70%, #5858c8 100%);
     background-size: 200% auto;
     -webkit-background-clip: text;
     background-clip: text;
@@ -1955,7 +1953,6 @@ footer {
     animation: wikiLogoGradient 5s ease-in-out infinite alternate;
 }
 
-
 @keyframes wikiLogoGradient {
     0% {
         background-position: 0% center;
@@ -1964,25 +1961,8 @@ footer {
     100% {
         background-position: 100% center;
     }
-
-    >>>>>>>a0f999f (wa)
 }
 
-.wiki-inline-gif {
-    /* Forces the GIF to perfectly match the height of your current font size */
-    height: 2em;
-    width: auto;
-
-    /* Aligns the icon beautifully with the middle of the text line */
-    vertical-align: middle;
-
-    /* Adds a tiny gap so the text doesn't mash directly into the image */
-    margin-right: 4px;
-    margin-left: 4px;
-
-    /* Optional: Keeps pixel art sharp if your GIF uses retro sprites */
-
-}
 
 .wiki-keyword-reveal {
     color: var(--link-color);
@@ -2587,12 +2567,10 @@ footer {
 
 .wiki-block-body--compact {
     padding: 0.4rem;
-    <<<<<<< HEAD
 }
 
-/* ═══════════════════════════════════════════
-   INDUSTRIAL UTILITIES (Saturn Drums ref)
-   ═══════════════════════════════════════════ */
+/* ═══════════════════════════════════════════ INDUSTRIAL UTILITIES (Saturn Drums ref) ═══════════════════════════════════════════ */
+
 .wiki-spec-label {
     font-family: var(--font-mono);
     font-size: 0.58rem;
@@ -2664,8 +2642,3 @@ footer {
     text-align: right;
     margin: 0;
 }
-
-=======
-}
-
->>>>>>>a0f999f (wa)
