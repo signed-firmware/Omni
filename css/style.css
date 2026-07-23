@@ -377,7 +377,12 @@ body {
     animation: wikiTitleShimmer 7s ease-in-out infinite;
 }
 
+<<<<<<< HEAD
 @keyframes wikiTitleShimmer {
+=======
+@keyframes wikiLogoRotate {
+
+>>>>>>> a0f999f (wa)
     0%,
     100% {
         background-position: 0% center;
@@ -388,9 +393,17 @@ body {
     }
 }
 
+<<<<<<< HEAD
 @keyframes wikiLogoCoinSpin {
     from {
         transform: rotateY(0deg);
+=======
+@keyframes wikiLogoBob {
+
+    0%,
+    100% {
+        translate: 0 0;
+>>>>>>> a0f999f (wa)
     }
 
     to {
@@ -1933,6 +1946,35 @@ footer {
 .wiki-site-logo {
     text-decoration: none;
     display: inline-block;
+<<<<<<< HEAD
+=======
+    line-height: 1.15;
+    white-space: nowrap;
+    background: linear-gradient(100deg,
+            #c4c4ff 0%,
+            #7575e0 30%,
+            #e8e8ff 50%,
+            #7575e0 70%,
+            #5858c8 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 10px rgba(104, 104, 212, 0.35));
+    transition: filter 0.2s var(--ease-out);
+    animation: wikiLogoGradient 5s ease-in-out infinite alternate;
+}
+
+
+@keyframes wikiLogoGradient {
+    0% {
+        background-position: 0% center;
+    }
+
+    100% {
+        background-position: 100% center;
+    }
+>>>>>>> a0f999f (wa)
 }
 
 .wiki-inline-gif {
@@ -2409,6 +2451,8 @@ footer {
     border-left: 1px solid var(--border-light);
 }
 
+/*  RBO WHAT THE FUCK WHY THE FUCK DO WE HAVE AI SUMMARYYS IF I FIND A SINGLE OF YOU FUCKS USING THIS I WILL TURN YOUR  ANUS INTO A JUNK*/
+
 .wiki-ai-summary {
     margin: 0 0 1.25rem;
     padding: 0.9rem 1rem;
@@ -2552,6 +2596,7 @@ footer {
 
 .wiki-block-body--compact {
     padding: 0.4rem;
+<<<<<<< HEAD
 }
 
 /* ═══════════════════════════════════════════
@@ -2628,3 +2673,6 @@ footer {
     text-align: right;
     margin: 0;
 }
+=======
+}
+>>>>>>> a0f999f (wa)

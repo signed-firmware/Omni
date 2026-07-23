@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article Title | Wiki</title>
+    <meta name="description" content="Brief description for search engines.">
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+
+<body>
+    <div id="wiki-nav"></div>
+
+    <main class="wiki-container">
+        <header class="wiki-page-header">
+            <h1>Article Title</h1>
+            
+            <div class="wiki-categories">
+                <span class="wiki-cat">Category 1</span>
+                <span class="wiki-cat">Category 2</span>
+            </div>
+
+            <nav class="wiki-breadcrumb">
+                <a href="../../index.html">Home</a>
+                <a href="../hub.html">Hub</a>
+                <span>Article Title</span>
+            </nav>
+        </header>
+
+        <div class="wiki-page-layout">
+            <article class="wiki-article-body">
+
+                <!-- Quick overview -->
+                <p>
+                    Start with a clear, concise introduction. Explain what this topic is and why readers 
+                    should care. Keep it 2-3 sentences.
+                </p>
+
+                <div class="callout callout-tip">
+                    <strong>Quick tip:</strong> Use callouts for important takeaways readers shouldn't miss.
+                </div>
+
+                <!-- Main sections -->
+                <h2>Overview</h2>
+                <p>High-level explanation and context. Define key terms here.</p>
+
+                <h2>How It Works</h2>
+                <p>Step-by-step breakdown or conceptual explanation.</p>
+
+                <h2>Mechanics</h2>
+                <div class="table-responsive">
+                    <table class="wiki-table">
+                        <thead>
+                            <tr>
+                                <th>Property</th>
+                                <th>Value</th>
+                                <th>Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Example</th>
+                                <td>100</td>
+                                <td>Baseline value</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2>Usage & Examples</h2>
+                <p>Practical instructions with real examples.</p>
+
+                <h2>See Also</h2>
+                <ul>
+                    <li><a href="../related-article.html">Related Article</a></li>
+                    <li><a href="../another-article.html">Another Article</a></li>
+                </ul>
+
+                <h2>References</h2>
+                <ol>
+                    <li>Source or citation here</li>
+                    <li>Another source</li>
+                </ol>
+
+            </article>
+
+            <!-- Auto-generated table of contents -->
+            <aside class="wiki-toc-sidebar">
+                <div class="toc-title">On this page</div>
+                <nav id="wiki-toc-nav">
+                    <ul id="wiki-toc-list"></ul>
+                </nav>
+            </aside>
+        </div>
+    </main>
+
+    <footer id="wiki-footer"></footer>
+
+    <script>
+        // Auto-generate table of contents from headings
+        const body = document.querySelector('.wiki-article-body');
+        const tocList = document.getElementById('wiki-toc-list');
+
+        if (body && tocList) {
+            const headings = body.querySelectorAll('h2, h3');
+            headings.forEach((heading) => {
+                if (!heading.id) {
+                    heading.id = heading.textContent.toLowerCase().replace(/\s+/g, '-');
+                }
+
+                const li = document.createElement('li');
+                const link = document.createElement('a');
+                link.href = '#' + heading.id;
+                link.textContent = heading.textContent;
+                
+                if (heading.tagName === 'H3') {
+                    li.className = 'toc-h3';
+                }
+
+                li.appendChild(link);
+                tocList.appendChild(li);
+            });
+        }
+    </script>
+
+    <script src="../../js/skidunited.js"></script>
+</body>
+</html>

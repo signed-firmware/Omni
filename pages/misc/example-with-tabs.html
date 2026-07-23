@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Example Page with Tabs | Wiki</title>
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+
+<body>
+    <div id="wiki-nav"></div>
+
+    <main class="wiki-container">
+        <h1>Example Page: Massless Tabs</h1>
+
+        <div class="wiki-categories">
+            <span class="wiki-cat">Shredders</span>
+            <span class="wiki-cat">Guide</span>
+        </div>
+
+        <nav class="wiki-breadcrumb">
+            <a href="../../index.html">Home</a>
+            <a href="../shredderhub.html">ShredderHub</a>
+            <span>Massless</span>
+        </nav>
+
+        <p>
+            This example shows how to add tabbed content to your pages.
+            Just change the IDs and labels to match your needs.
+        </p>
+
+        <!-- ════════════════════════════════════════════
+             TABS SETUP
+             
+             Step 1: Wrap everything in [data-wiki-tabs]
+             Step 2: Create buttons with [role="tab"] and [aria-controls="ID"]
+             Step 3: Create panels with [role="tabpanel"] and matching [id]
+             
+             To add/remove tabs:
+             - Copy a tab button and panel pair
+             - Change the aria-controls value to match panel ID
+             - Change the panel ID
+             - That's it!
+        ════════════════════════════════════════════ -->
+
+        <div data-wiki-tabs>
+
+            <!-- Tab buttons (the clickable headers) -->
+            <div role="tablist" class="wiki-tabs">
+                <button type="button" role="tab" aria-controls="panel-article">
+                    Article
+                </button>
+                <button type="button" role="tab" aria-controls="panel-discussion">
+                    Discussion
+                </button>
+                <button type="button" role="tab" aria-controls="panel-history">
+                    Edit History
+                </button>
+            </div>
+
+            <!-- Tab panels (the content sections) -->
+            <div class="wiki-tab-panels">
+
+                <!-- Panel 1: Article -->
+                <section id="panel-article" role="tabpanel" aria-hidden="false">
+                    <h2>Massless Info</h2>
+                    <p>
+                        Massless modules work when a few requirements are met:
+                    </p>
+                    <ul>
+                        <li>The motor2 has 100 torque or more</li>
+                        <li>The object cannot be the root part of its assembly</li>
+                        <li>The object has a rotational velocity magnitude of 1 or more</li>
+                    </ul>
+
+                    <h3>Desync</h3>
+                    <p>
+                        Due to a bug, massless can desynchronize assemblies. This happens because
+                        massless creates a local variable that stores all blocks, but never clears it.
+                    </p>
+                    <p>
+                        Overcome this by intentionally manipulating root parts so your build contains
+                        the root part. Having mass within your build helps with this.
+                    </p>
+
+                    <h3>Staging</h3>
+                    <p>
+                        Massless does not spread to other assemblies, so you must temporarily weld
+                        them together with staging blocks (springs, disconnectors, or TNT).
+                    </p>
+                </section>
+
+                <!-- Panel 2: Discussion -->
+                <section id="panel-discussion" role="tabpanel" aria-hidden="true" hidden>
+                    <h2>Discussion</h2>
+                    <p>Use this tab to track debates and proposed edits.</p>
+
+                    <ul class="wiki-discussion-thread">
+                        <li>
+                            <p><strong>user123</strong> — Should we split this into PvP and PvE guides?</p>
+                            <p style="font-size: 0.82rem; color: var(--text-muted);">
+                                Posted July 21, 2026
+                            </p>
+                        </li>
+                        <li>
+                            <p><strong>editor456</strong> — Added citation request for damage values.</p>
+                            <p style="font-size: 0.82rem; color: var(--text-muted);">
+                                Posted July 22, 2026
+                            </p>
+                        </li>
+                    </ul>
+                </section>
+
+                <!-- Panel 3: Edit History -->
+                <section id="panel-history" role="tabpanel" aria-hidden="true" hidden>
+                    <h2>Edit History</h2>
+                    <p>Recent changes to this page:</p>
+
+                    <ol class="wiki-history-list">
+                        <li>
+                            <time>2026-07-22 12:00 UTC</time>
+                            <strong>v1.0.0</strong> — Initial page published.
+                            <span class="wiki-version-tag">author</span>
+                        </li>
+                        <li>
+                            <time>2026-07-20 18:30 UTC</time>
+                            <strong>v0.9.0</strong> — Draft outline created.
+                            <span class="wiki-version-tag">editor</span>
+                        </li>
+                    </ol>
+                </section>
+
+            </div><!-- End tab panels -->
+
+        </div><!-- End [data-wiki-tabs] -->
+
+    </main>
+
+    <footer id="wiki-footer"></footer>
+
+    <!-- Include the tabs script -->
+    <script src="../../js/wiki-tabs.js"></script>
+    <script src="../../js/skidunited.js"></script>
+
+</body>
+</html>
