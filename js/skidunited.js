@@ -90,7 +90,7 @@ function buildShell() {
       ${sideLink('pages/shredderhub.html', 'ShredderHub')}
       ${sideLink('pages/techmanifest.html', 'TechManifest')}
       ${sideLink('registery.html', 'Registry')}
-      ${sideLink('askapro.html', 'Ask A Pro')}
+      ${sideLink('askapro.html', 'Debugging')}
     </ul>
   </div>
   <div class="wiki-sidebar-block">
@@ -148,7 +148,7 @@ function buildSiteNotice() {
 
     const notice = document.createElement('div');
     notice.className = 'wiki-site-notice';
-    notice.innerHTML = '<strong>Neo Shredder Group WIKI</strong> — Plane Crazy shredder &amp; tech documentation. Read the rules, hate all omnis responsibly.';
+    notice.innerHTML = '<strong>Neo Shredder Group WIKI</strong> — you should join the <a href="https://discord.gg/89gEYNR7zd" target="_blank" rel="noopener noreferrer">Discord</a> since a wall of text usually can&apos;t fix everything.';
     main.insertBefore(notice, main.firstChild);
 }
 
@@ -165,15 +165,15 @@ function buildFooter() {
         <strong><span class="wiki-title-shimmer">Repository Contributors:</span></strong>
         <div class="credit-member">
             <span class="member-name">platform2 (759825779974209616)</span>
-            <small class="credit-note">Main coder, page writing, design.</small>
+            <small class="credit-note">main coder, page writing, design</small>
         </div>
         <div class="credit-member">
             <span class="member-name">SALAMI (850394478895300629)</span>
-            <small class="credit-note">Main writer, main design, minor coding.</small>
+            <small class="credit-note">main writer, design, some coding</small>
         </div>
         <div class="credit-member">
             <span class="member-name">killer_meetball. (1457422090688008381)</span>
-            <small class="credit-note">Optimzed whole Wiki, Redesigned whole Wiki.</small>
+            <small class="credit-note">main designer</small>
         </div>
     </div>
 
@@ -182,11 +182,11 @@ function buildFooter() {
             <strong>Major Contributors:</strong>
             <div class="credit-member">
                 <span class="member-name">kameon</span>
-                <small class="credit-note">Fully influenced the style of writing.</small>
+                <small class="credit-note">writing supervisor</small>
             </div>
             <div class="credit-member">
                 <span class="member-name">IntegrativeGenesis</span>
-                <small class="credit-note">Provided history almost fully lost to time.</small>
+                <small class="credit-note">provided history almost fully lost to time</small>
             </div>
         </div>
 
@@ -194,19 +194,19 @@ function buildFooter() {
             <strong>Writers:</strong>
             <div class="credit-member">
                 <span class="member-name">kameon</span>
-                <small class="credit-note">Writing, design assets, "beta testing" and major corrections.</small>
+                <small class="credit-note">writing, assets, beta testing and major corrections</small>
             </div>
             <div class="credit-member">
                 <span class="member-name">SALAMI</span>
-                <small class="credit-note">Most of the shredder-side, rewriting</small>
+                <small class="credit-note">most of the shredder stuff, rewriting</small>
             </div>
             <div class="credit-member">
                 <span class="member-name">platform2</span>
-                <small class="credit-note">Drafting and writing shredder pages.</small>
+                <small class="credit-note">drafting and writing shredder pages</small>
             </div>
             <div class="credit-member">
                 <span class="member-name">goober</span>
-                <small class="credit-note">Assistance with shredder writing.</small>
+                <small class="credit-note">helping with shredder writing</small>
             </div>
         </div>
 
@@ -214,11 +214,11 @@ function buildFooter() {
             <strong>Contributors:</strong>
             <div class="credit-member">
                 <span class="member-name">glitchedtm</span>
-                <small class="credit-note">Natural Selection.</small>
+                <small class="credit-note">Natural Selection</small>
             </div>
             <div class="credit-member">
                 <span class="member-name">legallypvid</span>
-                <small class="credit-note">Tech info, minor writing.</small>
+                <small class="credit-note">tech info, some writing</small>
             </div>
         </div>
     </div>

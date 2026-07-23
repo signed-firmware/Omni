@@ -1024,7 +1024,6 @@ footer {
     font-family: var(--font-mono);
     font-size: 0.62rem;
     letter-spacing: 0.06em;
-    text-transform: uppercase;
     position: relative;
     z-index: 10;
     border-radius: 0;
