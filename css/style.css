@@ -357,32 +357,24 @@ body {
     overflow-wrap: break-word;
     position: relative;
     padding: 0.35rem 0.15rem 0.25rem;
-    background: linear-gradient(
-        105deg,
-        #ffffff 0%,
-        #d4d4ff 22%,
-        #6868d4 48%,
-        #a8a8f0 72%,
-        #ffffff 100%
-    );
+    background: linear-gradient(105deg,
+            #ffffff 0%,
+            #d4d4ff 22%,
+            #6868d4 48%,
+            #a8a8f0 72%,
+            #ffffff 100%);
     background-size: 220% auto;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     color: transparent;
     filter:
-        drop-shadow(0 0 10px rgba(104, 104, 212, 0.65))
-        drop-shadow(0 0 22px rgba(104, 104, 212, 0.35))
-        drop-shadow(0 1px 0 rgba(0, 0, 0, 0.9));
+        drop-shadow(0 0 10px rgba(104, 104, 212, 0.65)) drop-shadow(0 0 22px rgba(104, 104, 212, 0.35)) drop-shadow(0 1px 0 rgba(0, 0, 0, 0.9));
     animation: wikiTitleShimmer 7s ease-in-out infinite;
 }
 
-<<<<<<< HEAD
 @keyframes wikiTitleShimmer {
-=======
-@keyframes wikiLogoRotate {
 
->>>>>>> a0f999f (wa)
     0%,
     100% {
         background-position: 0% center;
@@ -393,21 +385,26 @@ body {
     }
 }
 
-<<<<<<< HEAD
 @keyframes wikiLogoCoinSpin {
     from {
         transform: rotateY(0deg);
-=======
+    }
+
+    to {
+        transform: rotateY(360deg);
+    }
+}
+
 @keyframes wikiLogoBob {
 
     0%,
     100% {
         translate: 0 0;
->>>>>>> a0f999f (wa)
     }
 
-    to {
-        transform: rotateY(360deg);
+    50% {
+        translate: 0 -6px;
+        /* or whatever your original value was */
     }
 }
 
@@ -1812,22 +1809,19 @@ footer {
     font-weight: 700;
     font-size: 1.02rem;
     letter-spacing: 0.03em;
-    background: linear-gradient(
-        105deg,
-        #ffffff 0%,
-        #d4d4ff 20%,
-        #6868d4 50%,
-        #a8a8f0 75%,
-        #ffffff 100%
-    );
+    background: linear-gradient(105deg,
+            #ffffff 0%,
+            #d4d4ff 20%,
+            #6868d4 50%,
+            #a8a8f0 75%,
+            #ffffff 100%);
     background-size: 220% auto;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     color: transparent;
     filter:
-        drop-shadow(0 0 8px rgba(104, 104, 212, 0.55))
-        drop-shadow(0 0 18px rgba(104, 104, 212, 0.28));
+        drop-shadow(0 0 8px rgba(104, 104, 212, 0.55)) drop-shadow(0 0 18px rgba(104, 104, 212, 0.28));
     animation: wikiContributorShimmer 8s ease-in-out infinite;
     transition: filter 0.2s var(--ease-out), transform 0.2s var(--ease-out);
 }
@@ -1847,12 +1841,12 @@ footer {
 
 .central-feature .member-name:hover {
     filter:
-        drop-shadow(0 0 12px rgba(104, 104, 212, 0.75))
-        drop-shadow(0 0 26px rgba(104, 104, 212, 0.4));
+        drop-shadow(0 0 12px rgba(104, 104, 212, 0.75)) drop-shadow(0 0 26px rgba(104, 104, 212, 0.4));
     transform: translateY(-1px);
 }
 
 @keyframes wikiContributorShimmer {
+
     0%,
     100% {
         background-position: 0% center;
@@ -1877,6 +1871,7 @@ footer {
 }
 
 @keyframes purplePulse {
+
     0%,
     100% {
         text-shadow: 0 0 4px rgba(255, 255, 255, 0.4);
@@ -1891,22 +1886,19 @@ footer {
     font-size: 0.72rem;
     text-transform: uppercase;
     letter-spacing: 0.14em;
-    background: linear-gradient(
-        105deg,
-        #ffffff 0%,
-        #c8c8ff 25%,
-        #6868d4 55%,
-        #b0b0f8 80%,
-        #ffffff 100%
-    );
+    background: linear-gradient(105deg,
+            #ffffff 0%,
+            #c8c8ff 25%,
+            #6868d4 55%,
+            #b0b0f8 80%,
+            #ffffff 100%);
     background-size: 220% auto;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     color: transparent;
     filter:
-        drop-shadow(0 0 10px rgba(104, 104, 212, 0.6))
-        drop-shadow(0 0 22px rgba(104, 104, 212, 0.32));
+        drop-shadow(0 0 10px rgba(104, 104, 212, 0.6)) drop-shadow(0 0 22px rgba(104, 104, 212, 0.32));
     animation: wikiContributorShimmer 7s ease-in-out infinite;
 }
 
@@ -1946,9 +1938,7 @@ footer {
 .wiki-site-logo {
     text-decoration: none;
     display: inline-block;
-<<<<<<< HEAD
-=======
-    line-height: 1.15;
+    <<<<<<< HEAD=======line-height: 1.15;
     white-space: nowrap;
     background: linear-gradient(100deg,
             #c4c4ff 0%,
@@ -1974,7 +1964,8 @@ footer {
     100% {
         background-position: 100% center;
     }
->>>>>>> a0f999f (wa)
+
+    >>>>>>>a0f999f (wa)
 }
 
 .wiki-inline-gif {
@@ -2596,7 +2587,7 @@ footer {
 
 .wiki-block-body--compact {
     padding: 0.4rem;
-<<<<<<< HEAD
+    <<<<<<< HEAD
 }
 
 /* ═══════════════════════════════════════════
@@ -2673,6 +2664,8 @@ footer {
     text-align: right;
     margin: 0;
 }
+
 =======
 }
->>>>>>> a0f999f (wa)
+
+>>>>>>>a0f999f (wa)
