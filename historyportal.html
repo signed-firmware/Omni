@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!--
+  ╔══════════════════════════════════════════════════════════════════════════╗
+  ║  TemplateAI.html — Production wiki article template                      ║
+  ║                                                                          ║
+  ║  HOW TO USE:                                                             ║
+  ║  1. Duplicate this file and rename it (e.g. gyrocore-v2.html).           ║
+  ║  2. Update <title>, <h1>, breadcrumbs, categories, and infobox fields.   ║
+  ║  3. Remove notice boxes you do not need (stub / construction / citation).║
+  ║  4. Replace placeholder sections with real content.                      ║
+  ║  5. Keep section headings as <h2>/<h3> — the sidebar TOC auto-builds.    ║
+  ║  6. Update version metadata and contributor credits before publishing.   ║
+  ║                                                                          ║
+  ║  DEPENDENCIES: ../../css/style.css, ../../js/skidunited.js               ║
+  ╚══════════════════════════════════════════════════════════════════════════╝
+-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SEO: unique title per article -->
+    <title>Article Title | Plane Crazy Shredder and Tech Wiki</title>
+    <meta name="description" content="Short meta description for search engines and social previews.">
+    <!-- Version control metadata (machine-readable) -->
+    <meta name="wiki:article-id" content="template-ai-001">
+    <meta name="wiki:content-version" content="1.0.0">
+    <meta name="wiki:last-reviewed" content="2026-07-21">
+    <meta name="wiki:status" content="draft">
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+
+<body>
+
+    <!-- Global navbar is injected by skidunited.js — do not edit this block -->
+    <div id="wiki-nav"></div>
+
+    <main class="wiki-container" id="wiki-main-content">
+
+        <!-- ── PAGE HEADER ─────────────────────────────────────────────── -->
+        <header class="wiki-page-header">
+            <h1>Article Title</h1>
+
+            <!-- Categories: helps search indexing and hub grouping -->
+            <div class="wiki-categories" aria-label="Article categories">
+                <span class="wiki-cat">Shredders</span>
+                <span class="wiki-cat">Module</span>
+                <span class="wiki-cat">Documentation</span>
+            </div>
+
+            <!-- Breadcrumb trail: update each segment to match file location -->
+            <nav class="wiki-breadcrumb" aria-label="Breadcrumb">
+                <a href="../../index.html">Home</a>
+                <a href="../shredderhub.html">ShredderHub</a>
+                <span>Article Title</span>
+            </nav>
+
+            <!-- Optional hatnote for disambiguation -->
+            <p class="wiki-hatnote">
+                This article is about <em>placeholder topic</em>. For related content, see
+                <a href="../shreds/massless.html">Massless</a>.
+            </p>
+
+            <!-- Version control metadata (human-readable) -->
+            <ul class="wiki-version-meta" aria-label="Article version information">
+                <li><strong>Article ID</strong> <span class="wiki-version-tag">template-ai-001</span></li>
+                <li><strong>Version</strong> <span class="wiki-version-tag">1.0.0</span></li>
+                <li><strong>Last reviewed</strong> <time datetime="2026-07-21">21 July 2026</time></li>
+                <li><strong>Status</strong> <span class="status-badge status-countered">Draft</span></li>
+            </ul>
+        </header>
+
+        <!-- ── ARTICLE NOTICES ─────────────────────────────────────────── -->
+        <!-- Remove any notice you do not need before publishing -->
+        <div class="wiki-notices" role="region" aria-label="Article notices">
+
+            <!-- Stub notice: article is incomplete but published -->
+            <div class="wiki-notice wiki-notice-stub" role="note">
+                <strong>Stub</strong>
+                This article is a stub. You can help the wiki by expanding it with verified information.
+            </div>
+
+            <!-- Under construction: major rework in progress -->
+            <div class="wiki-notice wiki-notice-construction" role="note">
+                <strong>Under Construction</strong>
+                This page is actively being rewritten. Some sections may be outdated or temporarily removed.
+            </div>
+
+            <!-- Citation needed: claims require sources -->
+            <div class="wiki-notice wiki-notice-citation" role="note">
+                <strong>Citation Needed</strong>
+                One or more statements on this page lack reliable sources. Add references in the Discussion tab.
+            </div>
+
+        </div>
+
+        <!-- ── VIEW TABS: Article | Discussion | History ───────────────── -->
+        <div class="wiki-view-switcher" data-wiki-tabs>
+            <div role="tablist" class="wiki-tabs" aria-label="Page views">
+                <button type="button" role="tab" id="tab-btn-article" aria-selected="true"
+                    aria-controls="tab-panel-article">Article</button>
+                <button type="button" role="tab" id="tab-btn-discussion" aria-selected="false"
+                    aria-controls="tab-panel-discussion" tabindex="-1">Discussion</button>
+                <button type="button" role="tab" id="tab-btn-history" aria-selected="false"
+                    aria-controls="tab-panel-history" tabindex="-1">Edit History</button>
+            </div>
+
+            <div class="wiki-tab-panels">
+
+                <!-- ══════════════════════════════════════════════════════
+                     TAB: ARTICLE
+                ══════════════════════════════════════════════════════ -->
+                <article id="tab-panel-article" class="wiki-tab-panel" role="tabpanel" aria-labelledby="tab-btn-article"
+                    aria-hidden="false">
+
+                    <div class="wiki-page-layout">
+
+                        <!-- Main article column -->
+                        <div class="wiki-article-body">
+
+                            <!-- AI-generated summary block -->
+                            <!-- Replace text after human review; keep the disclaimer -->
+                            <section class="wiki-ai-summary" aria-labelledby="ai-summary-heading">
+                                <div class="wiki-ai-summary-header">
+                                    <h2 id="ai-summary-heading">AI Summary</h2>
+                                    <span class="wiki-ai-badge">AI-assisted</span>
+                                </div>
+                                <p>
+                                    Placeholder AI-generated summary: this section provides a concise overview of the
+                                    article for quick scanning. Summarize the core concept, primary use case, and one
+                                    key caveat in two to four sentences.
+                                </p>
+                                <small>
+                                    Generated on <time datetime="2026-07-21">21 July 2026</time>.
+                                    Human-reviewed: <strong>No</strong> — verify all claims against primary sources
+                                    before trusting this summary.
+                                </small>
+                            </section>
+
+                            <!-- Infobox: quick facts sidebar (floats right on desktop) -->
+                            <aside class="infobox" aria-label="Quick facts">
+                                <div class="infobox-title">Article Title</div>
+                                <figure class="infobox-image">
+                                    <img src="../../assests/yourimage.png" alt="Representative image for this topic">
+                                    <figcaption class="infobox-image-caption">Caption describing the image.</figcaption>
+                                </figure>
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">Type</th>
+                                            <td>Module / Variant / Tech</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Status</th>
+                                            <td><span class="status-badge status-active">Active</span></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Difficulty</th>
+                                            <td><span class="wiki-stat wiki-stat-high">High</span></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Introduced</th>
+                                            <td>Unknown</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Related</th>
+                                            <td>
+                                                <a href="../shreds/massless.html">Massless</a>,
+                                                <a href="../shreds/gyrocore.html">Gyro Cores</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </aside>
+
+                            <!-- Lead paragraph: written before detailed sections (Wikipedia style) -->
+                            <p>
+                                Opening lead paragraph goes here. Briefly explain what this article covers, who it is
+                                for, and why it matters. Readers should know within two sentences whether they are on
+                                the correct page.
+                            </p>
+
+                            <!-- Inline callouts use existing wiki callout styles -->
+                            <div class="callout callout-tip">
+                                <strong>TIP:</strong> Use callouts sparingly for high-value advice readers should not
+                                miss.
+                            </div>
+
+                            <!-- ── SECTION: Overview ─────────────────────── -->
+                            <section id="overview" aria-labelledby="overview-heading">
+                                <h2 id="overview-heading">Overview</h2>
+                                <p>
+                                    High-level explanation of the topic. Define terminology and establish context before
+                                    diving into mechanics or build guides.
+                                </p>
+
+                                <h3 id="how-it-works">How it works</h3>
+                                <p>
+                                    Step-by-step or conceptual breakdown. Use short paragraphs and subheadings to keep
+                                    scanability high.
+                                </p>
+
+                                <div class="callout callout-note">
+                                    <strong>NOTE:</strong> Supplementary context that does not fit the main narrative.
+                                </div>
+                            </section>
+
+                            <!-- ── SECTION: Mechanics ────────────────────── -->
+                            <section id="mechanics" aria-labelledby="mechanics-heading">
+                                <h2 id="mechanics-heading">Mechanics</h2>
+                                <p>Detailed mechanical explanation with data where applicable.</p>
+
+                                <div class="table-responsive">
+                                    <table class="wiki-table" aria-label="Mechanics comparison table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Property</th>
+                                                <th scope="col">Value</th>
+                                                <th scope="col">Notes</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">Damage</th>
+                                                <td>100</td>
+                                                <td>Per hit at baseline</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Speed</th>
+                                                <td><span class="wiki-stat wiki-stat-high">High</span></td>
+                                                <td>At default build weight</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Reliability</th>
+                                                <td><span class="wiki-stat wiki-stat-low">Low</span></td>
+                                                <td>Without proper staging</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="callout callout-warning">
+                                    <strong>WARNING:</strong> Critical safety or balance information readers must know.
+                                </div>
+                            </section>
+
+                            <!-- ── SECTION: Usage / Guide ────────────────── -->
+                            <section id="usage" aria-labelledby="usage-heading">
+                                <h2 id="usage-heading">Usage</h2>
+
+                                <div class="wiki-thumb thumb-right">
+                                    <div class="thumb-inner">
+                                        <img src="../../assests/yourimage.png" alt="Illustration of the technique">
+                                        <div class="thumb-caption">Caption describing what the image demonstrates.</div>
+                                    </div>
+                                </div>
+
+                                <p>
+                                    Practical usage instructions. The thumbnail floats beside this text on wide screens
+                                    and stacks on mobile.
+                                </p>
+
+                                <p>
+                                    Press <kbd class="wiki-key">F</kbd> to toggle, or <kbd class="wiki-key">R</kbd> to
+                                    reset. Use keyboard elements for hotkeys.
+                                </p>
+
+                                <div class="wiki-video">
+                                    <div class="thumb-inner">
+                                        <!-- lazy-video is handled by skidunited.js -->
+                                        <video class="lazy-video" data-src="../../assests/yourvideo.mp4" controls loop
+                                            muted playsinline title="Demonstration video"></video>
+                                    </div>
+                                </div>
+
+                                <div class="wiki-gallery">
+                                    <figure>
+                                        <img src="../../assests/yourimage.png" alt="Example build one">
+                                        <figcaption>Example one caption.</figcaption>
+                                    </figure>
+                                    <figure>
+                                        <img src="../../assests/yourimage.png" alt="Example build two">
+                                        <figcaption>Example two caption.</figcaption>
+                                    </figure>
+                                    <figure>
+                                        <img src="../../assests/yourimage.png" alt="Example build three">
+                                        <figcaption>Example three caption.</figcaption>
+                                    </figure>
+                                </div>
+                            </section>
+
+                            <!-- ── SECTION: See also ─────────────────────── -->
+                            <section id="see-also" aria-labelledby="see-also-heading">
+                                <h2 id="see-also-heading">See also</h2>
+                                <div class="wiki-see-also">
+                                    <strong>See also</strong>
+                                    <ul>
+                                        <li><a href="../shreds/armorinfo.html">Armor Info</a></li>
+                                        <li><a href="../shreds/materials.html">Materials</a></li>
+                                        <li><a href="../shreds/skeletonisation.html">Skeletonisation</a></li>
+                                    </ul>
+                                </div>
+                            </section>
+
+                            <!-- ── SECTION: References ───────────────────── -->
+                            <section id="references" aria-labelledby="references-heading">
+                                <h2 id="references-heading">References</h2>
+                                <ol>
+                                    <li id="ref-1">
+                                        Placeholder citation — replace with Discord logs, video timestamps, or
+                                        in-game testing notes.
+                                    </li>
+                                    <li id="ref-2">
+                                        Second source. Link externally when possible:
+                                        <a href="https://create.roblox.com/docs" target="_blank"
+                                            rel="noopener noreferrer">Roblox Creator Docs</a>.
+                                    </li>
+                                </ol>
+                            </section>
+
+                            <!-- ── CONTRIBUTOR CREDITS ───────────────────── -->
+                            <section class="wiki-contributors" aria-labelledby="contributors-heading">
+                                <h2 id="contributors-heading">Contributors</h2>
+                                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.75rem;">
+                                    Credit everyone who wrote, reviewed, or provided assets for this page.
+                                </p>
+                                <ul class="wiki-contributor-list">
+                                    <li>
+                                        <span class="contributor-name">platform2</span>
+                                        <span class="contributor-role">Primary author — structure and drafting</span>
+                                    </li>
+                                    <li>
+                                        <span class="contributor-name">peacekeepe_r</span>
+                                        <span class="contributor-role">Editor — clarity and accuracy review</span>
+                                    </li>
+                                    <li>
+                                        <span class="contributor-name">kameon</span>
+                                        <span class="contributor-role">Technical review — mechanics verification</span>
+                                    </li>
+                                </ul>
+                            </section>
+
+                        </div><!-- /.wiki-article-body -->
+
+                        <!-- Sticky sidebar TOC — populated automatically by script below -->
+                        <aside class="wiki-toc-sidebar" aria-label="Table of contents">
+                            <div class="toc-title">On this page</div>
+                            <nav id="wiki-toc-nav">
+                                <ul id="wiki-toc-list">
+                                    <!-- Auto-generated from h2/h3 inside .wiki-article-body -->
+                                </ul>
+                            </nav>
+                        </aside>
+
+                    </div><!-- /.wiki-page-layout -->
+
+                </article>
+
+                <!-- ══════════════════════════════════════════════════════
+                     TAB: DISCUSSION
+                ══════════════════════════════════════════════════════ -->
+                <section id="tab-panel-discussion" class="wiki-tab-panel" role="tabpanel"
+                    aria-labelledby="tab-btn-discussion" aria-hidden="true" hidden>
+
+                    <header>
+                        <h2>Discussion</h2>
+                        <p style="color: var(--text-muted); font-size: 0.88rem;">
+                            Use this tab to track debates, proposed edits, and citation requests. Replace with your
+                            wiki's discussion platform link if you migrate to GitHub Issues or Discord threads.
+                        </p>
+                    </header>
+
+                    <ul class="wiki-discussion-thread">
+                        <li>
+                            <p><strong>ExampleUser</strong> — Should we split the Usage section into PvP and PvE guides?
+                            </p>
+                            <p style="font-size: 0.82rem; color: var(--text-muted);">
+                                Posted <time datetime="2026-07-20">20 July 2026</time>
+                            </p>
+                        </li>
+                        <li>
+                            <p><strong>AnotherEditor</strong> — Added citation request for the damage table values.</p>
+                            <p style="font-size: 0.82rem; color: var(--text-muted);">
+                                Posted <time datetime="2026-07-21">21 July 2026</time>
+                            </p>
+                        </li>
+                    </ul>
+
+                    <div class="callout callout-important" style="margin-top: 1rem;">
+                        <strong>CONTRIBUTORS:</strong> When copying this template, replace placeholder threads or link
+                        to your canonical discussion channel.
+                    </div>
+
+                </section>
+
+                <!-- ══════════════════════════════════════════════════════
+                     TAB: EDIT HISTORY
+                ══════════════════════════════════════════════════════ -->
+                <section id="tab-panel-history" class="wiki-tab-panel" role="tabpanel" aria-labelledby="tab-btn-history"
+                    aria-hidden="true" hidden>
+
+                    <header>
+                        <h2>Edit History</h2>
+                        <p style="color: var(--text-muted); font-size: 0.88rem;">
+                            Maintain a lightweight changelog here, or replace with a link to your Git commit history.
+                        </p>
+                    </header>
+
+                    <ol class="wiki-history-list">
+                        <li>
+                            <time datetime="2026-07-21T12:00:00Z">2026-07-21 12:00 UTC</time>
+                            <strong>v1.0.0</strong> — Initial TemplateAI scaffold published.
+                            <span class="wiki-version-tag">platform2</span>
+                        </li>
+                        <li>
+                            <time datetime="2026-07-20T18:30:00Z">2026-07-20 18:30 UTC</time>
+                            <strong>v0.9.0</strong> — Draft outline and infobox placeholders.
+                            <span class="wiki-version-tag">peacekeepe_r</span>
+                        </li>
+                    </ol>
+
+                    <!-- Machine-readable changelog for tooling / AI pipelines -->
+                    <dl class="wiki-dl" style="margin-top: 1.25rem;">
+                        <dt>Content hash</dt>
+                        <dd><code>sha256:placeholder-replace-with-real-hash</code></dd>
+                        <dt>Source repository</dt>
+                        <dd><a href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub — wiki
+                                repo</a></dd>
+                        <dt>License</dt>
+                        <dd>See repository LICENSE file</dd>
+                    </dl>
+
+                </section>
+
+            </div><!-- /.wiki-tab-panels -->
+        </div><!-- /.wiki-view-switcher -->
+
+    </main>
+
+    <!-- Global footer injected by skidunited.js — do not edit -->
+    <footer id="wiki-footer"></footer>
+
+    <!--
+      Template-local behavior: tabs + dynamic TOC.
+      Safe to copy into new pages; does not conflict with skidunited.js.
+    -->
+    <script>
+        (function () {
+            'use strict';
+
+            /* ── Tab switching (accessible) ─────────────────────────── */
+            const tabRoot = document.querySelector('[data-wiki-tabs]');
+            if (tabRoot) {
+                const tabs = tabRoot.querySelectorAll('[role="tab"]');
+                const panels = tabRoot.querySelectorAll('[role="tabpanel"]');
+
+                function activateTab(selectedTab) {
+                    tabs.forEach(function (tab) {
+                        const isSelected = tab === selectedTab;
+                        tab.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+                        tab.tabIndex = isSelected ? 0 : -1;
+                    });
+
+                    panels.forEach(function (panel) {
+                        const isTarget = panel.id === selectedTab.getAttribute('aria-controls');
+                        panel.setAttribute('aria-hidden', isTarget ? 'false' : 'true');
+                        panel.hidden = !isTarget;
+                    });
+                }
+
+                tabs.forEach(function (tab) {
+                    tab.addEventListener('click', function () {
+                        activateTab(tab);
+                    });
+
+                    tab.addEventListener('keydown', function (e) {
+                        const index = Array.prototype.indexOf.call(tabs, tab);
+                        let next = index;
+
+                        if (e.key === 'ArrowRight') next = (index + 1) % tabs.length;
+                        else if (e.key === 'ArrowLeft') next = (index - 1 + tabs.length) % tabs.length;
+                        else if (e.key === 'Home') next = 0;
+                        else if (e.key === 'End') next = tabs.length - 1;
+                        else return;
+
+                        e.preventDefault();
+                        tabs[next].focus();
+                        activateTab(tabs[next]);
+                    });
+                });
+            }
+
+            /* ── Dynamic sidebar TOC from article headings ──────────── */
+            const articleBody = document.querySelector('.wiki-article-body');
+            const tocList = document.getElementById('wiki-toc-list');
+
+            if (articleBody && tocList) {
+                const headings = articleBody.querySelectorAll('h2, h3');
+                const slugCounts = {};
+
+                function slugify(text) {
+                    const base = text.trim().toLowerCase()
+                        .replace(/[^\w\s-]/g, '')
+                        .replace(/\s+/g, '-');
+                    slugCounts[base] = (slugCounts[base] || 0) + 1;
+                    return slugCounts[base] > 1 ? base + '-' + slugCounts[base] : base;
+                }
+
+                const items = [];
+
+                headings.forEach(function (heading) {
+                    if (!heading.id) {
+                        heading.id = slugify(heading.textContent || 'section');
+                    }
+
+                    const li = document.createElement('li');
+                    if (heading.tagName === 'H3') {
+                        li.className = 'toc-h3';
+                    }
+
+                    const link = document.createElement('a');
+                    link.href = '#' + heading.id;
+                    link.textContent = heading.textContent;
+                    link.dataset.target = heading.id;
+
+                    link.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        heading.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        history.replaceState(null, '', '#' + heading.id);
+                    });
+
+                    li.appendChild(link);
+                    items.push({ li: li, heading: heading, link: link });
+                });
+
+                if (items.length === 0) {
+                    tocList.parentElement.style.display = 'none';
+                } else {
+                    tocList.innerHTML = '';
+                    let lastH2Item = null;
+
+                    items.forEach(function (item) {
+                        if (item.heading.tagName === 'H2') {
+                            tocList.appendChild(item.li);
+                            lastH2Item = item.li;
+                            const sub = document.createElement('ul');
+                            lastH2Item.appendChild(sub);
+                        } else if (lastH2Item && lastH2Item.querySelector('ul')) {
+                            lastH2Item.querySelector('ul').appendChild(item.li);
+                        } else {
+                            tocList.appendChild(item.li);
+                        }
+                    });
+
+                    if ('IntersectionObserver' in window) {
+                        const observer = new IntersectionObserver(function (entries) {
+                            entries.forEach(function (entry) {
+                                if (!entry.isIntersecting) return;
+                                const id = entry.target.id;
+                                tocList.querySelectorAll('a').forEach(function (a) {
+                                    a.classList.toggle('is-active', a.dataset.target === id);
+                                });
+                            });
+                        }, { rootMargin: '-20% 0px -60% 0px', threshold: 0 });
+
+                        items.forEach(function (item) {
+                            observer.observe(item.heading);
+                        });
+                    }
+                }
+            }
+        })();
+    </script>
+
+    <script src="../../js/skidunited.js"></script>
+
+</body>
+
+</html>
