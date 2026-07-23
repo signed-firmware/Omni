@@ -21,6 +21,13 @@
     "categories": ["Tech", "Documentation"]
   },
   {
+    "title": "Ask A Pro",
+    "tags": ["help", "discord", "questions", "support"],
+    "snippet": "Get help from experienced shredder players on Discord.",
+    "url": "askapro.html",
+    "categories": ["Help", "Community"]
+  },
+  {
     "title": "Movement mechanics",
     "tags": ["movement", "movementinfo", "hover", "hover engines", "rocket", "rocket engines", "angled", "angled rocket engines", "hybrid", "hybrid rocket engines", "acceleration", "skybounce", "aerobounce"],
     "snippet": "A comprehensive guide to movement mechanics",
