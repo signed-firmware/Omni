@@ -205,8 +205,8 @@ function buildFooter() {
                 <small class="credit-note">Drafting and writing shredder pages.</small>
             </div>
             <div class="credit-member">
-                <span class="member-name">goober</span>
-                <small class="credit-note">Assistance with shredder writing.</small>
+                <span class="member-name">legallypvid</span>
+                <small class="credit-note">Tech info, minor writing.</small>
             </div>
         </div>
 
@@ -217,8 +217,8 @@ function buildFooter() {
                 <small class="credit-note">Natural Selection.</small>
             </div>
             <div class="credit-member">
-                <span class="member-name">legallypvid</span>
-                <small class="credit-note">Tech info, minor writing.</small>
+                <span class="member-name">goober</span>
+                <small class="credit-note">Assistance with shredder writing.</small>
             </div>
         </div>
     </div>
