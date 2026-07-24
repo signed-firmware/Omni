@@ -148,7 +148,7 @@ function buildSiteNotice() {
 
     const notice = document.createElement('div');
     notice.className = 'wiki-site-notice';
-    notice.innerHTML = '<strong>Neo Shredder Group WIKI</strong> — Plane Crazy shredder &amp; tech documentation. Read the rules, hate all omnis responsibly.';
+    notice.innerHTML = '<strong>Neo Shredder Group WIKI</strong> — Plane Crazy shredder, tech and history doccumenation. Read the rules, love all omnis responsibly.';
     main.insertBefore(notice, main.firstChild);
 }
 
