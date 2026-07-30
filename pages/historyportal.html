@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>History Portal | Neo Shredder Group WIKI</title>
     <meta name="description" content="Chronology and portal links for NSG shredder history.">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body class="wiki-body wiki-body--nightsky">
@@ -19,8 +19,7 @@
             <p class="history-portal-eyebrow">Portal</p>
             <h1 class="wiki-page-title">History Portal</h1>
             <p class="wiki-lead history-portal-lead">
-                Welcome to the history wing of the wiki — chronology, eras, and links to the rest of the site.
-                Eras below are placeholders until real events are written in.
+                The history of shredders and related things, categorised under the main leader at the time. <span class="mini-note--text">there were no leaders during proto shredders, only exilir8 making shredders</span>
             </p>
         </header>
 
@@ -40,55 +39,35 @@
                         <div class="history-chrono-unit">
                             <div class="history-era-pill" role="tablist" aria-label="Era I categories">
                                 <button type="button" role="tab" class="history-era-tab history-era-name--1 is-active"
-                                    id="chrono-tab-era" data-chrono-key="era" aria-selected="true"
-                                    aria-controls="history-chrono-events">Proto</button>
+                                    id="chrono-tab-proto" data-chrono-key="proto" aria-selected="true"
+                                    aria-controls="history-chrono-events">Proto-Shredders</button>
                                 <span class="history-chrono-dot" aria-hidden="true">•</span>
                                 <button type="button" role="tab" class="history-era-tab history-era-name--2"
-                                    id="chrono-tab-lead-a" data-chrono-key="leadA" aria-selected="false"
-                                    aria-controls="history-chrono-events">Jannu07 era</button>
+                                    id="chrono-tab-jannu" data-chrono-key="jannu07" aria-selected="false"
+                                    aria-controls="history-chrono-events">Jannu07</button>
                                 <span class="history-chrono-dot" aria-hidden="true">•</span>
                                 <button type="button" role="tab" class="history-era-tab history-era-name--3"
-                                    id="chrono-tab-lead-b" data-chrono-key="leadB" aria-selected="false"
-                                    aria-controls="history-chrono-events">Duckless Era</button>
+                                    id="chrono-tab-duckless" data-chrono-key="duckless" aria-selected="false"
+                                    aria-controls="history-chrono-events">Duckless</button>
                                 <span class="history-chrono-dot" aria-hidden="true">•</span>
-                                <button type="button" role="tab" class="history-era-tab history-era-name--3"
-                                    id="chrono-tab-lead-b" data-chrono-key="leadB" aria-selected="false"
-                                    aria-controls="history-chrono-events">Dwduckless Era</button>
+                                <button type="button" role="tab" class="history-era-tab history-era-name--4"
+                                    id="chrono-tab-glitch" data-chrono-key="glitch" aria-selected="false"
+                                    aria-controls="history-chrono-events">Glitch</button>
+                                <span class="history-chrono-dot" aria-hidden="true">•</span>
+                                <button type="button" role="tab" class="history-era-tab history-era-name--5"
+                                    id="chrono-tab-xhunter" data-chrono-key="xhunter" aria-selected="false"
+                                    aria-controls="history-chrono-events">Xhunter</button>
+                                <span class="history-chrono-dot" aria-hidden="true">•</span>
+                                <button type="button" role="tab" class="history-era-tab history-era-name--6"
+                                    id="chrono-tab-kameon" data-chrono-key="kameon" aria-selected="false"
+                                    aria-controls="history-chrono-events">Kameon</button>
                             </div>
                             <p class="history-event-chain" id="history-chrono-events" role="tabpanel"
-                                aria-labelledby="chrono-tab-era"></p>
+                                aria-labelledby="chrono-tab-proto"></p>
                         </div>
 
                     </div>
                 </section>
-
-            </div>
-
-            <aside class="wiki-block history-portal-aside" aria-labelledby="other-portals-heading">
-                <div class="wiki-block-head" id="other-portals-heading">Other Portals</div>
-                <div class="wiki-block-body">
-                    <nav class="history-portal-nav" aria-label="Other wiki portals">
-                        <a class="history-portal-nav-link" href="../index.html">
-                            <span class="history-portal-nav-label">Main</span>
-                            <strong>Main Page</strong>
-                        </a>
-                        <a class="history-portal-nav-link" href="registery.html">
-                            <span class="history-portal-nav-label">Index</span>
-                            <strong>Registry</strong>
-                        </a>
-                        <a class="history-portal-nav-link" href="shredderhub.html">
-                            <span class="history-portal-nav-label">Builds</span>
-                            <strong>Shredder Hub</strong>
-                        </a>
-                        <a class="history-portal-nav-link" href="techmanifest.html">
-                            <span class="history-portal-nav-label">Tech</span>
-                            <strong>Tech Manifest</strong>
-                        </a>
-                    </nav>
-                </div>
-            </aside>
-        </div>
-
     </main>
 
     <footer id="wiki-footer"></footer>
@@ -96,32 +75,37 @@
     <script>
         (function () {
             const CHRONO_EVENTS = {
-                era: [
-                    { label: 'Placeholder Origins Event', href: '#' },
-                    { label: 'Placeholder First Clips', href: '#' },
-                    { label: 'Placeholder Oral History', href: '#' },
-                    { label: 'Placeholder Pre-Meta Build', href: '#' },
-                    { label: 'Placeholder Discord Log', href: '#' },
-                    { label: 'Placeholder Early Shred', href: '#' },
-                    { label: 'Placeholder Lost Page', href: '#' }
+                proto: [
+                    { label: 'Missiles', href: '#' },
+                    { label: 'Early Mouse Aim', href: '#' },
+                    { label: 'Pre Meta Builds', href: '#' },
+                    { label: 'Gen 1 "Shredder Bugs"', href: '#' }
                 ],
-                leadA: [
-                    { label: 'Placeholder Foundation Event', href: '#' },
-                    { label: 'Placeholder Massless Standard', href: '#' },
-                    { label: 'Placeholder Gyro Doctrine', href: '#' },
-                    { label: 'Placeholder Writing Style Shift', href: '#' },
-                    { label: 'Placeholder Module Draft', href: '#' },
-                    { label: 'Placeholder Hub Outline', href: '#' },
-                    { label: 'Placeholder Archive Note', href: '#' }
+                jannu07: [
+                    { label: 'Omni Bug Laboratories', href: '#' },
+                    { label: 'Gen 2 Shredders', href: '#' },
+                    { label: 'Warpers', href: '#' },
+                    { label: 'ANOs', href: '#' }
                 ],
-                leadB: [
-                    { label: 'Placeholder Expansion Event', href: '#' },
-                    { label: 'Placeholder Tech Leak', href: '#' },
-                    { label: 'Placeholder Manifest Entry', href: '#' },
-                    { label: 'Placeholder Wiki Redesign', href: '#' },
-                    { label: 'Placeholder Contributor Wave', href: '#' },
-                    { label: 'Placeholder Post-Release Gap', href: '#' },
-                    { label: 'Placeholder Patched Tech', href: '#' }
+                duckless: [
+                    { label: 'CSA', href: '#' },
+                    { label: 'Warp League', href: '#' },
+                    { label: 'Gen 3-4 Shredders', href: '#' },
+                    { label: 'Destruction of AST', href: '#' }
+                ],
+                glitch: [
+                    { label: 'SFC', href: '#' },
+                    { label: 'Gen 5-6 Shredders', href: '#' },
+                    { label: 'NSE/SR', href: '#' }
+                ],
+                xhunter: [
+                    { label: 'SC', href: '#' },
+                    { label: 'Gen 7 Shredders', href: '#' },
+                ],
+                kameon: [
+                    { label: 'NSG/SR', href: '#' },
+                    { label: 'Destruction of SC', href: '#' },
+                    { label: 'Gen 8-9 Shredders', href: '#' }
                 ]
             };
 
@@ -157,7 +141,7 @@
                     });
                 });
 
-                renderChronoChain('era');
+                renderChronoChain('proto');
             }
 
             if (document.readyState === 'loading') {

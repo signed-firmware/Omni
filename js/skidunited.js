@@ -89,18 +89,14 @@ function buildShell() {
       ${sideLink('index.html', 'Main Page')}
       ${sideLink('pages/shredderhub.html', 'ShredderHub')}
       ${sideLink('pages/techmanifest.html', 'TechManifest')}
-      ${sideLink('pages/registery.html', 'Registry')}
-      ${sideLink('pages/askapro.html', 'Ask A NERD')}
     </ul>
   </div>
   <div class="wiki-sidebar-block">
-    <div class="wiki-sidebar-head">Shredder Modules</div>
+    <div class="wiki-sidebar-head">Community</div>
     <ul>
-      ${sideLink('pages/shreds/massless.html', 'Massless')}
-      ${sideLink('pages/shreds/gyrocore.html', 'Gyro Cores')}
-      ${sideLink('pages/shreds/armorinfo.html', 'Armor Info')}
-      ${sideLink('pages/shreds/blades.html', 'Blades')}
-      ${sideLink('pages/shreds/movementmechanics.html', 'Movement')}
+      ${sideLink('pages/askapro.html', 'Ask a Nerd')}
+      ${sideLink('pages/registery.html', 'Registry')}
+      ${sideLink('pages/historyportal.html', 'History Portal')}
     </ul>
   </div>
   <div class="wiki-sidebar-block">
@@ -337,6 +333,7 @@ document.addEventListener('DOMContentLoaded', function () {
     buildSiteNotice();
     buildFooter();
     initWikiSearch();
+    initLinkPreviews();
 
     const lazyVideos = document.querySelectorAll('video.lazy-video');
     if (!lazyVideos.length) return;
@@ -367,6 +364,292 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+
+// ═══════════════════════════════════════════
+//  LINK PAGE PREVIEWS ON HOVER
+// ═══════════════════════════════════════════
+
+const pagePreviewCache = new Map();
+let previewCardEl = null;
+let hoverTimer = null;
+let hideTimer = null;
+let currentAnchor = null;
+let lastMouseX = 0;
+let lastMouseY = 0;
+
+function createPreviewCardDOM() {
+    if (previewCardEl) return previewCardEl;
+
+    previewCardEl = document.createElement('div');
+    previewCardEl.id = 'wiki-link-preview-popup';
+    previewCardEl.className = 'wiki-preview-popup';
+    document.body.appendChild(previewCardEl);
+
+    previewCardEl.addEventListener('mouseenter', function () {
+        clearTimeout(hideTimer);
+    });
+
+    previewCardEl.addEventListener('mouseleave', function (e) {
+        if (currentAnchor && currentAnchor.contains(e.relatedTarget)) return;
+        scheduleHidePreview();
+    });
+
+    return previewCardEl;
+}
+
+function scheduleHidePreview() {
+    clearTimeout(hoverTimer);
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(hidePreview, 180);
+}
+
+function hidePreview() {
+    clearTimeout(hoverTimer);
+    if (previewCardEl) {
+        previewCardEl.classList.remove('visible');
+    }
+    currentAnchor = null;
+}
+
+function getCleanPath(urlObj) {
+    let path = urlObj.pathname;
+    const base = getWikiBasePath();
+    if (path.startsWith(base)) {
+        path = path.slice(base.length);
+    }
+    return path.replace(/^\//, '');
+}
+
+async function fetchPagePreviewData(targetUrl) {
+    const fullHref = targetUrl.href;
+    if (pagePreviewCache.has(fullHref)) {
+        return pagePreviewCache.get(fullHref);
+    }
+
+    const isSameOrigin = targetUrl.origin === window.location.origin || targetUrl.protocol === 'file:';
+    if (!isSameOrigin) {
+        const extData = {
+            isExternal: true,
+            title: targetUrl.hostname,
+            snippet: `External website link: ${targetUrl.href}`,
+            categories: ['External Link'],
+            url: targetUrl.hostname,
+            image: null
+        };
+        pagePreviewCache.set(fullHref, extData);
+        return extData;
+    }
+
+    const path = getCleanPath(targetUrl);
+
+    let indexItem = searchData.find(item => {
+        const itemUrl = wikiUrl(item.url);
+        return targetUrl.pathname.endsWith(item.url) || targetUrl.pathname === new URL(itemUrl, window.location.href).pathname;
+    });
+
+    let previewData = {
+        title: indexItem ? indexItem.title : (path.split('/').pop().replace(/\.html$/i, '') || 'Page'),
+        snippet: indexItem ? indexItem.snippet : 'Click to view page content.',
+        categories: indexItem && indexItem.categories ? indexItem.categories : [],
+        url: path,
+        image: null
+    };
+
+    try {
+        const res = await fetch(fullHref);
+        if (res.ok) {
+            const htmlText = await res.text();
+            const doc = new DOMParser().parseFromString(htmlText, 'text/html');
+
+            const docTitle = doc.querySelector('title')?.textContent;
+            if (docTitle) {
+                previewData.title = docTitle.replace(/\s*\|.*$/, '').trim();
+            } else {
+                const h1 = doc.querySelector('h1')?.textContent;
+                if (h1) previewData.title = h1.trim();
+            }
+
+            const catEls = doc.querySelectorAll('.wiki-cat');
+            if (catEls.length > 0) {
+                previewData.categories = Array.from(catEls).map(el => el.textContent.trim()).filter(Boolean);
+            }
+
+            const metaDesc = doc.querySelector('meta[name="description"]')?.getAttribute('content');
+            const leadText = doc.querySelector('.wiki-lead')?.textContent;
+            const firstP = Array.from(doc.querySelectorAll('main p, .wiki-container p'))
+                .map(p => p.textContent.trim())
+                .find(t => t.length > 15);
+
+            if (metaDesc && metaDesc.trim()) {
+                previewData.snippet = metaDesc.trim();
+            } else if (leadText && leadText.trim()) {
+                previewData.snippet = leadText.trim();
+            } else if (firstP) {
+                previewData.snippet = firstP;
+            }
+
+            const imgEl = doc.querySelector('.thumb-inner img, .wiki-thumb img, .wiki-portal img, main img');
+            if (imgEl) {
+                const rawSrc = imgEl.getAttribute('src');
+                if (rawSrc) {
+                    previewData.image = new URL(rawSrc, fullHref).href;
+                }
+            } else {
+                const styleBgEl = doc.querySelector('[style*="--card-bg"]');
+                if (styleBgEl) {
+                    const match = styleBgEl.getAttribute('style').match(/url\(['"]?([^'"]+)['"]?\)/);
+                    if (match && match[1]) {
+                        previewData.image = new URL(match[1], fullHref).href;
+                    }
+                }
+            }
+        }
+    } catch (err) {
+        console.warn('[wiki-preview] Fetch failed:', err);
+    }
+
+    pagePreviewCache.set(fullHref, previewData);
+    return previewData;
+}
+
+function renderPreviewContent(card, data, isSkeleton = false) {
+    if (isSkeleton) {
+        card.innerHTML = `
+            <div class="wiki-preview-skeleton">
+                <div class="wiki-preview-skeleton-title"></div>
+                <div class="wiki-preview-skeleton-text"></div>
+                <div class="wiki-preview-skeleton-text short"></div>
+            </div>
+        `;
+        return;
+    }
+
+    const catHtml = data.categories && data.categories.length
+        ? `<div class="wiki-preview-cats">${data.categories.map(c => `<span class="wiki-preview-cat">${c}</span>`).join('')}</div>`
+        : '';
+
+    const imgHtml = data.image
+        ? `<div class="wiki-preview-img-container"><img class="wiki-preview-img" src="${data.image}" alt="${data.title}" onerror="this.parentNode.style.display='none'"></div>`
+        : '';
+
+    card.innerHTML = `
+        ${imgHtml}
+        <div class="wiki-preview-body">
+            ${catHtml}
+            <h4 class="wiki-preview-title">${data.title}</h4>
+            <p class="wiki-preview-snippet">${data.snippet}</p>
+        </div>
+    `;
+}
+
+function positionPreviewCard(mouseX, mouseY) {
+    if (!previewCardEl) return;
+
+    const cardRect = previewCardEl.getBoundingClientRect();
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+
+    // Top-right corner of popup appears at mouse cursor (mouseX, mouseY)
+    // Card extends to the left (mouseX - cardWidth) and below (mouseY)
+    let left = mouseX - cardRect.width;
+    let top = mouseY;
+
+    // Viewport collision checks
+    if (left < 10) {
+        left = Math.max(10, mouseX);
+        if (left + cardRect.width > viewportWidth - 10) {
+            left = viewportWidth - cardRect.width - 10;
+        }
+    }
+
+    if (top + cardRect.height > viewportHeight - 10) {
+        top = Math.max(10, viewportHeight - cardRect.height - 10);
+    }
+
+    if (top < 10) top = 10;
+
+    previewCardEl.style.top = `${top}px`;
+    previewCardEl.style.left = `${left}px`;
+}
+
+async function showPreviewForAnchor(anchor, posX, posY) {
+    const rawHref = anchor.getAttribute('href');
+    if (!rawHref || rawHref === '#' || rawHref.startsWith('javascript:')) return;
+
+    const targetUrl = new URL(rawHref, window.location.href);
+
+    if (targetUrl.pathname === window.location.pathname && targetUrl.hash) {
+        return;
+    }
+
+    currentAnchor = anchor;
+    const card = createPreviewCardDOM();
+
+    const path = getCleanPath(targetUrl);
+
+    if (pagePreviewCache.has(targetUrl.href)) {
+        renderPreviewContent(card, pagePreviewCache.get(targetUrl.href));
+        card.classList.add('visible');
+        positionPreviewCard(posX, posY);
+    } else {
+        renderPreviewContent(card, { url: path }, true);
+        card.classList.add('visible');
+        positionPreviewCard(posX, posY);
+
+        const data = await fetchPagePreviewData(targetUrl);
+        if (currentAnchor === anchor) {
+            renderPreviewContent(card, data);
+            positionPreviewCard(posX, posY);
+        }
+    }
+}
+
+function initLinkPreviews() {
+    createPreviewCardDOM();
+
+    document.addEventListener('mousemove', function (e) {
+        lastMouseX = e.clientX;
+        lastMouseY = e.clientY;
+    });
+
+    document.addEventListener('mouseover', function (e) {
+        const anchor = e.target.closest('a');
+        if (!anchor) return;
+
+        if (anchor.closest('.wiki-logo-box') || anchor.closest('.search-results-box')) return;
+
+        const href = anchor.getAttribute('href');
+        if (!href || href === '#' || href.startsWith('javascript:')) return;
+
+        if (currentAnchor === anchor) {
+            clearTimeout(hideTimer);
+            return;
+        }
+
+        clearTimeout(hideTimer);
+        clearTimeout(hoverTimer);
+
+        const triggerX = e.clientX || lastMouseX;
+        const triggerY = e.clientY || lastMouseY;
+
+        hoverTimer = setTimeout(() => {
+            showPreviewForAnchor(anchor, triggerX, triggerY);
+        }, 200);
+    });
+
+    document.addEventListener('mouseout', function (e) {
+        const anchor = e.target.closest('a');
+        if (!anchor) return;
+
+        const related = e.relatedTarget;
+        if (anchor.contains(related)) return;
+        if (previewCardEl && previewCardEl.contains(related)) return;
+
+        scheduleHidePreview();
+    });
+}
+
+
 
 // ═══════════════════════════════════════════
 //  EASTER EGG: type "duckless" on the home
