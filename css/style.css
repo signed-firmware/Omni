@@ -324,9 +324,10 @@ body {
     padding: 0.6rem 0.4rem 0.5rem;
     text-decoration: none;
     perspective: 900px;
+    position: relative;
 }
 
-.wiki-logo-box img {
+.wiki-logo-box .wiki-brand-img {
     width: 100%;
     max-width: 120px;
     height: auto;
@@ -339,7 +340,7 @@ body {
     backface-visibility: visible;
 }
 
-.wiki-logo-box:hover img {
+.wiki-logo-box:hover .wiki-brand-img {
     filter: drop-shadow(0 4px 16px rgba(104, 104, 212, 0.35));
 }
 
@@ -409,7 +410,7 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .wiki-logo-box img {
+    .wiki-logo-box .wiki-brand-img {
         animation: none;
     }
 
@@ -432,7 +433,7 @@ body {
 .wiki-topbar {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     gap: 0.35rem;
     padding: 0 0 0.65rem;
@@ -446,7 +447,7 @@ body {
     justify-content: center;
     flex-wrap: wrap;
     gap: 0.35rem;
-    width: 100%;
+    flex: 1 1 auto;
     margin: 0;
     padding: 0;
 }
@@ -1648,7 +1649,7 @@ footer {
         padding: 0.4rem;
     }
 
-    .wiki-logo-box img {
+    .wiki-logo-box .wiki-brand-img {
         max-width: 72px;
     }
 
@@ -2706,10 +2707,10 @@ footer {
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    gap: 0.1rem 0.35rem;
+    gap: 0.2rem 0.4rem;
     max-width: 100%;
     margin: 0 auto 0.55rem;
-    padding: 0.4rem 1rem;
+    padding: 0.45rem 0.85rem;
     background: rgba(255, 255, 255, 0.06);
     border: 1px solid var(--border-light);
     border-radius: 999px;
@@ -2757,6 +2758,38 @@ footer {
     color: #e8a8d8;
 }
 
+.history-era-tab.history-era-name--4 {
+    color: #e8b878;
+}
+
+.history-era-tab.history-era-name--5 {
+    color: #c878e8;
+}
+
+.history-era-tab.history-era-name--6 {
+    color: #78c8e8;
+}
+
+.history-era-tab.history-era-name--7 {
+    color: #a8e878;
+}
+
+.history-era-tab.history-era-name--8 {
+    color: #e878a8;
+}
+
+.history-era-tab.history-era-name--9 {
+    color: #f0d060;
+}
+
+.history-era-tab.history-era-name--10 {
+    color: #88a0f0;
+}
+
+.history-era-tab.history-era-name--11 {
+    color: #e8c878;
+}
+
 .history-era-name--1 {
     color: #b8b8c8;
 }
@@ -2775,6 +2808,30 @@ footer {
 
 .history-era-name--5 {
     color: #c878e8;
+}
+
+.history-era-name--6 {
+    color: #78c8e8;
+}
+
+.history-era-name--7 {
+    color: #a8e878;
+}
+
+.history-era-name--8 {
+    color: #e878a8;
+}
+
+.history-era-name--9 {
+    color: #f0d060;
+}
+
+.history-era-name--10 {
+    color: #88a0f0;
+}
+
+.history-era-name--11 {
+    color: #e8c878;
 }
 
 .history-chrono-dot {
@@ -2919,5 +2976,246 @@ footer {
 @media (max-width: 768px) {
     .wiki-blocks-row {
         grid-template-columns: 1fr;
+    }
+}
+
+/* ═══════════════════════════════════════════
+   GUBBY — toggleable sitewide mascot
+   ═══════════════════════════════════════════ */
+.gubby-decoration {
+    display: none !important;
+}
+
+body.gubby-mode .gubby-decoration {
+    display: block !important;
+}
+
+body.gubby-mode .gubby-stamp--title {
+    display: inline-block !important;
+}
+
+#gubby-world {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.gubby-pattern {
+    position: absolute;
+    inset: 0;
+    opacity: 0.04;
+    background-image: url('../assests/gubby.png');
+    background-size: 64px auto;
+    background-repeat: repeat;
+}
+
+.gubby-stamp {
+    pointer-events: none;
+    user-select: none;
+    transform: rotate(var(--gubby-rot, 0deg));
+    filter: drop-shadow(0 3px 10px rgba(0, 0, 0, 0.35));
+    animation: gubbyBob 4.5s ease-in-out infinite;
+    animation-delay: var(--gubby-delay, 0s);
+}
+
+@keyframes gubbyBob {
+    0%,
+    100% {
+        transform: rotate(var(--gubby-rot, 0deg)) translateY(0);
+    }
+
+    50% {
+        transform: rotate(var(--gubby-rot, 0deg)) translateY(-6px);
+    }
+}
+
+.gubby-stamp--floater {
+    position: fixed;
+    opacity: 0.35;
+}
+
+.gubby-stamp--corner-tl {
+    top: 5.5rem;
+    left: 0.75rem;
+}
+
+.gubby-stamp--corner-tr {
+    top: 5.5rem;
+    right: 0.75rem;
+}
+
+.gubby-stamp--corner-bl {
+    bottom: 5rem;
+    left: 0.75rem;
+}
+
+.gubby-stamp--corner-br {
+    bottom: 5rem;
+    right: 0.75rem;
+}
+
+.gubby-stamp--logo {
+    position: absolute;
+    right: -0.35rem;
+    bottom: -0.45rem;
+    width: 56px;
+    height: auto;
+    z-index: 3;
+    opacity: 0.92;
+}
+
+.gubby-stamp--topbar {
+    margin-left: auto;
+    opacity: 0.75;
+    flex-shrink: 0;
+}
+
+.gubby-stamp--sidebar {
+    display: block;
+    margin: 0.65rem auto 0.15rem;
+    opacity: 0.82;
+}
+
+.wiki-block {
+    position: relative;
+}
+
+.gubby-stamp--block {
+    position: absolute;
+    right: 0.45rem;
+    bottom: 0.35rem;
+    opacity: 0.55;
+    z-index: 2;
+}
+
+.gubby-stamp--title {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 0.45rem;
+    opacity: 0.88;
+}
+
+.gubby-footer-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+}
+
+.gubby-footer-row p {
+    text-align: center;
+    margin: 0;
+}
+
+.gubby-stamp--footer {
+    opacity: 0.9;
+}
+
+@media (max-width: 900px) {
+  .gubby-stamp--floater:nth-child(n+6) {
+    display: none;
+  }
+
+  .gubby-stamp--corner-bl,
+  .gubby-stamp--corner-br {
+    width: 56px;
+    height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .gubby-pattern {
+    background-size: 48px auto;
+    opacity: 0.03;
+  }
+
+  .gubby-stamp--floater {
+    display: none;
+  }
+
+  .gubby-stamp--corner-tl,
+  .gubby-stamp--corner-tr {
+    width: 48px;
+    height: auto;
+    top: 4.5rem;
+  }
+
+  .gubby-stamp--logo {
+    width: 44px;
+  }
+
+  .gubby-stamp--title {
+    width: 36px;
+    height: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gubby-stamp {
+    animation: none;
+  }
+}
+
+/* ═══════════════════════════════════════════
+   CURSOR GRID — background spotlight reveal
+   ═══════════════════════════════════════════ */
+.cursor-trail-layer {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.cursor-grid-bg {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    --grid-light-x: 50%;
+    --grid-light-y: 50%;
+    background-image:
+        linear-gradient(rgba(104, 104, 212, 0.28) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(104, 104, 212, 0.28) 1px, transparent 1px);
+    background-size: 24px 24px;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    -webkit-mask-image: radial-gradient(
+        circle 175px at var(--grid-light-x) var(--grid-light-y),
+        rgba(0, 0, 0, 1) 0%,
+        rgba(0, 0, 0, 0.65) 42%,
+        transparent 72%
+    );
+    mask-image: radial-gradient(
+        circle 175px at var(--grid-light-x) var(--grid-light-y),
+        rgba(0, 0, 0, 1) 0%,
+        rgba(0, 0, 0, 0.65) 42%,
+        transparent 72%
+    );
+}
+
+.cursor-grid-bg::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(
+        circle 130px at var(--grid-light-x) var(--grid-light-y),
+        rgba(138, 138, 232, 0.14) 0%,
+        rgba(104, 104, 212, 0.05) 45%,
+        transparent 68%
+    );
+}
+
+.cursor-trail-layer--active .cursor-grid-bg {
+    opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cursor-grid-bg {
+        transition: none;
     }
 }

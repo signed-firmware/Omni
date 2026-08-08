@@ -225,7 +225,149 @@ function buildFooter() {
 </div>
 
 <hr>
-<p style="text-align: center;">Made for the <a href="https://discord.gg/89gEYNR7zd" target="_blank" rel="noopener noreferrer">Neo Shredder Group Discord</a></p>`;
+<div class="gubby-footer-row">
+  <img src="${wikiUrl('assests/gubby.png')}" alt="GUBBY" class="gubby-stamp gubby-stamp--footer gubby-decoration" width="72" height="72">
+  <p>Made for the <a href="https://discord.gg/89gEYNR7zd" target="_blank" rel="noopener noreferrer">Neo Shredder Group Discord</a></p>
+</div>`;
+}
+
+// ═══════════════════════════════════════════
+//  GUBBY — toggleable sitewide mascot layer
+// ═══════════════════════════════════════════
+
+const GUBBY_STORAGE_KEY = 'wiki-gubby-mode';
+const GUBBY_SECRET_WORD = 'gubby';
+
+function setGubbyMode(on) {
+    document.body.classList.toggle('gubby-mode', on);
+
+    try {
+        localStorage.setItem(GUBBY_STORAGE_KEY, on ? '1' : '0');
+    } catch (err) {
+        /* ignore private mode */
+    }
+}
+
+function initGubbySavedState() {
+    let saved = false;
+    try {
+        saved = localStorage.getItem(GUBBY_STORAGE_KEY) === '1';
+    } catch (err) {
+        saved = false;
+    }
+    setGubbyMode(saved);
+}
+
+function buildGubbyArmy() {
+    if (document.getElementById('gubby-world')) return;
+
+    const src = wikiUrl('assests/gubby.png');
+
+    const world = document.createElement('div');
+    world.id = 'gubby-world';
+    world.className = 'gubby-decoration';
+    world.setAttribute('aria-hidden', 'true');
+
+    const pattern = document.createElement('div');
+    pattern.className = 'gubby-pattern';
+    world.appendChild(pattern);
+
+    const cornerPlacements = [
+        { cls: 'gubby-stamp--corner-tl', size: 76, rot: -14, delay: 0, opacity: 0.5 },
+        { cls: 'gubby-stamp--corner-tr', size: 68, rot: 10, delay: 0.6, opacity: 0.45 },
+        { cls: 'gubby-stamp--corner-bl', size: 84, rot: 6, delay: 1.1, opacity: 0.5 },
+        { cls: 'gubby-stamp--corner-br', size: 72, rot: -8, delay: 1.7, opacity: 0.48 }
+    ];
+
+    const floaterPlacements = [
+        { top: '14%', left: '6%', size: 44, rot: -18, opacity: 0.32, delay: 0.2 },
+        { top: '22%', left: '88%', size: 56, rot: 14, opacity: 0.28, delay: 0.9 },
+        { top: '42%', left: '3%', size: 38, rot: 8, opacity: 0.26, delay: 1.4 },
+        { top: '48%', left: '94%', size: 50, rot: -11, opacity: 0.3, delay: 0.4 },
+        { top: '62%', left: '10%', size: 46, rot: -6, opacity: 0.27, delay: 1.8 },
+        { top: '68%', left: '86%', size: 60, rot: 12, opacity: 0.29, delay: 1.2 },
+        { top: '78%', left: '5%', size: 52, rot: 16, opacity: 0.25, delay: 2.1 },
+        { top: '84%', left: '92%', size: 42, rot: -9, opacity: 0.28, delay: 0.7 },
+        { top: '33%', left: '48%', size: 34, rot: 5, opacity: 0.18, delay: 1.5 },
+        { top: '55%', left: '72%', size: 36, rot: -13, opacity: 0.22, delay: 2.4 }
+    ];
+
+    function addStamp(opts) {
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = '';
+        img.className = 'gubby-stamp gubby-decoration gubby-stamp--floater' + (opts.cls ? ' ' + opts.cls : '');
+        img.width = opts.size;
+        img.height = opts.size;
+        img.style.setProperty('--gubby-rot', opts.rot + 'deg');
+        img.style.setProperty('--gubby-delay', opts.delay + 's');
+        if (opts.opacity) img.style.opacity = String(opts.opacity);
+        if (opts.top) img.style.top = opts.top;
+        if (opts.left) img.style.left = opts.left;
+        world.appendChild(img);
+    }
+
+    cornerPlacements.forEach(addStamp);
+    floaterPlacements.forEach(addStamp);
+
+    document.body.insertBefore(world, document.body.firstChild);
+
+    const logoBox = document.querySelector('.wiki-logo-box');
+    if (logoBox && !logoBox.querySelector('.gubby-stamp--logo')) {
+        const logoGubby = document.createElement('img');
+        logoGubby.src = src;
+        logoGubby.alt = '';
+        logoGubby.className = 'gubby-stamp gubby-decoration gubby-stamp--logo';
+        logoGubby.width = 56;
+        logoGubby.height = 56;
+        logoBox.appendChild(logoGubby);
+    }
+
+    const topbar = document.querySelector('.wiki-topbar');
+    if (topbar) {
+        const topGubby = document.createElement('img');
+        topGubby.src = src;
+        topGubby.alt = '';
+        topGubby.className = 'gubby-stamp gubby-decoration gubby-stamp--topbar';
+        topGubby.width = 40;
+        topGubby.height = 40;
+        topbar.appendChild(topGubby);
+    }
+
+    const sidebar = document.getElementById('wiki-sidebar');
+    if (sidebar) {
+        const sideGubby = document.createElement('img');
+        sideGubby.src = src;
+        sideGubby.alt = '';
+        sideGubby.className = 'gubby-stamp gubby-decoration gubby-stamp--sidebar';
+        sideGubby.width = 64;
+        sideGubby.height = 64;
+        sidebar.appendChild(sideGubby);
+    }
+
+    document.querySelectorAll('.wiki-block').forEach(function (block, index) {
+        if (block.querySelector('.gubby-stamp--block')) return;
+        const blockGubby = document.createElement('img');
+        blockGubby.src = src;
+        blockGubby.alt = '';
+        blockGubby.className = 'gubby-stamp gubby-decoration gubby-stamp--block';
+        blockGubby.width = 36;
+        blockGubby.height = 36;
+        blockGubby.style.setProperty('--gubby-rot', ((index % 5) - 2) * 8 + 'deg');
+        block.appendChild(blockGubby);
+    });
+
+    document.querySelectorAll('h1.wiki-page-title, main h1').forEach(function (heading, index) {
+        if (heading.querySelector('.gubby-stamp--title')) return;
+        const titleGubby = document.createElement('img');
+        titleGubby.src = src;
+        titleGubby.alt = '';
+        titleGubby.className = 'gubby-stamp gubby-decoration gubby-stamp--title';
+        titleGubby.width = 48;
+        titleGubby.height = 48;
+        titleGubby.style.setProperty('--gubby-rot', (index % 2 === 0 ? -10 : 10) + 'deg');
+        heading.appendChild(titleGubby);
+    });
 }
 
 // ═══════════════════════════════════════════
@@ -328,12 +470,68 @@ function runWikiSearch() {
 }
 
 // ═══════════════════════════════════════════
+//  CURSOR GRID — background spotlight reveal
+// ═══════════════════════════════════════════
+
+function initCursorTrail() {
+    if (document.getElementById('cursor-trail-layer')) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const layer = document.createElement('div');
+    layer.id = 'cursor-trail-layer';
+    layer.className = 'cursor-trail-layer';
+    layer.setAttribute('aria-hidden', 'true');
+    layer.innerHTML = '<div class="cursor-grid-bg" aria-hidden="true"></div>';
+
+    document.body.insertBefore(layer, document.body.firstChild);
+
+    const gridBg = layer.querySelector('.cursor-grid-bg');
+    const light = {
+        x: window.innerWidth / 2,
+        y: window.innerHeight / 2
+    };
+    const lightTarget = { x: light.x, y: light.y };
+    const lightVel = { x: 0, y: 0 };
+
+    function springLight(state, target, velocity) {
+        velocity.x += (target.x - state.x) * 0.11;
+        velocity.y += (target.y - state.y) * 0.11;
+        velocity.x *= 0.8;
+        velocity.y *= 0.8;
+        state.x += velocity.x;
+        state.y += velocity.y;
+    }
+
+    function updateGridLight() {
+        springLight(light, lightTarget, lightVel);
+        gridBg.style.setProperty('--grid-light-x', light.x + 'px');
+        gridBg.style.setProperty('--grid-light-y', light.y + 'px');
+        requestAnimationFrame(updateGridLight);
+    }
+
+    document.addEventListener('mousemove', function (e) {
+        layer.classList.add('cursor-trail-layer--active');
+        lightTarget.x = e.clientX;
+        lightTarget.y = e.clientY;
+    }, { passive: true });
+
+    document.addEventListener('mouseleave', function () {
+        layer.classList.remove('cursor-trail-layer--active');
+    });
+
+    requestAnimationFrame(updateGridLight);
+}
+
+// ═══════════════════════════════════════════
 //  INIT — order matters: nav/footer first,
 //  then search (needs #wiki-search in DOM)
 // ═══════════════════════════════════════════
 
 document.addEventListener('DOMContentLoaded', function () {
+    initCursorTrail();
     buildShell();
+    buildGubbyArmy();
+    initGubbySavedState();
     buildSiteNotice();
     buildFooter();
     initWikiSearch();
@@ -369,35 +567,47 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // ═══════════════════════════════════════════
-//  EASTER EGG: type "duckless" on the home
-//  page to play the secret music
+//  SECRET KEYBINDS
+//  — type "gubby" (any page) to toggle GUBBY mode
+//  — type "duckless" (home page) for secret music
 // ═══════════════════════════════════════════
 
-let typedKeys = '';
-const secretWord = 'duckless';
+let ducklessTyped = '';
+let gubbyTyped = '';
+const DUCKLESS_WORD = 'duckless';
 let secretAudio = null;
 
 document.addEventListener('keydown', function (e) {
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.isContentEditable) return;
+    if (e.key.length !== 1) return;
+
+    const key = e.key.toLowerCase();
+
+    gubbyTyped += key;
+    if (gubbyTyped.length > GUBBY_SECRET_WORD.length) {
+        gubbyTyped = gubbyTyped.slice(-GUBBY_SECRET_WORD.length);
+    }
+    if (gubbyTyped === GUBBY_SECRET_WORD) {
+        setGubbyMode(!document.body.classList.contains('gubby-mode'));
+        gubbyTyped = '';
+        return;
+    }
 
     const path = window.location.pathname;
     const homeUrl = wikiUrl('index.html');
     const isHomePage = path === homeUrl || path.endsWith('index.html') || path.endsWith('/');
-
     if (!isHomePage) return;
-    if (e.key.length !== 1) return;
 
-    typedKeys += e.key.toLowerCase();
-    if (typedKeys.length > secretWord.length) {
-        typedKeys = typedKeys.slice(-secretWord.length);
+    ducklessTyped += key;
+    if (ducklessTyped.length > DUCKLESS_WORD.length) {
+        ducklessTyped = ducklessTyped.slice(-DUCKLESS_WORD.length);
     }
-
-    if (typedKeys === secretWord) {
+    if (ducklessTyped === DUCKLESS_WORD) {
         if (!secretAudio) {
             secretAudio = new Audio(wikiUrl('assests/secretmusic.mp3'));
         }
         secretAudio.currentTime = 0;
         secretAudio.play().catch(err => console.error('Error playing secret music:', err));
-        typedKeys = '';
+        ducklessTyped = '';
     }
 });
