@@ -22,8 +22,8 @@
             <span class="wiki-cat">Module</span>
         </div>
 
-        <nav class="wiki-breadcrumb">
-            <a href="/">Home</a> <a href="/pages/shredderhub.html">ShredderHub</a> <span>Massless</span>
+        <nav class="wiki-breadcrumb" aria-label="Breadcrumb">
+            <a href="../../index.html">Home</a> <a href="../../pages/shredderhub.html">ShredderHub</a> <span>Massless</span>
         </nav>
         <p>Massless is a core function of shredders, without massless or the correct application of massless the common
             <span style="color: var(--accent-blue);">shredder will not work properly.</span> The most common case of
@@ -33,7 +33,7 @@
                 Staging blade motors</a>.
         </p>
 
-        <nav class="toc-box">
+        <nav class="toc-box" aria-label="Contents">
             <div class="toc-title">Contents</div>
             <ul>
                 <li>
@@ -50,12 +50,13 @@
                         <li><a href="#Staging-MassGyro">2.3 Preventing broken massless gyros</a></li>
                     </ul>
                 </li>
-                <li><a href="#Modules">3 Massless Modules</a></li>
+                <li><a href="#Modules">3 Massless Modules</a>
                 <ul>
                     <li><a href="#Modules-balljoint">3.1 Modern balljoint massless</a></li>
                     <li><a href="#Modules-normal">3.2 Three block massless (deprecated)</a></li>
                     <li><a href="#Staging-unc">3.3 Ancient massless (super deprecated)</a></li>
                 </ul>
+                </li>
             </ul>
         </nav>
 
@@ -63,13 +64,13 @@
             <h2>Massless Info</h2>
             <!--TOOD: ADD A CODEBLOCK POSSIBLY? AND SITE MOTOR2 MASSLESS CODE.-->
             <p>Massless modules work when a few requirements are met:</p>
-            <h4>The motor2 has 100 torque or more.</h4>
+            <p class="wiki-detail">The motor2 has 100 torque or more.</p>
             <!--TODO: add link to firstchild and root part and assembly? we need these types of pages too-->
             <!--also we can make all of our own pages on everything-->
-            <h4>The object being made massless cannot be the root part of its assembly or the first child of the root
+            <p class="wiki-detail">The object being made massless cannot be the root part of its assembly or the first child of the root
                 assembly. this can
-                be easily manipulated by simply having the massless module be anchored.</h4>
-            <h4>The object to be made massless has a rotational velocity magnitude of 1 or more.</h4>
+                be easily manipulated by simply having the massless module be anchored.</p>
+            <p class="wiki-detail">The object to be made massless has a rotational velocity magnitude of 1 or more.</p>
             <p>Certain objects have a scripted immunity to massless. This includes the motor1 plate, motor2 plate, and a
                 joint within wing panels that controls drag properties.</p>
         </section>

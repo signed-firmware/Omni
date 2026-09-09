@@ -2,6 +2,36 @@
 
 let searchData = [];
 let searchIndexPromise = null;
+let searchState = 'idle';
+let searchOpen = false;
+let activeSearchResult = -1;
+
+function escapeHTML(value) {
+    return String(value ?? '').replace(/[&<>"']/g, char => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    })[char]);
+}
+
+function safeWebUrl(value, base = window.location.href) {
+    try {
+        const url = new URL(String(value), base);
+        return ['https:', 'http:'].includes(url.protocol) ? url.href : null;
+    } catch {
+        return null;
+    }
+}
+
+async function fetchWikiJSON(url) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 15000);
+    try {
+        const response = await fetch(url, { signal: controller.signal });
+        if (!response.ok) throw new Error(`Could not load ${url}: ${response.status}`);
+        return await response.json();
+    } finally {
+        clearTimeout(timer);
+    }
+}
 
 // ═══════════════════════════════════════════
 //  BASE PATH — derived from this script's URL
@@ -55,21 +85,23 @@ function buildShell() {
     const main = document.querySelector('main.wiki-container');
     if (!main) return;
 
-    const p = window.location.pathname;
+    const p = window.location.pathname.endsWith('/')
+        ? window.location.pathname + 'index.html' : window.location.pathname;
     const sideLink = (href, label) => {
         const url = wikiUrl(href);
-        const cls = (p === url || p.endsWith(href)) ? ' class="active"' : '';
+        const cls = p === url ? ' class="active" aria-current="page"' : '';
         return `<li><a href="${url}"${cls}>${label}</a></li>`;
     };
     const tabLink = (href, label) => {
         const url = wikiUrl(href);
-        const cls = (p === url || p.endsWith(href)) ? ' class="active"' : '';
+        const cls = p === url ? ' class="active" aria-current="page"' : '';
         return `<li><a href="${url}"${cls}>${label}</a></li>`;
     };
 
     // ── Sidebar column: logo box on top, then nav blocks ──
-    const sidebarCol = document.createElement('div');
+    const sidebarCol = document.createElement('nav');
     sidebarCol.className = 'wiki-sidebar-column';
+    sidebarCol.setAttribute('aria-label', 'Wiki');
     sidebarCol.innerHTML = `
 <a href="${wikiUrl('index.html')}" class="wiki-logo-box" title="Main Page">
   <img src="${wikiUrl('assests/nsg-logo.png')}" alt="Neo Shredder Group logo" class="wiki-brand-img">
@@ -79,8 +111,8 @@ function buildShell() {
   <div class="wiki-sidebar-block">
     <div class="wiki-sidebar-head">Search</div>
     <div class="wiki-sidebar-search search-container">
-      <input type="text" id="wiki-search" placeholder="Search wiki..." autocomplete="off" aria-label="Search wiki">
-      <div id="wiki-results" class="search-results-box" role="listbox"></div>
+      <input type="search" id="wiki-search" placeholder="Search wiki..." autocomplete="off" aria-label="Search wiki" role="combobox" aria-autocomplete="list" aria-controls="wiki-options" aria-expanded="false">
+      <div id="wiki-results" class="search-results-box" hidden><div id="wiki-options" role="listbox" aria-label="Search results"></div></div>
     </div>
   </div>
   <div class="wiki-sidebar-block">
@@ -112,7 +144,7 @@ function buildShell() {
     const column = document.createElement('div');
     column.className = 'wiki-content-column';
 
-    const topbar = document.createElement('div');
+    const topbar = document.createElement('nav');
     topbar.className = 'wiki-topbar';
     topbar.setAttribute('aria-label', 'Page views');
     topbar.innerHTML = `
@@ -131,6 +163,13 @@ function buildShell() {
     column.appendChild(topbar);
     column.appendChild(main);
     wrap.appendChild(column);
+    main.id = main.id || 'wiki-main';
+    main.tabIndex = -1;
+    const skip = document.createElement('a');
+    skip.className = 'wiki-skip-link';
+    skip.href = '#' + main.id;
+    skip.textContent = 'Skip to content';
+    document.body.prepend(skip);
 }
 
 function buildSiteNotice() {
@@ -230,18 +269,21 @@ function buildFooter() {
 
 function loadSearchIndex() {
     if (!searchIndexPromise) {
-        searchIndexPromise = fetch(wikiUrl('data/search-index.json'))
-            .then(r => {
-                if (!r.ok) throw new Error('Could not load search index: ' + r.status);
-                return r.json();
-            })
+        searchState = 'loading';
+        searchIndexPromise = fetchWikiJSON(wikiUrl('data/search-index.json'))
             .then(data => {
-                searchData = Array.isArray(data) ? data : [];
-                console.log('[wiki-search] loaded', searchData.length, 'pages');
+                if (!Array.isArray(data)) throw new Error('Search index must be an array');
+                searchData = data.filter(page => page && typeof page.title === 'string'
+                    && typeof page.url === 'string' && /^(?:pages\/)?[\w/.-]+\.html$/.test(page.url)
+                    && !page.url.split('/').includes('..'));
+                if (searchData.length !== data.length) throw new Error('Invalid search index entry');
+                searchState = 'ready';
                 return searchData;
             })
             .catch(err => {
                 console.error('[wiki-search] fetch failed:', err);
+                searchState = 'error';
+                searchIndexPromise = null;
                 searchData = [];
                 return searchData;
             });
@@ -250,31 +292,62 @@ function loadSearchIndex() {
 }
 
 function initWikiSearch() {
-    loadSearchIndex();
-
     const searchInput = document.getElementById('wiki-search');
-    if (!searchInput) {
-        console.error('[wiki-search] input element not found in DOM');
-        return;
-    }
-
+    if (!searchInput) return;
     const debouncedSearch = debounce(runWikiSearch, 120);
-
-    searchInput.addEventListener('input', debouncedSearch);
-    searchInput.addEventListener('focus', runWikiSearch);
-
-    document.addEventListener('click', function (e) {
-        if (!e.target.closest('.search-container')) {
-            const box = document.getElementById('wiki-results');
-            if (box) box.innerHTML = '';
+    const open = () => {
+        searchOpen = true;
+        if (searchState === 'idle' || searchState === 'error') {
+            loadSearchIndex().then(runWikiSearch);
         }
+        runWikiSearch();
+    };
+    searchInput.addEventListener('input', () => {
+        searchOpen = true;
+        debouncedSearch();
     });
-
-    loadSearchIndex().then(() => {
-        if (document.activeElement === searchInput) {
+    searchInput.addEventListener('focus', open);
+    searchInput.addEventListener('click', () => { if (!searchOpen) open(); });
+    searchInput.addEventListener('keydown', e => {
+        if (e.key === 'Escape') { closeWikiSearch(); return; }
+        if (!['ArrowDown', 'ArrowUp', 'Enter'].includes(e.key)) return;
+        e.preventDefault();
+        if (!searchOpen) open();
+        const items = [...document.querySelectorAll('#wiki-results .search-item')];
+        if (!items.length) return;
+        if (e.key === 'Enter') { items[Math.max(0, activeSearchResult)].click(); return; }
+        activeSearchResult = e.key === 'ArrowDown'
+            ? (activeSearchResult + 1) % items.length
+            : (activeSearchResult <= 0 ? items.length - 1 : activeSearchResult - 1);
+        items.forEach((item, i) => item.setAttribute('aria-selected', String(i === activeSearchResult)));
+        searchInput.setAttribute('aria-activedescendant', items[activeSearchResult].id);
+        items[activeSearchResult].scrollIntoView({ block: 'nearest' });
+    });
+    const container = searchInput.closest('.search-container');
+    document.addEventListener('click', e => {
+        if (!container.contains(e.target)) closeWikiSearch();
+    });
+    container.addEventListener('focusout', e => {
+        if (!container.contains(e.relatedTarget)) closeWikiSearch();
+    });
+    document.getElementById('wiki-results').addEventListener('click', e => {
+        if (e.target.closest('[data-search-retry]')) {
+            loadSearchIndex().then(runWikiSearch);
             runWikiSearch();
         }
     });
+}
+
+function closeWikiSearch() {
+    searchOpen = false;
+    const input = document.getElementById('wiki-search');
+    input?.setAttribute('aria-expanded', 'false');
+    input?.removeAttribute('aria-activedescendant');
+    const box = document.getElementById('wiki-results');
+    if (box) {
+        box.hidden = true;
+        box.innerHTML = '<div id="wiki-options" role="listbox" aria-label="Search results"></div>';
+    }
 }
 
 function pageMatchesQuery(page, query) {
@@ -289,13 +362,18 @@ function pageMatchesQuery(page, query) {
 function runWikiSearch() {
     const input = document.getElementById('wiki-search');
     const resultsContainer = document.getElementById('wiki-results');
-    if (!input || !resultsContainer) return;
+    if (!input || !resultsContainer || !searchOpen) return;
+    resultsContainer.hidden = false;
+    input.setAttribute('aria-expanded', 'true');
+    input.removeAttribute('aria-activedescendant');
+    activeSearchResult = -1;
 
     const query = input.value.trim().toLowerCase();
 
-    if (!searchData.length) {
-        resultsContainer.innerHTML = '<div style="padding:10px;">Loading…</div>';
-        loadSearchIndex().then(runWikiSearch);
+    if (searchState !== 'ready') {
+        resultsContainer.innerHTML = '<div id="wiki-options" role="listbox" aria-label="Search results"></div>' + (searchState === 'error'
+            ? '<div class="search-message" role="status">Search is unavailable. <button type="button" data-search-retry>Retry</button></div>'
+            : '<div class="search-message" role="status">Loading…</div>');
         return;
     }
 
@@ -304,23 +382,23 @@ function runWikiSearch() {
         : searchData.filter(page => pageMatchesQuery(page, query));
 
     if (results.length === 0) {
-        resultsContainer.innerHTML = '<div style="padding:10px; font-size:12px; color:#999;">No pages found</div>';
+        resultsContainer.innerHTML = '<div id="wiki-options" role="listbox" aria-label="Search results"></div><div class="search-message" role="status">No pages found</div>';
         return;
     }
 
     const basePath = getWikiBasePath();
 
-    resultsContainer.innerHTML = results.map(page => {
+    resultsContainer.innerHTML = '<div id="wiki-options" role="listbox" aria-label="Search results">' + results.map((page, index) => {
         const cleanUrl = String(page.url).replace(/^\//, '');
-        const catHtml = page.categories?.length
-            ? `<div class="wiki-categories">${page.categories.map(c => `<span class="wiki-cat">${c}</span>`).join('')}</div>`
+        const catHtml = Array.isArray(page.categories) && page.categories.length
+            ? `<div class="wiki-categories">${page.categories.map(c => `<span class="wiki-cat">${escapeHTML(c)}</span>`).join('')}</div>`
             : '';
-        return `<a href="${basePath}${cleanUrl}" class="search-item">
-            <strong>${page.title}</strong>
-            <span>${normalizeSnippet(page.snippet)}</span>
+        return `<a href="${escapeHTML(basePath + cleanUrl)}" class="search-item" id="wiki-result-${index}" role="option" aria-selected="false" tabindex="-1">
+            <strong>${escapeHTML(page.title)}</strong>
+            <span>${escapeHTML(normalizeSnippet(page.snippet))}</span>
             ${catHtml}
         </a>`;
-    }).join('');
+    }).join('') + '</div>';
 }
 
 // ═══════════════════════════════════════════
@@ -370,6 +448,7 @@ document.addEventListener('DOMContentLoaded', function () {
 // ═══════════════════════════════════════════
 
 const pagePreviewCache = new Map();
+const pagePreviewRequests = new Map();
 let previewCardEl = null;
 let hoverTimer = null;
 let hideTimer = null;
@@ -383,6 +462,7 @@ function createPreviewCardDOM() {
     previewCardEl = document.createElement('div');
     previewCardEl.id = 'wiki-link-preview-popup';
     previewCardEl.className = 'wiki-preview-popup';
+    previewCardEl.setAttribute('role', 'tooltip');
     document.body.appendChild(previewCardEl);
 
     previewCardEl.addEventListener('mouseenter', function () {
@@ -421,10 +501,13 @@ function getCleanPath(urlObj) {
 }
 
 async function fetchPagePreviewData(targetUrl) {
-    const fullHref = targetUrl.href;
+    const canonicalUrl = new URL(targetUrl);
+    canonicalUrl.hash = '';
+    const fullHref = canonicalUrl.href;
     if (pagePreviewCache.has(fullHref)) {
         return pagePreviewCache.get(fullHref);
     }
+    if (pagePreviewRequests.has(fullHref)) return pagePreviewRequests.get(fullHref);
 
     const isSameOrigin = targetUrl.origin === window.location.origin || targetUrl.protocol === 'file:';
     if (!isSameOrigin) {
@@ -455,8 +538,12 @@ async function fetchPagePreviewData(targetUrl) {
         image: null
     };
 
+    const request = (async () => {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 15000);
     try {
-        const res = await fetch(fullHref);
+        const res = await fetch(fullHref, { signal: controller.signal });
+        if (!res.ok) throw new Error('Could not load preview: ' + res.status);
         if (res.ok) {
             const htmlText = await res.text();
             const doc = new DOMParser().parseFromString(htmlText, 'text/html');
@@ -504,12 +591,18 @@ async function fetchPagePreviewData(targetUrl) {
                 }
             }
         }
+        pagePreviewCache.set(fullHref, previewData);
     } catch (err) {
         console.warn('[wiki-preview] Fetch failed:', err);
+        previewData.snippet = 'Preview unavailable. Follow the link to open the page.';
+    } finally {
+        clearTimeout(timer);
+        pagePreviewRequests.delete(fullHref);
     }
-
-    pagePreviewCache.set(fullHref, previewData);
     return previewData;
+    })();
+    pagePreviewRequests.set(fullHref, request);
+    return request;
 }
 
 function renderPreviewContent(card, data, isSkeleton = false) {
@@ -524,28 +617,33 @@ function renderPreviewContent(card, data, isSkeleton = false) {
         return;
     }
 
-    const catHtml = data.categories && data.categories.length
-        ? `<div class="wiki-preview-cats">${data.categories.map(c => `<span class="wiki-preview-cat">${c}</span>`).join('')}</div>`
+    const catHtml = Array.isArray(data.categories) && data.categories.length
+        ? `<div class="wiki-preview-cats">${data.categories.map(c => `<span class="wiki-preview-cat">${escapeHTML(c)}</span>`).join('')}</div>`
         : '';
 
-    const imgHtml = data.image
-        ? `<div class="wiki-preview-img-container"><img class="wiki-preview-img" src="${data.image}" alt="${data.title}" onerror="this.parentNode.style.display='none'"></div>`
+    const imageUrl = data.image ? safeWebUrl(data.image) : null;
+    const imgHtml = imageUrl
+        ? `<div class="wiki-preview-img-container"><img class="wiki-preview-img" src="${escapeHTML(imageUrl)}" alt="${escapeHTML(data.title)}"></div>`
         : '';
 
     card.innerHTML = `
         ${imgHtml}
         <div class="wiki-preview-body">
             ${catHtml}
-            <h4 class="wiki-preview-title">${data.title}</h4>
-            <p class="wiki-preview-snippet">${data.snippet}</p>
+            <h4 class="wiki-preview-title">${escapeHTML(data.title)}</h4>
+            <p class="wiki-preview-snippet">${escapeHTML(normalizeSnippet(data.snippet))}</p>
         </div>
     `;
+    card.querySelector('img')?.addEventListener('error', event => {
+        event.target.parentElement.textContent = 'Preview image unavailable.';
+    }, { once: true });
 }
 
 function positionPreviewCard(mouseX, mouseY) {
     if (!previewCardEl) return;
 
-    const cardRect = previewCardEl.getBoundingClientRect();
+    // Use layout dimensions: animated transforms shrink the bounding rectangle.
+    const cardRect = { width: previewCardEl.offsetWidth, height: previewCardEl.offsetHeight };
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
 
@@ -576,11 +674,14 @@ async function showPreviewForAnchor(anchor, posX, posY) {
     const rawHref = anchor.getAttribute('href');
     if (!rawHref || rawHref === '#' || rawHref.startsWith('javascript:')) return;
 
-    const targetUrl = new URL(rawHref, window.location.href);
+    const safeUrl = safeWebUrl(rawHref);
+    if (!safeUrl) return;
+    const targetUrl = new URL(safeUrl);
 
     if (targetUrl.pathname === window.location.pathname && targetUrl.hash) {
         return;
     }
+    targetUrl.hash = '';
 
     currentAnchor = anchor;
     const card = createPreviewCardDOM();
@@ -606,6 +707,9 @@ async function showPreviewForAnchor(anchor, posX, posY) {
 
 function initLinkPreviews() {
     createPreviewCardDOM();
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') hidePreview(); });
+    window.addEventListener('scroll', hidePreview, { passive: true });
+    window.addEventListener('resize', hidePreview);
 
     document.addEventListener('mousemove', function (e) {
         lastMouseX = e.clientX;
@@ -613,13 +717,14 @@ function initLinkPreviews() {
     });
 
     document.addEventListener('mouseover', function (e) {
+        if (!window.matchMedia('(hover: hover)').matches) return;
         const anchor = e.target.closest('a');
         if (!anchor) return;
 
         if (anchor.closest('.wiki-logo-box') || anchor.closest('.search-results-box')) return;
 
         const href = anchor.getAttribute('href');
-        if (!href || href === '#' || href.startsWith('javascript:')) return;
+        if (!href || href.startsWith('#') || !safeWebUrl(href)) return;
 
         if (currentAnchor === anchor) {
             clearTimeout(hideTimer);

@@ -19,8 +19,8 @@
             <span class="wiki-cat">Module</span>
         </div>
 
-        <nav class="wiki-breadcrumb">
-            <a href="/">Home</a> <a href="/pages/shredderhub.html">ShredderHub</a> <span>Blades</span>
+        <nav class="wiki-breadcrumb" aria-label="Breadcrumb">
+            <a href="../../index.html">Home</a> <a href="../../pages/shredderhub.html">ShredderHub</a> <span>Blades</span>
         </nav>
         <div class="this-page-is-related-to">
             <span class="this-page-is-related-to-label">
@@ -31,40 +31,34 @@
                 This page is related to:
             </span>
             <div class="this-page-is-related-to-links">
-                <a href="#">X</a>,
-                <a href="#">Y</a>
+                <a href="materials.html">Materials</a>,
+                <a href="optimisation.html#bladedes">Blade Optimisation</a>
             </div>
         </div>
 
         <p>Blades and their design influence how much damage your shredder can output. Blades have a few factors
             for being good, mainly spacing and CE. This page has information on many things related to blades.</p>
-        <nav class="toc-box">
+        <nav class="toc-box" aria-label="Contents">
             <div class="toc-title">Contents</div>
             <ul>
-                <li>
-                    <a href="#design">1 Blade Design</a>
-                    <ul>
-                        <li><a href="#Modern-Blades">1.1 Modern Blades</a></li>
-                        <li><a href="#Sins">1.2 Sinusoid</a></li>
-                        <!--lol its 1am on my shitpad im not doing this extra work plz next person-->
-                        <li><a href="#Angled-Rockets">1.3 Density</a></li>
-                        <li><a href="#Angled-Rockets">1.4 Efficiency</a></li>
-                        <li><a href="#Angled-Rockets">1.5 Surface Area</a></li>
-                    </ul>
-                </li>
-
-                <li><a href="#Cutter-rules">2 Cutter Rules</a></li>
-                <ul>
-                    <li><a href="#Hover-engines">1.1 Density</a></li>
-                    <li><a href="#Maxmium-Speed">1.2 Maximum Speed</a></li>
-                    <li><a href="#Rocket-engines">1.3 Damage per Second</a></li>
-                    <li><a href="#Angled-Rockets">1.4 Pingspiking</a></li>
-                </ul>
-                <li><a href="#Skybounce">3 Demean</a></li>
-                <ul>
-                    <li><a href="#Hover-engines">1.1 Values</a></li>
-                    <li><a href="#Rocket-engines">1.2 Functionality</a></li>
-                </ul>
+                <li><a href="#design">1 Blade Design</a><ul>
+                    <li><a href="#Modern-Blades">1.1 Modern Blades</a></li>
+                    <li><a href="#Sins">1.2 Sinusoid</a></li>
+                    <li><a href="#scissor">1.3 Scissor Blades</a></li>
+                    <li><a href="#density">1.4 Density</a></li>
+                    <li><a href="#efficiency">1.5 Efficiency</a></li>
+                    <li><a href="#area-coverage">1.6 Area Coverage</a></li>
+                </ul></li>
+                <li><a href="#Cutter-rules">2 Cutter Rules</a><ul>
+                    <li><a href="#minimum-distance">2.1 Minimum Distance</a></li>
+                    <li><a href="#Maxmium-Speed">2.2 Maximum Speed</a></li>
+                    <li><a href="#damage-per-second">2.3 Damage per Second</a></li>
+                    <li><a href="#pingspiking">2.4 Pingspiking</a></li>
+                </ul></li>
+                <li><a href="#demean">3 Demean</a><ul>
+                    <li><a href="#values">3.1 Values</a></li>
+                    <li><a href="#functionality">3.2 Functionality</a></li>
+                </ul></li>
             </ul>
         </nav>
 
@@ -76,7 +70,7 @@
                 <h3>Modern Blades</h3>
                 <div class="wiki-thumb thumb-right">
                     <div class="thumb-inner">
-                        <img src="../../assests/spacedcs.png" alt="a">
+                        <img src="../../assests/spacedcs.png" alt="Spaced cross blade design">
                         <div class="thumb-caption">
                             Example.
                         </div>
@@ -99,7 +93,7 @@
                 <h3>Sinusoid</h3>
                 <div class="wiki-thumb thumb-right">
                     <div class="thumb-inner">
-                        <img src="../../assests/sinusoid.png" alt="a">
+                        <img src="../../assests/sinusoid.png" alt="Sinusoid blade design">
                         <div class="thumb-caption">
                             Sinusoid Blade.
                         </div>
@@ -114,27 +108,27 @@
                     sinusoids. This uses way too many blocks and can make the blade dense enough to be pingspiked.</p>
             </section>
             <section>
-                <h3>Scissor Blades</h3>
+                <h3 id="scissor">Scissor Blades</h3>
                 <p>Scissor blades as they're name suggests is the idea of having blades close in on them self like scissors. They have been proven to decrease flings and increase damage.</p>
                 <!--AHHH AHHH AHH AHHH AHH WHY ARE YOU SCREAMING IN M FACE AHH AHH HAHHH AHHHH -->
                 <!-- this is so keyed slojak jarvis marge geeeeeeeeg-->
                 <p>SOMEONE DO SOMETRHING IM KGOKING TO KBEBD</p>
             </section>
-            <h3>Density</h3>
+            <h3 id="density">Density</h3>
             <p></p>
-            <h3>Efficiency</h3>
+            <h3 id="efficiency">Efficiency</h3>
             <p></p>
-            <h3>Area Coverage</h3>
+            <h3 id="area-coverage">Area Coverage</h3>
             <p></p>
         </article>
 
-        <article id="#Cutter-rules"></article>
+        <article id="Cutter-rules">
         <div style="height: 80px;"></div>
         <h2>Cutter Rules</h2>
         <p>Cutter blocks follow a set of rules, both scripted and naturally occouring.</p>
 
 
-        <h3>Minimum Distance</h3>
+        <h3 id="minimum-distance">Minimum Distance</h3>
         <p>Cutters have a minimum distance rule, this prevents redundant cutters and side by side cutters.</p>
 
         <section id="Maxmium-Speed">
@@ -150,7 +144,7 @@
                 factor of deciding the maxmium speed will always be your ping.</p>
         </section>
 
-        <h3>Damage per Second</h3>
+        <h3 id="damage-per-second">Damage per Second</h3>
         <p>When a cutter deals damage, it deactivates for 0.1 seconds. This prevents cutters from just dealing
             infinite
             damage and instantly pingspiking.
@@ -162,14 +156,14 @@
             With 1 motor demean, the blade will spin <span class="wiki-stat-number">45°</span> per tick.
             The DPS of a blade depends on the shape and demean settings.</p>
 
-        <h4>Example: a Flat Blade <span class="wiki-stat-number">(15 h/s)</span> has half the DPS of a Cross Blade
+        <p class="wiki-detail">Example: a Flat Blade <span class="wiki-stat-number">(15 h/s)</span> has half the DPS of a Cross Blade
             <span class="wiki-stat-number">(30 h/s)</span> when using <span class="wiki-stat-number">15π</span>
             demean.
-        </h4>
+        </p>
 
 
 
-        <h3>Pingspiking</h3>
+        <h3 id="pingspiking">Pingspiking</h3>
         <p>When your cutters interact with an excessive amount of blocks, affected by density of blade and target,
             your
             ping can spike up with no limit.
@@ -179,37 +173,37 @@
         </article>
 
 
-        <h2>Demean</h2>
+        <h2 id="demean">Demean</h2>
         <p>Demean is a method of boosting the damage of cutters in a blade. This is done through a calculated MotorSpeed
             that aligns a specific amount of motor rotation with ingame ticks.
             The exact rotation needed for a blade is calculated through a few steps.</p>
 
-        <h4>Roblox operates with the <a href=https://create.roblox.com/docs/physics>physics</a> engine
+        <p class="wiki-detail">Roblox operates with the <a href=https://create.roblox.com/docs/physics>physics</a> engine
             running at a maximum of <span class="wiki-keyword-glow">60hz</span> (like frames per second) making the
             optimal fps, FPS ≥ 60.
-            This also increases the value of <a href=../../shreds/optimisation.html>Optimisation</a></h4>
+            This also increases the value of <a href="optimisation.html">Optimisation</a></p>
 
-        <h4>To find the correct MotorSpeed for a 4 sided blade, this equation is used <span
+        <p class="wiki-detail">To find the correct MotorSpeed for a 4 sided blade, this equation is used <span
                 class="wiki-stat-number">(2π×60)÷(360÷45)</span>. meaning demean is <span
-                class="wiki-stat-number">15π</span> or <span class="wiki-stat-number">47.124</span>.</h4>
+                class="wiki-stat-number">15π</span> or <span class="wiki-stat-number">47.124</span>.</p>
 
-        <h4>To find the MotorSpeed for a 3 sided "tri blade", the equation <span
+        <p class="wiki-detail">To find the MotorSpeed for a 3 sided "tri blade", the equation <span
                 class="wiki-stat-number">(2π×60)÷(360÷60)</span> is used. The answer, <span
                 class="wiki-stat-number">20π</span>, cannot fit within a singular motor. The MotorSpeed limit is 50, 20π
             is <span class="wiki-stat-number">~62.832</span>.
             The fix to this is 2x Demean, which stacks the speed of two motors. This means the correct value for the
-            motors, divided across the 2 motors, is <span class="wiki-stat-number">31.416</span>.</h4>
+            motors, divided across the 2 motors, is <span class="wiki-stat-number">31.416</span>.</p>
 
-        <h4>The optimal MotorTorque value for blades, tested over 1000 times with demean, is <span
-                class="wiki-stat-number">0.63</span>.</h4>
+        <p class="wiki-detail">The optimal MotorTorque value for blades, tested over 1000 times with demean, is <span
+                class="wiki-stat-number">0.63</span>.</p>
 
-        <h4>To have a better effect, spin backwards to make it capable of pulling targets into itself. Forwards will
-            have a reversed effect.</h4>
+        <p class="wiki-detail">To have a better effect, spin backwards to make it capable of pulling targets into itself. Forwards will
+            have a reversed effect.</p>
 
         <p>In summary, a cross blade</p>
-        <h3>Values</h3>
+        <h3 id="values">Values</h3>
         <p></p>
-        <h3>Functionality</h3>
+        <h3 id="functionality">Functionality</h3>
         <p></p>
 
     </main>

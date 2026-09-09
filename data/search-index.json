@@ -24,7 +24,7 @@
     "title": "Ask A Pro",
     "tags": ["help", "discord", "questions", "support"],
     "snippet": "Get help from experienced shredder players on Discord.",
-    "url": "askapro.html",
+    "url": "pages/askapro.html",
     "categories": ["Help", "Community"]
   },
   {
@@ -49,7 +49,7 @@
     "categories": ["Shredders", "Module"]
   },
   {
-    "title": "Physics Priority Distribituion",
+    "title": "Physics Priority Distribution",
     "tags": ["tech", "engine", "ppd", "6x"],
     "snippet": "Ropefuel, engine, roblox mechanics, 6x",
     "url": "pages/tech/ppd.html",
@@ -120,7 +120,7 @@
   },
   {
     "title": "Health",
-    "tags": ["weld", "welding", "skeleton", "skeletonisation", "angle", "compression", "invincible"],
+    "tags": ["health", "redundancy", "constraints", "gamblecore", "gbc"],
     "snippet": "Health is a measurement of how many hits your shredder can take without being destroyed.",
     "url": "pages/shreds/health.html",
     "categories": ["Shredders", "Enhancement"]
@@ -131,5 +131,26 @@
     "snippet": "Guide and explanation on the gyro core and it's variants.",
     "url": "pages/shreds/gyrocore.html",
     "categories": ["Shredders", "Variant"]
+  },
+  {
+    "title": "History Portal",
+    "tags": ["history", "chronology", "eras"],
+    "snippet": "Explore shredder history by era.",
+    "url": "pages/historyportal.html",
+    "categories": ["History"]
+  },
+  {
+    "title": "Registry",
+    "tags": ["registry", "registery", "community"],
+    "snippet": "Search the community registry.",
+    "url": "pages/registery.html",
+    "categories": ["Community"]
+  },
+  {
+    "title": "Shredder History (Draft)",
+    "tags": ["history", "origins", "missiles"],
+    "snippet": "Draft notes on the origins of shredders. This article is unfinished.",
+    "url": "pages/history/historypage.html",
+    "categories": ["History", "Draft"]
   }
 ]
