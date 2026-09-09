@@ -19,20 +19,14 @@
             <p class="history-portal-eyebrow">Portal</p>
             <h1 class="wiki-page-title">History Portal</h1>
             <p class="wiki-lead history-portal-lead">
-                Welcome to the history wing of the wiki — chronology, eras, and links to the rest of the site.
-                Eras below are placeholders until real events are written in.
+                The history of shredders and related things, categorised under the main leader at the time. <span class="mini-note--text">there were no leaders during proto shredders, only exilir8 making shredders</span>
             </p>
         </header>
 
         <nav class="wiki-breadcrumb" aria-label="Breadcrumb">
-            <a href="../index.html">Main Page</a>
+            <a href="/index.html">Main Page</a>
             <span>History Portal</span>
         </nav>
-
-        <div class="wiki-categories">
-            <span class="wiki-cat">History</span>
-            <span class="wiki-cat">Portals</span>
-        </div>
 
         <div class="history-portal-layout">
             <div class="history-portal-main">
@@ -43,226 +37,84 @@
                         <h2 class="history-chrono-heading" id="chrono-heading">Chronology</h2>
 
                         <div class="history-chrono-unit">
-                            <div class="history-era-pill" role="tablist" aria-label="Era I categories"
-                                id="history-chrono-tablist"></div>
+                            <div class="history-era-pill" role="tablist" aria-label="Era I categories">
+                                <button type="button" role="tab" class="history-era-tab history-era-name--1 is-active"
+                                    id="chrono-tab-proto" data-chrono-key="proto" aria-selected="true"
+                                    aria-controls="history-chrono-events">Proto-Shredders</button>
+                                <span class="history-chrono-dot" aria-hidden="true">•</span>
+                                <button type="button" role="tab" class="history-era-tab history-era-name--2"
+                                    id="chrono-tab-jannu" data-chrono-key="jannu07" aria-selected="false"
+                                    aria-controls="history-chrono-events">Jannu07</button>
+                                <span class="history-chrono-dot" aria-hidden="true">•</span>
+                                <button type="button" role="tab" class="history-era-tab history-era-name--3"
+                                    id="chrono-tab-duckless" data-chrono-key="duckless" aria-selected="false"
+                                    aria-controls="history-chrono-events">Duckless</button>
+                                <span class="history-chrono-dot" aria-hidden="true">•</span>
+                                <button type="button" role="tab" class="history-era-tab history-era-name--4"
+                                    id="chrono-tab-glitch" data-chrono-key="glitch" aria-selected="false"
+                                    aria-controls="history-chrono-events">Glitch</button>
+                                <span class="history-chrono-dot" aria-hidden="true">•</span>
+                                <button type="button" role="tab" class="history-era-tab history-era-name--5"
+                                    id="chrono-tab-xhunter" data-chrono-key="xhunter" aria-selected="false"
+                                    aria-controls="history-chrono-events">Xhunter</button>
+                                <span class="history-chrono-dot" aria-hidden="true">•</span>
+                                <button type="button" role="tab" class="history-era-tab history-era-name--6"
+                                    id="chrono-tab-kameon" data-chrono-key="kameon" aria-selected="false"
+                                    aria-controls="history-chrono-events">Kameon</button>
+                            </div>
                             <p class="history-event-chain" id="history-chrono-events" role="tabpanel"
-                                aria-labelledby="chrono-tab-era"></p>
+                                aria-labelledby="chrono-tab-proto"></p>
                         </div>
 
                     </div>
                 </section>
-
-            </div>
-
-            <aside class="wiki-block history-portal-aside" aria-labelledby="other-portals-heading">
-                <div class="wiki-block-head" id="other-portals-heading">Other Portals</div>
-                <div class="wiki-block-body">
-                    <nav class="history-portal-nav" aria-label="Other wiki portals">
-                        <a class="history-portal-nav-link" href="../index.html">
-                            <span class="history-portal-nav-label">Main</span>
-                            <strong>Main Page</strong>
-                        </a>
-                        <a class="history-portal-nav-link" href="registery.html">
-                            <span class="history-portal-nav-label">Index</span>
-                            <strong>Registry</strong>
-                        </a>
-                        <a class="history-portal-nav-link" href="shredderhub.html">
-                            <span class="history-portal-nav-label">Builds</span>
-                            <strong>Shredder Hub</strong>
-                        </a>
-                        <a class="history-portal-nav-link" href="techmanifest.html">
-                            <span class="history-portal-nav-label">Tech</span>
-                            <strong>Tech Manifest</strong>
-                        </a>
-                    </nav>
-                </div>
-            </aside>
-        </div>
-
     </main>
 
     <footer id="wiki-footer"></footer>
     <script src="../js/skidunited.js"></script>
     <script>
         (function () {
-            const CHRONO_CATEGORIES = [
-                {
-                    key: 'era',
-                    id: 'chrono-tab-era',
-                    label: 'Era I',
-                    colorClass: 'history-era-name--1',
-                    events: [
-                        { label: 'Placeholder Origins Event', href: '#' },
-                        { label: 'Placeholder First Clips', href: '#' },
-                        { label: 'Placeholder Oral History', href: '#' },
-                        { label: 'Placeholder Pre-Meta Build', href: '#' },
-                        { label: 'Placeholder Discord Log', href: '#' },
-                        { label: 'Placeholder Early Shred', href: '#' },
-                        { label: 'Placeholder Lost Page', href: '#' }
-                    ]
-                },
-                {
-                    key: 'leadA',
-                    id: 'chrono-tab-lead-a',
-                    label: 'Placeholder Lead',
-                    colorClass: 'history-era-name--2',
-                    events: [
-                        { label: 'Placeholder Foundation Event', href: '#' },
-                        { label: 'Placeholder Massless Standard', href: '#' },
-                        { label: 'Placeholder Gyro Doctrine', href: '#' },
-                        { label: 'Placeholder Writing Style Shift', href: '#' },
-                        { label: 'Placeholder Module Draft', href: '#' },
-                        { label: 'Placeholder Hub Outline', href: '#' },
-                        { label: 'Placeholder Archive Note', href: '#' }
-                    ]
-                },
-                {
-                    key: 'leadB',
-                    id: 'chrono-tab-lead-b',
-                    label: 'Placeholder Lead',
-                    colorClass: 'history-era-name--3',
-                    events: [
-                        { label: 'Placeholder Expansion Event', href: '#' },
-                        { label: 'Placeholder Tech Leak', href: '#' },
-                        { label: 'Placeholder Manifest Entry', href: '#' },
-                        { label: 'Placeholder Wiki Redesign', href: '#' },
-                        { label: 'Placeholder Contributor Wave', href: '#' },
-                        { label: 'Placeholder Post-Release Gap', href: '#' },
-                        { label: 'Placeholder Patched Tech', href: '#' }
-                    ]
-                },
-                {
-                    key: 'leadC',
-                    id: 'chrono-tab-lead-c',
-                    label: 'Placeholder Lead',
-                    colorClass: 'history-era-name--4',
-                    events: [
-                        { label: 'Placeholder Community Split', href: '#' },
-                        { label: 'Placeholder Registry Entry', href: '#' },
-                        { label: 'Placeholder Ban Wave', href: '#' },
-                        { label: 'Placeholder Alt Account Saga', href: '#' },
-                        { label: 'Placeholder Server Migration', href: '#' },
-                        { label: 'Placeholder Drama Thread', href: '#' },
-                        { label: 'Placeholder Reconciliation', href: '#' }
-                    ]
-                },
-                {
-                    key: 'leadD',
-                    id: 'chrono-tab-lead-d',
-                    label: 'Placeholder Lead',
-                    colorClass: 'history-era-name--5',
-                    events: [
-                        { label: 'Placeholder Meta Shift', href: '#' },
-                        { label: 'Placeholder Blade Update', href: '#' },
-                        { label: 'Placeholder Core Rework', href: '#' },
-                        { label: 'Placeholder Speed Record', href: '#' },
-                        { label: 'Placeholder Tournament Arc', href: '#' },
-                        { label: 'Placeholder Retired Build', href: '#' },
-                        { label: 'Placeholder Patch Notes', href: '#' }
-                    ]
-                },
-                {
-                    key: 'leadE',
-                    id: 'chrono-tab-lead-e',
-                    label: 'Placeholder Lead',
-                    colorClass: 'history-era-name--6',
-                    events: [
-                        { label: 'Placeholder Lore Fragment', href: '#' },
-                        { label: 'Placeholder Fan Theory', href: '#' },
-                        { label: 'Placeholder Deleted Video', href: '#' },
-                        { label: 'Placeholder Meme Cycle', href: '#' },
-                        { label: 'Placeholder Inside Joke', href: '#' },
-                        { label: 'Placeholder Callback Event', href: '#' },
-                        { label: 'Placeholder Footnote', href: '#' }
-                    ]
-                },
-                {
-                    key: 'leadF',
-                    id: 'chrono-tab-lead-f',
-                    label: 'Placeholder Lead',
-                    colorClass: 'history-era-name--7',
-                    events: [
-                        { label: 'Placeholder Dev Leak', href: '#' },
-                        { label: 'Placeholder Balance Patch', href: '#' },
-                        { label: 'Placeholder Exploit Report', href: '#' },
-                        { label: 'Placeholder Hotfix Thread', href: '#' },
-                        { label: 'Placeholder Rollback Note', href: '#' },
-                        { label: 'Placeholder QA Finding', href: '#' },
-                        { label: 'Placeholder Silent Update', href: '#' }
-                    ]
-                },
-                {
-                    key: 'leadG',
-                    id: 'chrono-tab-lead-g',
-                    label: 'Placeholder Lead',
-                    colorClass: 'history-era-name--8',
-                    events: [
-                        { label: 'Placeholder Creator Spotlight', href: '#' },
-                        { label: 'Placeholder Build Showcase', href: '#' },
-                        { label: 'Placeholder Tutorial Drop', href: '#' },
-                        { label: 'Placeholder Collab Project', href: '#' },
-                        { label: 'Placeholder Featured Clip', href: '#' },
-                        { label: 'Placeholder Guest Stream', href: '#' },
-                        { label: 'Placeholder Community Vote', href: '#' }
-                    ]
-                },
-                {
-                    key: 'leadH',
-                    id: 'chrono-tab-lead-h',
-                    label: 'Placeholder Lead',
-                    colorClass: 'history-era-name--9',
-                    events: [
-                        { label: 'Placeholder Map Discovery', href: '#' },
-                        { label: 'Placeholder Secret Area', href: '#' },
-                        { label: 'Placeholder Easter Egg', href: '#' },
-                        { label: 'Placeholder Speedrun Route', href: '#' },
-                        { label: 'Placeholder Glitch Hunt', href: '#' },
-                        { label: 'Placeholder World Record', href: '#' },
-                        { label: 'Placeholder Route Revision', href: '#' }
-                    ]
-                },
-                {
-                    key: 'leadI',
-                    id: 'chrono-tab-lead-i',
-                    label: 'Placeholder Lead',
-                    colorClass: 'history-era-name--10',
-                    events: [
-                        { label: 'Placeholder Policy Update', href: '#' },
-                        { label: 'Placeholder Moderation Log', href: '#' },
-                        { label: 'Placeholder Appeals Case', href: '#' },
-                        { label: 'Placeholder Rule Rewrite', href: '#' },
-                        { label: 'Placeholder Staff Rotation', href: '#' },
-                        { label: 'Placeholder Transparency Post', href: '#' },
-                        { label: 'Placeholder Charter Revision', href: '#' }
-                    ]
-                },
-                {
-                    key: 'leadJ',
-                    id: 'chrono-tab-lead-j',
-                    label: 'Placeholder Lead',
-                    colorClass: 'history-era-name--11',
-                    events: [
-                        { label: 'Placeholder Trade Offer', href: '#' },
-                        { label: 'Placeholder Market Spike', href: '#' },
-                        { label: 'Placeholder Rare Part Hunt', href: '#' },
-                        { label: 'Placeholder Dupe Scandal', href: '#' },
-                        { label: 'Placeholder Economy Patch', href: '#' },
-                        { label: 'Placeholder Vendor Change', href: '#' },
-                        { label: 'Placeholder Price Floor', href: '#' }
-                    ]
-                }
-            ];
+            const CHRONO_EVENTS = {
+                proto: [
+                    { label: 'Missiles', href: '#' },
+                    { label: 'Early Mouse Aim', href: '#' },
+                    { label: 'Pre Meta Builds', href: '#' },
+                    { label: 'Gen 1 "Shredder Bugs"', href: '#' }
+                ],
+                jannu07: [
+                    { label: 'Omni Bug Laboratories', href: '#' },
+                    { label: 'Gen 2 Shredders', href: '#' },
+                    { label: 'Warpers', href: '#' },
+                    { label: 'ANOs', href: '#' }
+                ],
+                duckless: [
+                    { label: 'CSA', href: '#' },
+                    { label: 'Warp League', href: '#' },
+                    { label: 'Gen 3-4 Shredders', href: '#' },
+                    { label: 'Destruction of AST', href: '#' }
+                ],
+                glitch: [
+                    { label: 'SFC', href: '#' },
+                    { label: 'Gen 5-6 Shredders', href: '#' },
+                    { label: 'NSE/SR', href: '#' }
+                ],
+                xhunter: [
+                    { label: 'SC', href: '#' },
+                    { label: 'Gen 7 Shredders', href: '#' },
+                ],
+                kameon: [
+                    { label: 'NSG/SR', href: '#' },
+                    { label: 'Destruction of SC', href: '#' },
+                    { label: 'Gen 8-9 Shredders', href: '#' }
+                ]
+            };
 
             function renderChronoChain(key) {
                 const panel = document.getElementById('history-chrono-events');
                 const tabs = document.querySelectorAll('.history-era-tab');
                 if (!panel) return;
 
-                const category = CHRONO_CATEGORIES.find(function (item) {
-                    return item.key === key;
-                });
-                const items = category ? category.events : [];
-
+                const items = CHRONO_EVENTS[key] || [];
                 panel.innerHTML = items.map(function (item, index) {
                     const link = '<a href="' + item.href + '">' + item.label + '</a>';
                     if (index === 0) return link;
@@ -279,24 +131,7 @@
                 });
             }
 
-            function buildChronoTabs() {
-                const tablist = document.getElementById('history-chrono-tablist');
-                if (!tablist) return;
-
-                tablist.innerHTML = CHRONO_CATEGORIES.map(function (category, index) {
-                    const active = index === 0;
-                    const button = '<button type="button" role="tab" class="history-era-tab ' +
-                        category.colorClass + (active ? ' is-active' : '') + '" id="' + category.id +
-                        '" data-chrono-key="' + category.key + '" aria-selected="' + (active ? 'true' : 'false') +
-                        '" aria-controls="history-chrono-events">' + category.label + '</button>';
-                    if (index === 0) return button;
-                    return '<span class="history-chrono-dot" aria-hidden="true">•</span>' + button;
-                }).join('');
-            }
-
             function initHistoryChrono() {
-                buildChronoTabs();
-
                 const tabs = document.querySelectorAll('.history-era-tab');
                 if (!tabs.length) return;
 
@@ -306,7 +141,7 @@
                     });
                 });
 
-                renderChronoChain(CHRONO_CATEGORIES[0].key);
+                renderChronoChain('proto');
             }
 
             if (document.readyState === 'loading') {
