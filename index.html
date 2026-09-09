@@ -4,166 +4,215 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main Page | Neo Shredder Group WIKI</title>
-    <meta name="description" content="tech and shredders wow.">
+    <title>Neo Shredder Group Wiki — Plane Crazy Shredders</title>
+    <meta name="description" content="The community wiki for Plane Crazy shredders — guides for massless, gyro cores, armor, blades, movement, tech and the history of the Neo Shredder Group.">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body class="wiki-body wiki-body--nightsky">
+<body class="wiki-body wiki-body--nightsky homepage">
 
     <div id="wiki-nav"></div>
 
     <main class="wiki-container">
-        <h1 class="wiki-page-title">Main Page</h1>
 
-        <nav class="wiki-breadcrumb" aria-label="Breadcrumb">
-            <span>Main Page</span>
-        </nav>
+        <!-- ══════════════ HERO ══════════════ -->
+        <header class="hero">
+            <span class="hero__badge"><span class="pulse-dot" aria-hidden="true"></span>Plane Crazy Shredder Wiki</span>
+            <h1 class="hero__title">The Neo Shredder Group Wiki</h1>
+            <p class="hero__lead">
+                Guides, history and public tech for Plane Crazy shredders — from massless and gyro cores to armor,
+                blades and everything in between.
+            </p>
 
-        <p class="wiki-lead">Welcome to the Neo shredder group wiki. A wiki for guides, history, shredders and public
-            tech and
-            whatever is inbetween them or <a href="https://soyjakwiki.org/Or_something"
-                style="color: inherit; text-decoration: none; cursor: default;">
-                or something
-            </a>.</p>
+            <button type="button" class="hero__search" data-open-search aria-label="Search the wiki">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+                <span>Search the wiki…</span>
+                <span class="kbd-hint">Ctrl K</span>
+            </button>
 
+            <div class="hero__chips">
+                <a class="hero__chip" href="pages/shreds/massless.html">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1V17h6v-.2c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"/><path d="M9 21h6"/></svg>
+                    New here? Start with Massless
+                </a>
+                <a class="hero__chip" href="pages/shredderhub.html">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21v-6h6v6"/></svg>
+                    Browse the Shredder Hub
+                </a>
+                <a class="hero__chip" href="https://discord.gg/89gEYNR7zd" target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+                    Join the Discord
+                </a>
+            </div>
+        </header>
 
+        <!-- ══════════════ EXPLORE ══════════════ -->
+        <section class="home-section">
+            <div class="home-section__head">
+                <h2>Explore the wiki</h2>
+                <span class="home-section__hint">pick a portal to dive in</span>
+            </div>
+            <div class="home-portal-grid">
+                <a class="home-portal" href="pages/shredderhub.html">
+                    <span class="home-portal__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 3 7v10l9 5 9-5V7z"/><path d="M3 7l9 5 9-5M12 22V12"/></svg></span>
+                    <span class="home-portal__title">Shredder Hub</span>
+                    <span class="home-portal__desc">Variants, modules and enhancements — a meta overview of shredder builds.</span>
+                </a>
+                <a class="home-portal" href="pages/techmanifest.html">
+                    <span class="home-portal__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 3 14h7l-1 8 10-12h-7z"/></svg></span>
+                    <span class="home-portal__title">Tech Manifest</span>
+                    <span class="home-portal__desc">The complete manifest of known techs and authorized leaks.</span>
+                </a>
+                <a class="home-portal" href="pages/historyportal.html">
+                    <span class="home-portal__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
+                    <span class="home-portal__title">History Portal</span>
+                    <span class="home-portal__desc">Chronology, eras and the story of the Neo Shredder Group.</span>
+                </a>
+                <a class="home-portal" href="pages/registery.html">
+                    <span class="home-portal__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+                    <span class="home-portal__title">Registry</span>
+                    <span class="home-portal__desc">The community registry. Read at your own risk.</span>
+                </a>
+                <a class="home-portal" href="pages/askapro.html">
+                    <span class="home-portal__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-9 8.4 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.2a8.38 8.38 0 0 1-1.9-5.3 8.5 8.5 0 0 1 8.5-8.5 8.38 8.38 0 0 1 9.5 8.5z"/><path d="M8.5 11.5h7M8.5 14.5h4"/></svg></span>
+                    <span class="home-portal__title">Ask a Pro</span>
+                    <span class="home-portal__desc">Debugging guide and how to get real help fast.</span>
+                </a>
+            </div>
+        </section>
 
-        <div class="wiki-blocks-row">
-            <div class="wiki-block">
-                <div class="wiki-block-head">The Glitch.</div>
-                <div class="wiki-block-body wiki-block-body--compact">
-                    <div class="wiki-thumb">
-                        <div class="thumb-inner">
-                            <img src="assests/Amazingg.gif" alt="Wiki showcase animation">
+        <!-- ══════════════ QUICK START ══════════════ -->
+        <section class="home-section">
+            <div class="home-section__head">
+                <h2>Quick start</h2>
+                <span class="home-section__hint">three steps to your first working shredder</span>
+            </div>
+            <div class="quickstart">
+                <div class="quickstart__step">
+                    <h3>Understand massless</h3>
+                    <p>Massless is the core function of every shredder — without it, your blades won't spin right.
+                        Start with the <a href="pages/shreds/massless.html">Massless &amp; Staging</a> guide.</p>
+                </div>
+                <div class="quickstart__step">
+                    <h3>Pick your core</h3>
+                    <p>Gyro cores, OGs, balljoints and omnis are the four main shredder types. Read up on
+                        <a href="pages/shreds/gyrocore.html">Gyro Cores</a> to learn what fits your build.</p>
+                </div>
+                <div class="quickstart__step">
+                    <h3>Armor it, then shred</h3>
+                    <p>Blades do the cutting, but <a href="pages/shreds/armorinfo.html">armor</a> decides who survives.
+                        Learn pushback, thickness and angling before you take it to PvP.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════════ FEATURED PAGES ══════════════ -->
+        <section class="home-section">
+            <div class="home-section__head">
+                <h2>Featured guides</h2>
+                <span class="home-section__hint">the pages beginners read first</span>
+            </div>
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Massless &amp; Staging</h3>
+                    <p>How massless works, why your motor2 needs torque, and how to stage blades without leaving welds behind.</p>
+                    <a href="pages/shreds/massless.html">Read the guide</a>
+                </div>
+                <div class="card">
+                    <h3>Gyro Cores</h3>
+                    <p>Rigid vs non-rigid, 1x1 vs 1x1.5, and how axis locks keep your core spinning true.</p>
+                    <a href="pages/shreds/gyrocore.html">Read the guide</a>
+                </div>
+                <div class="card">
+                    <h3>Armor Info</h3>
+                    <p>Pushback, thickness and angling — the armor logic that keeps your shredder alive.</p>
+                    <a href="pages/shreds/armorinfo.html">Read the guide</a>
+                </div>
+                <div class="card">
+                    <h3>Blades</h3>
+                    <p>Design rules, spacing and cutters. What actually makes a blade efficient.</p>
+                    <a href="pages/shreds/blades.html">Read the guide</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════════ RECENTLY UPDATED ══════════════ -->
+        <section class="home-section">
+            <div class="home-section__head">
+                <h2>Recently updated</h2>
+                <span class="home-section__hint">freshly written or rewritten pages</span>
+            </div>
+            <ul class="home-recent">
+                <li><a href="pages/shreds/massless.html"><span class="recent-dot" aria-hidden="true"></span><span class="recent-title">Massless &amp; Staging</span><span class="recent-meta">recently</span></a></li>
+                <li><a href="pages/shreds/gyrocore.html"><span class="recent-dot" aria-hidden="true"></span><span class="recent-title">Gyro Cores</span><span class="recent-meta">recently</span></a></li>
+                <li><a href="pages/shreds/hyperm2.html"><span class="recent-dot" aria-hidden="true"></span><span class="recent-title">Hyper Motor2s</span><span class="recent-meta">recently</span></a></li>
+                <li><a href="pages/shreds/skeletonisation.html"><span class="recent-dot" aria-hidden="true"></span><span class="recent-title">Skeletonisation</span><span class="recent-meta">recently</span></a></li>
+                <li><a href="pages/tech/ppd.html"><span class="recent-dot" aria-hidden="true"></span><span class="recent-title">Physics Priority Distribution</span><span class="recent-meta">recently</span></a></li>
+                <li><a href="pages/tech/voidtech.html"><span class="recent-dot" aria-hidden="true"></span><span class="recent-title">Void Tech</span><span class="recent-meta">recently</span></a></li>
+            </ul>
+        </section>
+
+        <!-- ══════════════ SHOWCASE ══════════════ -->
+        <section class="home-section">
+            <div class="home-showcase">
+                <figure>
+                    <img src="assests/Amazingg.gif" alt="The Glitch — wiki showcase animation">
+                    <figcaption>The Glitch.</figcaption>
+                </figure>
+                <div>
+                    <h3>This wiki is a living document</h3>
+                    <p>
+                        The Neo Shredder Group wiki is written and maintained by the community for the community.
+                        Tech gets patched, metas shift and pages get rewritten — so check back often, and
+                        <a href="https://discord.gg/89gEYNR7zd" target="_blank" rel="noopener noreferrer">join the Discord</a>
+                        if you want to help write, test or correct.
+                    </p>
+                    <div class="callout callout-note"><strong>Note:</strong> A wall of text can't fix everything — real
+                        questions get real answers faster in the help channel.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════════ CONTRIBUTOR STATUS ══════════════ -->
+        <details class="wiki-collapse">
+            <summary>Contributor status &amp; to-do list</summary>
+            <div class="wiki-collapse__body">
+                <div class="wiki-block-grid">
+                    <div class="wiki-block">
+                        <div class="wiki-block-head">To-do for contributors</div>
+                        <div class="wiki-block-body">
+                            <ul>
+                                <li>Blades: outdated — missing density efficiency, area coverage, triangle blades and dampblade.</li>
+                                <li>Health: unfinished, GBC added.</li>
+                                <li>Movement Mechanics: unfinished and outdated (aerodrag).</li>
+                                <li>Omnis: filler page, completely unfinished.</li>
+                                <li>Optimisation: unfinished.</li>
+                                <li>Void tech: unfinished.</li>
+                                <li>ppd: LMFAO you think this is gonna get finished? LOL STFU.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="wiki-block">
+                        <div class="wiki-block-head">Finished (probably check before release)</div>
+                        <div class="wiki-block-body">
+                            <ul>
+                                <li>Skeletonisation: finished? only needs polishing.</li>
+                                <li>Hyper M2s: finished.</li>
+                                <li>Massless: finished.</li>
+                                <li>Materials: finished? could improve by linking pages before it.</li>
+                                <li>Gyro Core: finished, broken video removed lolz.</li>
+                                <li>Armor info: finished? made before fabric went public but fabric has been added.</li>
+                                <li>Axis-lock: finished, could benefit from polishing.</li>
+                                <li>OGs: finished? I think.</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
+                <p><strong>Unstarted:</strong> tech — rd and ard, nan demean, FPI, assembly fling, exponential 1–3,
+                    patched techs (forceclip, longdrag and their writeups). History — post release shit.</p>
+                <p>If there is a mistake in the wiki, contact one of the main writers (discord ids in the credits).</p>
             </div>
-            <div class="wiki-block">
-                <div class="wiki-block-head">Portals</div>
-                <div class="wiki-portal-grid">
-                    <div class="wiki-portal">
-                        <h3>Shredder Hub</h3>
-                        <p>Info on shredders</p>
-                        <a href="pages/shredderhub.html">Explore →</a>
-                    </div>
-                    <div class="wiki-portal">
-                        <h3>Tech Manifest</h3>
-                        <p>Complete manifest</p>
-                        <a href="pages/techmanifest.html">Explore →</a>
-                    </div>
-                    <div class="wiki-portal">
-                        <h3>History Portal</h3>
-                        <p>History, Duh...</p>
-                        <a href="pages/historyportal.html">Explore →</a>
-                    </div>
-
-                </div>
-            </div>
-
-
-
-
-
-
-        </div>
-
-        <div class="wiki-block-grid">
-            <div class="wiki-block">
-                <div class="wiki-block-head">To-Do List for Contributors</div>
-                <div class="wiki-block-body">
-                    <ul>
-                        <li>Blades: Unfinished-outdated, doesnt have density efficency area coverage and doesnt
-                            mention
-                            triangle blades and there correct application doesnt have dampblade</li>
-                        <li>Health: unfinished, GBC added</li>
-                        <li>Movement Mechanics: unfinished and outdated. aerodrag</li>
-                        <li>Omnis: FILLER PAGE COMPLETELY UNFINISHED</li>
-                        <li>Optimisation: unfinished</li>
-                        <li>Void tech: unfinished</li>
-                        <li>ppd: LMFAO YOU THINK THIS IS GONNA GET FINISHED LOL LOL STFU</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="wiki-block">
-                <div class="wiki-block-head">Finished (probably check before release)</div>
-                <div class="wiki-block-body">
-                    <ul>
-                        <li>Skeletanazation: finsihed? only needs polishing or a little more info.</li>
-                        <li>hyper m2's: finished</li>
-                        <li>Massless: finished</li>
-                        <li>Materials: finished?, only way i can see to improve it would probably go other pages
-                            before
-                            it</li>
-                        <li>Gyrocore: Finsihed, broken video removed lolz</li>
-                        <li>Armor info: Finished?, made before fabric was public but fabric has been added</li>
-                        <li>Axis-lock: finished could benfit from some polishing?</li>
-                        <li>Ogs: Finished? i think</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="wiki-block">
-            <div class="wiki-block-head">Unstarted Stuff</div>
-            <div class="wiki-block-body">
-                <ul>
-                    <li><strong>Tech</strong>
-                        <ul>
-                            <li>rd and ard</li>
-                            <li>nan demean? grouped with nan page or fpi stuff???</li>
-                            <li>Fpi shit or smth</li>
-                            <li>nan shit or smth</li>
-                            <li>assembly fling?</li>
-                            <li>expoential 1-3?</li>
-                            <li>patched techs (forceclip, longdrag and there writeups)</li>
-                        </ul>
-                    </li>
-                    <li><strong>History</strong>
-                        <ul>
-                            <li>post release shit bahai</li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="wiki-block">
-            <div class="wiki-block-head">stuff</div>
-            <div class="wiki-block-body">
-                <div class="callout callout-tip"><strong>TIP:</strong> Hate all omnis.</div>
-                <div class="callout callout-note"><strong>NOTE:</strong> Duckless might be evil!</div>
-                <div class="callout callout-important"><strong>IMPORTANT:</strong> There are three roots</div>
-                <div class="callout callout-warning"><strong>WARNING:</strong> Entering Xhunters palace will get you
-                    killed at night!</div>
-            </div>
-        </div>
-
-        <div class="wiki-block">
-            <div class="wiki-block-head">Featured Pages</div>
-            <div class="wiki-block-body">
-                <p>These two cards link to pages that are useful for beginners.</p>
-                <div class="card-grid">
-                    <div class="card">
-                        <h3>Massless</h3>
-                        <p>Information and guide for massless, something necessary for shredders to work.</p>
-                        <a href="pages/shreds/massless.html">Go</a>
-                    </div>
-                    <div class="card">
-                        <h3>Gyro Cores</h3>
-                        <p>An explanation and guide for gyro cores.</p>
-                        <a href="pages/shreds/gyrocore.html">Go</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <p class="wiki-last-edited">If there is a mistake in the wiki then contact one of the main writers. (discord
-            id
-            in the credits)</p>
+        </details>
 
     </main>
 
