@@ -1,107 +1,116 @@
-//HELLO I AM SKIDDED I AM A SKIDDED LITTLE BOY I AM THE SEX OFFENDER REGISTERY FOR ALL YOU NAUGHTY BOYS LIKE SHUSH DUCKLESS AND XHUNTER
 let offenders = [];
+let registryLoading = false;
+let registryReady = false;
+let registryFailures = 0;
+let registryIndexError = false;
 
 function getRegistryBasePath() {
     const script = document.querySelector('script[src*="registery.js"]');
-    if (script) {
-        const scriptUrl = new URL(script.getAttribute('src'), window.location.href);
-        const marker = '/js/registery.js';
-        const idx = scriptUrl.pathname.lastIndexOf(marker);
-        if (idx !== -1) {
-            return scriptUrl.pathname.slice(0, idx + 1);
-        }
+    if (script) return new URL('../', script.src).pathname;
+    return typeof getWikiBasePath === 'function' ? getWikiBasePath() : '/';
+}
+
+function registryStatus(message, retry = false) {
+    const status = document.getElementById('registry-status');
+    status.textContent = message;
+    if (retry) {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.textContent = 'Retry';
+        button.addEventListener('click', loadRegistry);
+        status.append(' ', button);
     }
-    return getWikiBasePath?.() ?? '/';
 }
 
 async function loadRegistry() {
     const container = document.getElementById('registry');
-    if (!container) return;
-
-    const basePath = getRegistryBasePath();
-
+    if (!container || registryLoading) return;
+    registryLoading = true;
+    registryStatus('Loading registry…');
+    container.setAttribute('aria-busy', 'true');
     try {
-        const idsResponse = await fetch(basePath + 'data/registry/index.json');
-        if (!idsResponse.ok) throw new Error('Could not load registry index: ' + idsResponse.status);
-
-        const ids = await idsResponse.json();
-        if (!Array.isArray(ids)) throw new Error('Registry index is not an array');
-
-        const entries = await Promise.all(
-            ids.map(async id => {
-                const response = await fetch(`${basePath}data/registry/${id}.json`);
-                if (!response.ok) throw new Error(`Could not load registry entry: ${id}`);
-                return response.json();
-            })
-        );
-
-        offenders = entries;
-        render(offenders);
-    } catch (err) {
-        console.error('[registry] load failed:', err);
-        container.innerHTML = '<p>Could not load registry data. Please try again later.</p>';
+        const base = getRegistryBasePath() + 'data/registry/';
+        const ids = await fetchWikiJSON(base + 'index.json');
+        if (!Array.isArray(ids) || ids.some(id => !['string', 'number'].includes(typeof id)
+            || !/^[a-zA-Z0-9_-]+$/.test(String(id)))) {
+            throw new Error('Registry index must contain valid entry IDs');
+        }
+        const uniqueIds = [...new Set(ids.map(String))];
+        const entries = new Array(uniqueIds.length);
+        let next = 0;
+        registryFailures = 0;
+        // Limit concurrent requests even when the registry grows.
+        await Promise.all(Array.from({ length: Math.min(6, uniqueIds.length) }, async () => {
+            while (next < uniqueIds.length) {
+                const index = next++;
+                try {
+                    const entry = await fetchWikiJSON(base + uniqueIds[index] + '.json');
+                    if (!entry || typeof entry !== 'object' || Array.isArray(entry)) {
+                        throw new Error('Invalid registry entry: ' + uniqueIds[index]);
+                    }
+                    entries[index] = entry;
+                } catch (error) {
+                    registryFailures++;
+                    console.error('[registry] entry load failed:', error);
+                }
+            }
+        }));
+        offenders = entries.filter(Boolean);
+        registryReady = true;
+        registryIndexError = false;
+        registryLoading = false;
+        renderRegistrySearch();
+    } catch (error) {
+        console.error('[registry] load failed:', error);
+        registryIndexError = true;
+        registryStatus('Could not load registry data. Please try again.', true);
+    } finally {
+        registryLoading = false;
+        container.setAttribute('aria-busy', 'false');
     }
 }
 
 function render(list) {
     const container = document.getElementById('registry');
     if (!container) return;
-
     container.innerHTML = list.map(person => {
         const evidence = Array.isArray(person.evidence) ? person.evidence : [];
-        const alts = Array.isArray(person.alts) ? person.alts : [];
-        const offenses = Array.isArray(person.offenses) ? person.offenses : [];
-
-        const evidenceHTML = evidence.length === 0
-            ? '<li>No public evidence listed.</li>'
-            : evidence.map(ev => `
-                <li>
-                    <a href="${ev.url}" target="_blank" rel="noopener noreferrer">
-                        ${ev.title}
-                    </a>
-                </li>
-            `).join('');
-
-        return `
-            <div class="card">
-                <h2>${person.username ?? 'Unknown'}</h2>
-                <p><b>UserID:</b> ${person.userid ?? 'N/A'}</p>
-                <p><b>Known Alts:</b>
-                    ${alts.map(alt => `<span class="wiki-cat">${alt}</span>`).join(' ')}
-                </p>
-                <p><b>Offenses:</b>
-                    ${offenses.map(offense => `<span class="wiki-cat">${offense}</span>`).join(' ')}
-                </p>
-                <p><b>Description:</b> ${person.description ?? ''}</p>
-                <h4>Evidence</h4>
-                <ul>${evidenceHTML}</ul>
-            </div>
-        `;
+        const badges = values => (Array.isArray(values) ? values : [])
+            .map(value => '<span class="wiki-cat">' + escapeHTML(value) + '</span>').join(' ');
+        const evidenceHTML = evidence.length ? evidence.map(item => {
+            const url = item && typeof item.url === 'string' ? safeWebUrl(item.url) : null;
+            const title = escapeHTML(item?.title || 'Evidence');
+            return url ? '<li><a href="' + escapeHTML(url) + '" target="_blank" rel="noopener noreferrer">' + title + '</a></li>'
+                : '<li>' + title + ' (link unavailable)</li>';
+        }).join('') : '<li>No public evidence listed.</li>';
+        return '<div class="card"><h2>' + escapeHTML(person.username ?? 'Unknown') + '</h2>'
+            + '<p><b>UserID:</b> ' + escapeHTML(person.userid ?? 'N/A') + '</p>'
+            + '<p><b>Known Alts:</b> ' + badges(person.alts) + '</p>'
+            + '<p><b>Offenses:</b> ' + badges(person.offenses) + '</p>'
+            + '<p><b>Description:</b> ' + escapeHTML(person.description) + '</p>'
+            + '<h3>Evidence</h3><ul>' + evidenceHTML + '</ul></div>';
     }).join('');
 }
 
-function initRegistrySearch() {
-    const searchInput = document.getElementById('registrySearch');
-    if (!searchInput) return;
-
-    searchInput.addEventListener('input', e => {
-        const search = e.target.value.toLowerCase();
-
-        render(
-            offenders.filter(person => {
-                const username = String(person.username ?? '').toLowerCase();
-                const userid = String(person.userid ?? '');
-                const offenses = Array.isArray(person.offenses) ? person.offenses : [];
-
-                return username.includes(search)
-                    || userid.includes(search)
-                    || offenses.some(offense => String(offense).toLowerCase().includes(search));
-            })
-        );
-    });
+function renderRegistrySearch() {
+    if (!registryReady) return;
+    const query = document.getElementById('registrySearch').value.trim().toLowerCase();
+    const list = offenders.filter(person => [person.username, person.userid,
+        ...(Array.isArray(person.alts) ? person.alts : []),
+        ...(Array.isArray(person.offenses) ? person.offenses : [])]
+        .some(value => String(value ?? '').toLowerCase().includes(query)));
+    render(list);
+    if (registryLoading) return;
+    const message = registryIndexError
+        ? 'Could not refresh registry data. Showing previously loaded entries.'
+        : registryFailures
+        ? registryFailures + ' registry entries could not be loaded. Showing ' + list.length + ' matching entries.'
+        : offenders.length === 0 ? 'No registry entries are available.'
+            : list.length === 0 ? 'No matching registry entries.' : list.length + ' matching entries.';
+    registryStatus(message, registryIndexError || registryFailures > 0);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    initRegistrySearch();
+    document.getElementById('registrySearch')?.addEventListener('input', renderRegistrySearch);
     loadRegistry();
 });

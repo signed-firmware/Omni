@@ -19,8 +19,9 @@
             <span class="wiki-cat">Module</span>
         </div>
 
-        <nav class="wiki-breadcrumb">
-            <a href="/">Home</a> <a href="/pages/shredderhub.html">ShredderHub</a> <span>Blades</span>
+        <nav class="wiki-breadcrumb" aria-label="Breadcrumb">
+            <a href="../../index.html">Home</a> <a href="../../pages/shredderhub.html">ShredderHub</a>
+            <span>Blades</span>
         </nav>
         <div class="this-page-is-related-to">
             <span class="this-page-is-related-to-label">
@@ -40,34 +41,33 @@
 
         <p>Blades and their design influence how much damage your shredder can output. Blades have a few factors
             for being good, mainly spacing and CE. This page has information on many things related to blades.</p>
-        <nav class="toc-box">
+        <nav class="toc-box" aria-label="Contents">
             <div class="toc-title">Contents</div>
             <ul>
-                <li>
-                    <a href="#design">1 Blade Design</a>
+                <li><a href="#design">1 Blade Design</a>
                     <ul>
-                        <!--dude who the fuck named it like this -->
                         <li><a href="#Modern-Blades">1.1 Modern Blades</a></li>
                         <li><a href="#Sins">1.2 Sinusoid</a></li>
-                        <!--lol its 1am on my shitpad im not doing this extra work plz next person-->
-                        <li><a href="#Angled-Rockets">1.3 Density</a></li>
-                        <li><a href="#Angled-Rockets">1.4 Efficiency</a></li>
-                        <li><a href="#Angled-Rockets">1.5 Surface Area</a></li>
+                        <li><a href="#scissor">1.3 Scissor Blades</a></li>
+                        <li><a href="#density">1.4 Density</a></li>
+                        <li><a href="#efficiency">1.5 Efficiency</a></li>
+                        <li><a href="#area-coverage">1.6 Area Coverage</a></li>
                     </ul>
                 </li>
-
-                <li><a href="#Cutter-rules">2 Cutter Rules</a></li>
-                <ul>
-                    <li><a href="#Hover-engines">1.1 Density</a></li>
-                    <li><a href="#Maxmium-Speed">1.2 Maximum Speed</a></li>
-                    <li><a href="#Rocket-engines">1.3 Damage per Second</a></li>
-                    <li><a href="#Angled-Rockets">1.4 Pingspiking</a></li>
-                </ul>
-                <li><a href="#Skybounce">3 Demean</a></li>
-                <ul>
-                    <li><a href="#Hover-engines">1.1 Values</a></li>
-                    <li><a href="#Rocket-engines">1.2 Functionality</a></li>
-                </ul>
+                <li><a href="#Cutter-rules">2 Cutter Rules</a>
+                    <ul>
+                        <li><a href="#minimum-distance">2.1 Minimum Distance</a></li>
+                        <li><a href="#Maxmium-Speed">2.2 Maximum Speed</a></li>
+                        <li><a href="#damage-per-second">2.3 Damage per Second</a></li>
+                        <li><a href="#pingspiking">2.4 Pingspiking</a></li>
+                    </ul>
+                </li>
+                <li><a href="#demean">3 Demean</a>
+                    <ul>
+                        <li><a href="#values">3.1 Values</a></li>
+                        <li><a href="#functionality">3.2 Functionality</a></li>
+                    </ul>
+                </li>
             </ul>
         </nav>
 
@@ -79,7 +79,7 @@
                 <h3>Modern Blades</h3>
                 <div class="wiki-thumb thumb-right">
                     <div class="thumb-inner">
-                        <img src="../../assests/spacedcs.png" alt="a">
+                        <img src="../../assests/spacedcs.png" alt="Spaced cross blade design">
                         <div class="thumb-caption">
                             Example.
                         </div>
@@ -102,7 +102,7 @@
                 <h3>Sinusoid</h3>
                 <div class="wiki-thumb thumb-right">
                     <div class="thumb-inner">
-                        <img src="../../assests/sinusoid.png" alt="a">
+                        <img src="../../assests/sinusoid.png" alt="Sinusoid blade design">
                         <div class="thumb-caption">
                             Sinusoid Blade.
                         </div>
@@ -115,68 +115,74 @@
                 </p>
             </section>
             <section>
-                <h3>Scissor Blades</h3>
+                <h3 id="scissor">Scissor Blades</h3>
                 <p>Scissor blades as they're name suggests is the idea of having blades close in on them self like
                     scissors. They have been proven to decrease flings and increase damage.</p>
                 <!--AHHH AHHH AHH AHHH AHH WHY ARE YOU SCREAMING IN M FACE AHH AHH HAHHH AHHHH -->
                 <!-- this is so keyed slojak jarvis marge geeeeeeeeg-->
                 <p>SOMEONE DO SOMETRHING IM KGOKING TO KBEBD</p>
             </section>
-            <h3>Efficiency</h3>
+            <h3 id="density">Density</h3>
             <p></p>
-            <h3>Area Coverage</h3>
+            <h3 id="efficiency">Efficiency</h3>
+            <p></p>
+            <h3 id="area-coverage">Area Coverage</h3>
             <p></p>
         </article>
 
-        <article id="#Cutter-rules"></article>
-        <div style="height: 80px;"></div>
-        <h2>Cutter Rules</h2>
-        <p>Cutter blocks follow a set of rules, both scripted and naturally occouring.</p>
+        <article id="Cutter-rules">
+            <div style="height: 80px;"></div>
+            <h2>Cutter Rules</h2>
+            <p>Cutter blocks follow a set of rules, both scripted and naturally occouring.</p>
 
-        <section id="Maxmium-Speed">
-            <h3>Maximum Speed</h3>
-            <p>Cutters have limits to the speed where they can still function. The first cause of this is ping, this is
-                from the serverside and clientside hitbox being more and more offset the higher the speed is.
-                This, combined with serverside damage checks for cutters, makes ping heavily determine the effectiveness
-                of cutters. It is roughly 700-900 without demean, but 1200-1400 with demean or other modfications.
-            </p>
-            <p>The second cause is a speed limit, cutters eventually stop working at thousands of SPS. Though the
-                biggest
-                factor of deciding the maxmium speed will always be your ping.</p>
-        </section>
+            <section id="Maxmium-Speed">
+                <h3>Maximum Speed</h3>
+                <p>Cutters have limits to the speed where they can still function. The first cause of this is ping, this
+                    is
+                    from the serverside and clientside hitbox being more and more offset the higher the speed is.
+                    This, combined with serverside damage checks for cutters, makes ping heavily determine the
+                    effectiveness
+                    of cutters. It is roughly 700-900 without demean, but 1200-1400 with demean or other modfications.
+                </p>
+                <p>The second cause is a speed limit, cutters eventually stop working at thousands of SPS. Though the
+                    biggest
+                    factor of deciding the maxmium speed will always be your ping.</p>
+            </section>
 
-        <h3>Damage per Second</h3>
-        <p>The modern cutter
-            With 1 motor demean, the blade will spin <span class="wiki-stat-number">45°</span> per tick.
-            The DPS of a blade depends on the shape and demean settings.</p>
+            <h3>Damage per Second</h3>
+            <p>The modern cutter
+                With 1 motor demean, the blade will spin <span class="wiki-stat-number">45°</span> per tick.
+                The DPS of a blade depends on the shape and demean settings.</p>
 
-        <h4>Example: a Flat Blade <span class="wiki-stat-number">(60 h/s)</span> has half the DPS of a Cross Blade
-            <span class="wiki-stat-number">(120 h/s)</span> when using <span class="wiki-stat-number">15π</span>
-            demean, because it will have cutters in that spot alot more than with a flat blade.
-        </h4>
+            <h4>Example: a Flat Blade <span class="wiki-stat-number">(60 h/s)</span> has half the DPS of a Cross Blade
+                <span class="wiki-stat-number">(120 h/s)</span> when using <span class="wiki-stat-number">15π</span>
+                demean, because it will have cutters in that spot alot more than with a flat blade.
+            </h4>
 
-        <section id="Old Rules">
-            <h3>Old rules</h3>
-            <p>Old cutter rules existed back in the olden days and consisted of this practically.
-            </p>
-            <p>For one there was a minimum distance limit rule making redudant cutters not existent in they're time</p>
-            <p>For two there was a maxmium of 15h/s meaning instead of the current 60h/s (one per physics tick) you do
-                nearly a 4th of the possible damage.</p>
-        </section>
+            <section id="Old Rules">
+                <h3>Old rules</h3>
+                <p>Old cutter rules existed back in the olden days and consisted of this practically.
+                </p>
+                <p>For one there was a minimum distance limit rule making redudant cutters not existent in they're time
+                </p>
+                <p>For two there was a maxmium of 15h/s meaning instead of the current 60h/s (one per physics tick) you
+                    do
+                    nearly a 4th of the possible damage.</p>
+            </section>
 
 
 
-        <h3>Pingspiking</h3>
-        <p>When your cutters interact with an excessive amount of blocks, affected by density of blade and target,
-            your
-            ping can spike up with no limit.
-            This causes you to freeze on the server but not your client, making your position stop replicating. This
-            can
-            lead to certain death.</p>
+            <h3 id="pingspiking">Pingspiking</h3>
+            <p>When your cutters interact with an excessive amount of blocks, affected by density of blade and target,
+                your
+                ping can spike up with no limit.
+                This causes you to freeze on the server but not your client, making your position stop replicating. This
+                can
+                lead to certain death.</p>
         </article>
 
 
-        <h2>Demean</h2>
+        <h2 id="demean">Demean</h2>
         <p>Demean is a method of increasing the damage output of cutters. This is done by calculating a specific
             MotorSpeed that
             synchronizes the blade’s rotation with in-game ticks.
@@ -192,30 +198,31 @@
             several steps.
         </p>
 
-        <h4>Roblox operates with the <a href=https://create.roblox.com/docs/physics>physics</a> engine
+        <p class="wiki-detail">Roblox operates with the <a href="https://create.roblox.com/docs/physics">physics</a>
+            engine
             running at a maximum of <span class="wiki-keyword-glow">60hz</span> (like frames per second) making the
             optimal fps, FPS ≥ 60.
-            This also increases the value of <a href=../../shreds/optimisation.html>Optimisation</a></h4>
+            This also increases the value of <a href="optimisation.html">Optimisation</a></p>
 
-        <h4>To find the correct MotorSpeed for a 4 sided blade, this equation is used <span
+        <p class="wiki-detail">To find the correct MotorSpeed for a 4 sided blade, this equation is used <span
                 class="wiki-stat-number">(2π×60)÷(360÷45)</span>. meaning demean is <span
-                class="wiki-stat-number">15π</span> or <span class="wiki-stat-number">47.124</span>.</h4>
+                class="wiki-stat-number">15π</span> or <span class="wiki-stat-number">47.124</span>.</p>
 
-        <h4>To find the MotorSpeed for a 3 sided "tri blade", the equation <span
+        <p class="wiki-detail">To find the MotorSpeed for a 3 sided "tri blade", the equation <span
                 class="wiki-stat-number">(2π×60)÷(360÷60)</span> is used. The answer, <span
                 class="wiki-stat-number">20π</span>, cannot fit within a singular motor. The MotorSpeed limit is 50, 20π
             is <span class="wiki-stat-number">~62.832</span>.
             The fix to this is 2x Demean, which stacks the speed of two motors. This means the correct value for the
-            motors, divided across the 2 motors, is <span class="wiki-stat-number">31.416</span>.</h4>
+            motors, divided across the 2 motors, is <span class="wiki-stat-number">31.416</span>.</p>
 
-        <h4>The optimal MotorTorque value for blades, tested over 1000 times with demean, is <span
-                class="wiki-stat-number">0.63</span>.</h4>
+        <p class="wiki-detail">The optimal MotorTorque value for blades, tested over 1000 times with demean, is <span
+                class="wiki-stat-number">0.63</span>.</p>
 
         <h4>To have a better effect, spin backwards to make it capable of pulling targets into itself. Forwards will
             have a reversed effect.</h4>
         <h3>Values</h3>
         <p></p>
-        <h3>Functionality</h3>
+        <h3 id="functionality">Functionality</h3>
         <p></p>
 
     </main>

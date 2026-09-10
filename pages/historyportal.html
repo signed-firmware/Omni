@@ -116,7 +116,7 @@
 
                 const items = CHRONO_EVENTS[key] || [];
                 panel.innerHTML = items.map(function (item, index) {
-                    const link = '<a href="' + item.href + '">' + item.label + '</a>';
+                    const link = '<span title="Event article not yet written">' + item.label + '</span>';
                     if (index === 0) return link;
                     return '<span class="history-chrono-dot" aria-hidden="true">•</span>' + link;
                 }).join('');
@@ -125,6 +125,7 @@
                     const active = tab.dataset.chronoKey === key;
                     tab.classList.toggle('is-active', active);
                     tab.setAttribute('aria-selected', active ? 'true' : 'false');
+                    tab.tabIndex = active ? 0 : -1;
                     if (active) {
                         panel.setAttribute('aria-labelledby', tab.id);
                     }
@@ -138,6 +139,20 @@
                 tabs.forEach(function (tab) {
                     tab.addEventListener('click', function () {
                         renderChronoChain(tab.dataset.chronoKey);
+                        window.location.hash = 'chrono-' + tab.dataset.chronoKey;
+                    });
+                    tab.addEventListener('keydown', function (event) {
+                        const list = Array.from(tabs);
+                        const index = list.indexOf(tab);
+                        let next;
+                        if (event.key === 'ArrowRight') next = (index + 1) % list.length;
+                        else if (event.key === 'ArrowLeft') next = (index + list.length - 1) % list.length;
+                        else if (event.key === 'Home') next = 0;
+                        else if (event.key === 'End') next = list.length - 1;
+                        else return;
+                        event.preventDefault();
+                        list[next].focus();
+                        list[next].click();
                     });
                 });
 

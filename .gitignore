@@ -2,3 +2,5 @@
 zig-out/
 *.o
 EXAMPLE.html
+.audit-tools/
+tests/__pycache__/

@@ -4,6 +4,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Everyone I dont like</title>
 
     <link rel="stylesheet" href="../css/style.css">
@@ -24,11 +25,13 @@
             either your choice though we arent like sc were we ban people for no reason.
         </p>
 
-        <input id="registrySearch" type="text" placeholder="Search username, userid or offense...">
+        <label for="registrySearch">Search username, user ID, known alt or offense</label>
+        <input id="registrySearch" type="search" placeholder="Search registry...">
 
         <br><br>
 
-        <div id="registry"></div>
+        <p id="registry-status" role="status" aria-live="polite"></p>
+        <div id="registry" aria-busy="true"></div>
 
     </main>
 
