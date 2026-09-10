@@ -448,7 +448,6 @@ document.addEventListener('DOMContentLoaded', function () {
 // ═══════════════════════════════════════════
 
 const pagePreviewCache = new Map();
-const pagePreviewRequests = new Map();
 let previewCardEl = null;
 let hoverTimer = null;
 let hideTimer = null;
@@ -462,7 +461,6 @@ function createPreviewCardDOM() {
     previewCardEl = document.createElement('div');
     previewCardEl.id = 'wiki-link-preview-popup';
     previewCardEl.className = 'wiki-preview-popup';
-    previewCardEl.setAttribute('role', 'tooltip');
     document.body.appendChild(previewCardEl);
 
     previewCardEl.addEventListener('mouseenter', function () {
@@ -501,13 +499,10 @@ function getCleanPath(urlObj) {
 }
 
 async function fetchPagePreviewData(targetUrl) {
-    const canonicalUrl = new URL(targetUrl);
-    canonicalUrl.hash = '';
-    const fullHref = canonicalUrl.href;
+    const fullHref = targetUrl.href;
     if (pagePreviewCache.has(fullHref)) {
         return pagePreviewCache.get(fullHref);
     }
-    if (pagePreviewRequests.has(fullHref)) return pagePreviewRequests.get(fullHref);
 
     const isSameOrigin = targetUrl.origin === window.location.origin || targetUrl.protocol === 'file:';
     if (!isSameOrigin) {
@@ -538,12 +533,8 @@ async function fetchPagePreviewData(targetUrl) {
         image: null
     };
 
-    const request = (async () => {
-    const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), 15000);
     try {
-        const res = await fetch(fullHref, { signal: controller.signal });
-        if (!res.ok) throw new Error('Could not load preview: ' + res.status);
+        const res = await fetch(fullHref);
         if (res.ok) {
             const htmlText = await res.text();
             const doc = new DOMParser().parseFromString(htmlText, 'text/html');
@@ -591,18 +582,12 @@ async function fetchPagePreviewData(targetUrl) {
                 }
             }
         }
-        pagePreviewCache.set(fullHref, previewData);
     } catch (err) {
         console.warn('[wiki-preview] Fetch failed:', err);
-        previewData.snippet = 'Preview unavailable. Follow the link to open the page.';
-    } finally {
-        clearTimeout(timer);
-        pagePreviewRequests.delete(fullHref);
     }
+
+    pagePreviewCache.set(fullHref, previewData);
     return previewData;
-    })();
-    pagePreviewRequests.set(fullHref, request);
-    return request;
 }
 
 function renderPreviewContent(card, data, isSkeleton = false) {
@@ -617,33 +602,28 @@ function renderPreviewContent(card, data, isSkeleton = false) {
         return;
     }
 
-    const catHtml = Array.isArray(data.categories) && data.categories.length
-        ? `<div class="wiki-preview-cats">${data.categories.map(c => `<span class="wiki-preview-cat">${escapeHTML(c)}</span>`).join('')}</div>`
+    const catHtml = data.categories && data.categories.length
+        ? `<div class="wiki-preview-cats">${data.categories.map(c => `<span class="wiki-preview-cat">${c}</span>`).join('')}</div>`
         : '';
 
-    const imageUrl = data.image ? safeWebUrl(data.image) : null;
-    const imgHtml = imageUrl
-        ? `<div class="wiki-preview-img-container"><img class="wiki-preview-img" src="${escapeHTML(imageUrl)}" alt="${escapeHTML(data.title)}"></div>`
+    const imgHtml = data.image
+        ? `<div class="wiki-preview-img-container"><img class="wiki-preview-img" src="${data.image}" alt="${data.title}" onerror="this.parentNode.style.display='none'"></div>`
         : '';
 
     card.innerHTML = `
         ${imgHtml}
         <div class="wiki-preview-body">
             ${catHtml}
-            <h4 class="wiki-preview-title">${escapeHTML(data.title)}</h4>
-            <p class="wiki-preview-snippet">${escapeHTML(normalizeSnippet(data.snippet))}</p>
+            <h4 class="wiki-preview-title">${data.title}</h4>
+            <p class="wiki-preview-snippet">${data.snippet}</p>
         </div>
     `;
-    card.querySelector('img')?.addEventListener('error', event => {
-        event.target.parentElement.textContent = 'Preview image unavailable.';
-    }, { once: true });
 }
 
 function positionPreviewCard(mouseX, mouseY) {
     if (!previewCardEl) return;
 
-    // Use layout dimensions: animated transforms shrink the bounding rectangle.
-    const cardRect = { width: previewCardEl.offsetWidth, height: previewCardEl.offsetHeight };
+    const cardRect = previewCardEl.getBoundingClientRect();
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
 
@@ -674,14 +654,11 @@ async function showPreviewForAnchor(anchor, posX, posY) {
     const rawHref = anchor.getAttribute('href');
     if (!rawHref || rawHref === '#' || rawHref.startsWith('javascript:')) return;
 
-    const safeUrl = safeWebUrl(rawHref);
-    if (!safeUrl) return;
-    const targetUrl = new URL(safeUrl);
+    const targetUrl = new URL(rawHref, window.location.href);
 
     if (targetUrl.pathname === window.location.pathname && targetUrl.hash) {
         return;
     }
-    targetUrl.hash = '';
 
     currentAnchor = anchor;
     const card = createPreviewCardDOM();
@@ -707,9 +684,6 @@ async function showPreviewForAnchor(anchor, posX, posY) {
 
 function initLinkPreviews() {
     createPreviewCardDOM();
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') hidePreview(); });
-    window.addEventListener('scroll', hidePreview, { passive: true });
-    window.addEventListener('resize', hidePreview);
 
     document.addEventListener('mousemove', function (e) {
         lastMouseX = e.clientX;
@@ -717,14 +691,13 @@ function initLinkPreviews() {
     });
 
     document.addEventListener('mouseover', function (e) {
-        if (!window.matchMedia('(hover: hover)').matches) return;
         const anchor = e.target.closest('a');
         if (!anchor) return;
 
         if (anchor.closest('.wiki-logo-box') || anchor.closest('.search-results-box')) return;
 
         const href = anchor.getAttribute('href');
-        if (!href || href.startsWith('#') || !safeWebUrl(href)) return;
+        if (!href || href === '#' || href.startsWith('javascript:')) return;
 
         if (currentAnchor === anchor) {
             clearTimeout(hideTimer);

@@ -24,7 +24,7 @@
         </header>
 
         <nav class="wiki-breadcrumb" aria-label="Breadcrumb">
-            <a href="../index.html">Main Page</a>
+            <a href="/index.html">Main Page</a>
             <span>History Portal</span>
         </nav>
 
@@ -68,9 +68,6 @@
 
                     </div>
                 </section>
-            </div>
-        </div>
-        <p class="wiki-stub">Individual event articles are not yet written. <a href="history/historypage.html">Read the draft history notes</a>.</p>
     </main>
 
     <footer id="wiki-footer"></footer>
@@ -158,13 +155,8 @@
                         list[next].click();
                     });
                 });
-                const restore = function () {
-                    const key = window.location.hash.replace(/^#chrono-/, '');
-                    renderChronoChain(Object.hasOwn(CHRONO_EVENTS, key) ? key : 'proto');
-                };
-                document.getElementById('history-chrono-events').tabIndex = 0;
-                window.addEventListener('hashchange', restore);
-                restore();
+
+                renderChronoChain('proto');
             }
 
             if (document.readyState === 'loading') {
