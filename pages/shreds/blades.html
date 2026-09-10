@@ -24,7 +24,9 @@
         </nav>
         <div class="this-page-is-related-to">
             <span class="this-page-is-related-to-label">
-                <svg class="this-page-is-related-to-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <svg class="this-page-is-related-to-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    aria-hidden="true">
                     <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
                     <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
                 </svg>
@@ -44,6 +46,7 @@
                 <li>
                     <a href="#design">1 Blade Design</a>
                     <ul>
+                        <!--dude who the fuck named it like this -->
                         <li><a href="#Modern-Blades">1.1 Modern Blades</a></li>
                         <li><a href="#Sins">1.2 Sinusoid</a></li>
                         <!--lol its 1am on my shitpad im not doing this extra work plz next person-->
@@ -106,22 +109,19 @@
                     </div>
                 </div>
                 <p>This blade uses a repeated pattern of angles to create a spinning sinusoid. These are spaced well,
-                    but do
-                    not
-                    use cutters as efficiently.</p>
+                    but do not use cutters as efficiently.</p>
                 <p>A mistake people make when using this type of blade is creating a helix, stacking the pattern to make
-                    two
-                    sinusoids. This uses way too many blocks and can make the blade dense enough to be pingspiked.</p>
+                    two sinusoids. This uses way too many blocks and can make the blade dense enough to be pingspiked.
+                </p>
             </section>
             <section>
                 <h3>Scissor Blades</h3>
-                <p>Scissor blades as they're name suggests is the idea of having blades close in on them self like scissors. They have been proven to decrease flings and increase damage.</p>
+                <p>Scissor blades as they're name suggests is the idea of having blades close in on them self like
+                    scissors. They have been proven to decrease flings and increase damage.</p>
                 <!--AHHH AHHH AHH AHHH AHH WHY ARE YOU SCREAMING IN M FACE AHH AHH HAHHH AHHHH -->
                 <!-- this is so keyed slojak jarvis marge geeeeeeeeg-->
                 <p>SOMEONE DO SOMETRHING IM KGOKING TO KBEBD</p>
             </section>
-            <h3>Density</h3>
-            <p></p>
             <h3>Efficiency</h3>
             <p></p>
             <h3>Area Coverage</h3>
@@ -133,17 +133,12 @@
         <h2>Cutter Rules</h2>
         <p>Cutter blocks follow a set of rules, both scripted and naturally occouring.</p>
 
-
-        <h3>Minimum Distance</h3>
-        <p>Cutters have a minimum distance rule, this prevents redundant cutters and side by side cutters.</p>
-
         <section id="Maxmium-Speed">
             <h3>Maximum Speed</h3>
             <p>Cutters have limits to the speed where they can still function. The first cause of this is ping, this is
                 from the serverside and clientside hitbox being more and more offset the higher the speed is.
                 This, combined with serverside damage checks for cutters, makes ping heavily determine the effectiveness
-                of
-                cutters. It is roughly 700-900 without demean, but 1200-1400 with demean or other modfications.
+                of cutters. It is roughly 700-900 without demean, but 1200-1400 with demean or other modfications.
             </p>
             <p>The second cause is a speed limit, cutters eventually stop working at thousands of SPS. Though the
                 biggest
@@ -151,21 +146,23 @@
         </section>
 
         <h3>Damage per Second</h3>
-        <p>When a cutter deals damage, it deactivates for 0.1 seconds. This prevents cutters from just dealing
-            infinite
-            damage and instantly pingspiking.
-            Demean makes blades have constant hits per second by making the cutters land in the same exact spot
-            while
-            the blade spins (Each frame the blade must rotate in a way that a cutter goes to the same position as
-            the
-            previous cutter.)
+        <p>The modern cutter
             With 1 motor demean, the blade will spin <span class="wiki-stat-number">45°</span> per tick.
             The DPS of a blade depends on the shape and demean settings.</p>
 
-        <h4>Example: a Flat Blade <span class="wiki-stat-number">(15 h/s)</span> has half the DPS of a Cross Blade
-            <span class="wiki-stat-number">(30 h/s)</span> when using <span class="wiki-stat-number">15π</span>
-            demean.
+        <h4>Example: a Flat Blade <span class="wiki-stat-number">(60 h/s)</span> has half the DPS of a Cross Blade
+            <span class="wiki-stat-number">(120 h/s)</span> when using <span class="wiki-stat-number">15π</span>
+            demean, because it will have cutters in that spot alot more than with a flat blade.
         </h4>
+
+        <section id="Old Rules">
+            <h3>Old rules</h3>
+            <p>Old cutter rules existed back in the olden days and consisted of this practically.
+            </p>
+            <p>For one there was a minimum distance limit rule making redudant cutters not existent in they're time</p>
+            <p>For two there was a maxmium of 15h/s meaning instead of the current 60h/s (one per physics tick) you do
+                nearly a 4th of the possible damage.</p>
+        </section>
 
 
 
@@ -180,9 +177,20 @@
 
 
         <h2>Demean</h2>
-        <p>Demean is a method of boosting the damage of cutters in a blade. This is done through a calculated MotorSpeed
-            that aligns a specific amount of motor rotation with ingame ticks.
-            The exact rotation needed for a blade is calculated through a few steps.</p>
+        <p>Demean is a method of increasing the damage output of cutters. This is done by calculating a specific
+            MotorSpeed that
+            synchronizes the blade’s rotation with in-game ticks.
+            <br>
+            It allows blades to maintain a constant number of hits per second by making each cutter land in the exact
+            same position
+            as the previous cutter. Each frame, the blade must rotate by an amount that causes a cutter to reach the
+            same position
+            as the one before it.
+            <br>
+            With 1 motor demean, the blade rotates 45° per tick. The exact rotation required for a blade is calculated
+            through
+            several steps.
+        </p>
 
         <h4>Roblox operates with the <a href=https://create.roblox.com/docs/physics>physics</a> engine
             running at a maximum of <span class="wiki-keyword-glow">60hz</span> (like frames per second) making the
@@ -205,8 +213,6 @@
 
         <h4>To have a better effect, spin backwards to make it capable of pulling targets into itself. Forwards will
             have a reversed effect.</h4>
-
-        <p>In summary, a cross blade</p>
         <h3>Values</h3>
         <p></p>
         <h3>Functionality</h3>
