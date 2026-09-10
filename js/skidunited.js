@@ -411,7 +411,8 @@ document.addEventListener('DOMContentLoaded', function () {
     buildSiteNotice();
     buildFooter();
     initWikiSearch();
-    initLinkPreviews();
+    //this is where it all went wrong o algo
+    //initLinkPreviews();
 
     const lazyVideos = document.querySelectorAll('video.lazy-video');
     if (!lazyVideos.length) return;
@@ -589,8 +590,8 @@ async function fetchPagePreviewData(targetUrl) {
     pagePreviewCache.set(fullHref, previewData);
     return previewData;
 }
-
-function renderPreviewContent(card, data, isSkeleton = false) {
+//where it all went wrong 2 o algo
+/*function renderPreviewContent(card, data, isSkeleton = false) {
     if (isSkeleton) {
         card.innerHTML = `
             <div class="wiki-preview-skeleton">
@@ -618,7 +619,7 @@ function renderPreviewContent(card, data, isSkeleton = false) {
             <p class="wiki-preview-snippet">${data.snippet}</p>
         </div>
     `;
-}
+}*/
 
 function positionPreviewCard(mouseX, mouseY) {
     if (!previewCardEl) return;
